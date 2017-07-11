@@ -1,0 +1,995 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android框架," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="一个Activity嵌套多个Fragment一个主activity嵌套多个fragment满足市面上大多数app的整体框架，底部导航栏支持纯照片、照片加文字的组合方式满足了大部分app底部导航栏的要求；值传递支持activity与fragment、fragment与fragment；解决了fragment重叠的问题；展示了bannner加内容嵌套；fragment嵌套fragment等 &amp;nbsp">
+<meta name="keywords" content="Android框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个Activity嵌套多个Fragment">
+<meta property="og:url" content="http://yoursite.com/2017/07/11/20170711/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="一个Activity嵌套多个Fragment一个主activity嵌套多个fragment满足市面上大多数app的整体框架，底部导航栏支持纯照片、照片加文字的组合方式满足了大部分app底部导航栏的要求；值传递支持activity与fragment、fragment与fragment；解决了fragment重叠的问题；展示了bannner加内容嵌套；fragment嵌套fragment等 &amp;nbsp">
+<meta property="og:image" content="https://github.com/madreain/FragmentFrame/blob/master/image/home.jpeg">
+<meta property="og:image" content="https://github.com/madreain/FragmentFrame/blob/master/image/second.jpeg">
+<meta property="og:updated_time" content="2017-07-11T13:25:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个Activity嵌套多个Fragment">
+<meta name="twitter:description" content="一个Activity嵌套多个Fragment一个主activity嵌套多个fragment满足市面上大多数app的整体框架，底部导航栏支持纯照片、照片加文字的组合方式满足了大部分app底部导航栏的要求；值传递支持activity与fragment、fragment与fragment；解决了fragment重叠的问题；展示了bannner加内容嵌套；fragment嵌套fragment等 &amp;nbsp">
+<meta name="twitter:image" content="https://github.com/madreain/FragmentFrame/blob/master/image/home.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/11/20170711/"/>
+
+
+
+
+
+  <title>一个Activity嵌套多个Fragment | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/11/20170711/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个Activity嵌套多个Fragment</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T20:59:34+08:00">
+                2017-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/11/20170711/" class="leancloud_visitors" data-flag-title="一个Activity嵌套多个Fragment">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一个Activity嵌套多个Fragment"><a href="#一个Activity嵌套多个Fragment" class="headerlink" title="一个Activity嵌套多个Fragment"></a>一个Activity嵌套多个Fragment</h1><p>一个主activity嵌套多个fragment满足市面上大多数app的整体框架，底部导航栏支持纯照片、照片加文字的组合方式满足了大部分app底部导航栏的要求；值传递支持activity与fragment、fragment与fragment；解决了fragment重叠的问题；展示了bannner加内容嵌套；fragment嵌套fragment等</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎<br><!-- Place this tag where you want the button to render. --><br><a class="github-button" href="https://github.com/madreain/FragmentFrame" aria-label="Star madreain/FragmentFrame on GitHub" target="_blank" rel="external">Star</a><br><!-- Place this tag where you want the button to render. --><br><a class="github-button" href="https://github.com/madreain/FragmentFrame/fork" aria-label="Fork madreain/FragmentFrame on GitHub" target="_blank" rel="external">Fork</a></p>
+<p><a href="https://github.com/madreain/FragmentFrame" target="_blank" rel="external">FragmentFrame项目地址</a></p>
+<h2 id="1-底部导航栏"><a href="#1-底部导航栏" class="headerlink" title="1.底部导航栏"></a>1.底部导航栏</h2><h3 id="1-BottomBar底部导航栏"><a href="#1-BottomBar底部导航栏" class="headerlink" title="(1).BottomBar底部导航栏"></a>(1).BottomBar底部导航栏</h3><h3 id="2-BottomBarTab底部导航栏中的item，支持照片／照片加文字的格式"><a href="#2-BottomBarTab底部导航栏中的item，支持照片／照片加文字的格式" class="headerlink" title="(2).BottomBarTab底部导航栏中的item，支持照片／照片加文字的格式"></a>(2).BottomBarTab底部导航栏中的item，支持照片／照片加文字的格式</h3><h2 id="2-Fragment重叠的问题"><a href="#2-Fragment重叠的问题" class="headerlink" title="2.Fragment重叠的问题"></a>2.Fragment重叠的问题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   @Override</div><div class="line">    public <span class="keyword">void</span> onAttachFragment(Fragment fragment) &#123;</div><div class="line">        <span class="keyword">if</span> (homeFragment == <span class="literal">null</span> &amp;&amp; fragment <span class="keyword">instanceof</span> HomeFragment)</div><div class="line">            homeFragment = (HomeFragment) fragment;</div><div class="line">        <span class="keyword">if</span> (secondFragment == <span class="literal">null</span> &amp;&amp; fragment <span class="keyword">instanceof</span> SecondFragment)</div><div class="line">            secondFragment = (SecondFragment) fragment;</div><div class="line">        <span class="keyword">if</span> (thirdFragment == <span class="literal">null</span> &amp;&amp; fragment <span class="keyword">instanceof</span> ThirdFragment)</div><div class="line">            thirdFragment = (ThirdFragment) fragment;</div><div class="line">        <span class="keyword">if</span> (personFragment == <span class="literal">null</span> &amp;&amp; fragment <span class="keyword">instanceof</span> PersonFragment)</div><div class="line">            personFragment = (PersonFragment) fragment;</div><div class="line"><span class="comment">//        super.onAttachFragment(fragment);</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="3-经典的banner展示加内容展示嵌套"><a href="#3-经典的banner展示加内容展示嵌套" class="headerlink" title="3.经典的banner展示加内容展示嵌套"></a>3.经典的banner展示加内容展示嵌套</h2><p><img src="https://github.com/madreain/FragmentFrame/blob/master/image/home.jpeg" alt="效果图"></p>
+<p>{效果图}</p>
+<h3 id="1-实现思路"><a href="#1-实现思路" class="headerlink" title="(1).实现思路"></a>(1).实现思路</h3><p>  listview+viewpager打造主流的这种首页</p>
+<h3 id="2-具体实现HomeFragment"><a href="#2-具体实现HomeFragment" class="headerlink" title="(2).具体实现HomeFragment"></a>(2).具体实现<a href="https://github.com/madreain/FragmentFrame/blob/master/app/src/main/java/com/fragmentframe/fragment/HomeFragment.java" target="_blank" rel="external">HomeFragment</a></h3><h2 id="4-Fragment嵌套Fragment实现左右滑动切换及其点击导航栏切换显示"><a href="#4-Fragment嵌套Fragment实现左右滑动切换及其点击导航栏切换显示" class="headerlink" title="4.Fragment嵌套Fragment实现左右滑动切换及其点击导航栏切换显示"></a>4.Fragment嵌套Fragment实现左右滑动切换及其点击导航栏切换显示</h2><p><img src="https://github.com/madreain/FragmentFrame/blob/master/image/second.jpeg" alt="效果图"></p>
+<p>{效果图}</p>
+<h3 id="1-实现思路-1"><a href="#1-实现思路-1" class="headerlink" title="(1).实现思路"></a>(1).实现思路</h3><p>  viewpager+加上头部导航栏实现切换</p>
+<h3 id="2-具体实现HomeFragment-1"><a href="#2-具体实现HomeFragment-1" class="headerlink" title="(2).具体实现HomeFragment"></a>(2).具体实现<a href="https://github.com/madreain/FragmentFrame/blob/master/app/src/main/java/com/fragmentframe/fragment/SecondFragment.java" target="_blank" rel="external">HomeFragment</a></h3><h2 id="5-MainActivity中的ThirdFragment点击进入FActivity，点击FActivity的操作返还到MainActivity，并将原先展示的ThirdFragment替换成HomeFragment（也可以携带数据返还）"><a href="#5-MainActivity中的ThirdFragment点击进入FActivity，点击FActivity的操作返还到MainActivity，并将原先展示的ThirdFragment替换成HomeFragment（也可以携带数据返还）" class="headerlink" title="5.MainActivity中的ThirdFragment点击进入FActivity，点击FActivity的操作返还到MainActivity，并将原先展示的ThirdFragment替换成HomeFragment（也可以携带数据返还）"></a>5.MainActivity中的ThirdFragment点击进入FActivity，点击FActivity的操作返还到MainActivity，并将原先展示的ThirdFragment替换成HomeFragment（也可以携带数据返还）</h2><h3 id="1-通过接口的方式来到达效果"><a href="#1-通过接口的方式来到达效果" class="headerlink" title="(1).通过接口的方式来到达效果"></a>(1).通过接口的方式来到达效果</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">public interface BaseFragmentCallback &#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 当点击Fragment上组件时调用</div><div class="line">	 *</div><div class="line">	 * @param tag</div><div class="line">	 *            当前事件所发生在的Fragment标签(用做区分各Fragment的标识),默认为当前Fragment类名</div><div class="line">	 * @param eventID</div><div class="line">	 *            当前事件的编号</div><div class="line">	 * @param data</div><div class="line">	 *            需携带的数据,没有数据传入null</div><div class="line">	 *</div><div class="line">	 * @see 在各子类Fragment中可用&#123;@link BaseFragment#callbackToActivity(View, Object)&#125;</div><div class="line">	 *      来触发事件</div><div class="line">	 */</div><div class="line">	<span class="keyword">void</span> onCallback(<span class="built_in">String</span> tag, int eventID, <span class="built_in">Object</span> data);</div><div class="line">&#125;</div><div class="line"><span class="string">``</span><span class="string">` </span></div><div class="line">然后在MainActivity实现这个接口，通过回调拿到数据并在MainActivity切换显示的Fragment（）</div><div class="line"></div><div class="line">所有的Fragment都是继承BaseFragment，BaseFragment通过接口绑定来回调数据</div><div class="line"></div><div class="line">### (2).具体实现</div><div class="line">MainActivity</div><div class="line">`<span class="string">``</span> javascript</div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="title">implements</span> <span class="title">BaseFragmentCallback</span></span></div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 接口回调实现<span class="title">Fragment</span>中<span class="title">Fragment</span>之间的切换</div><div class="line">     */</div><div class="line">    @<span class="title">Override</span></div><div class="line">    <span class="title">public</span> <span class="title">void</span> <span class="title">onCallback</span>(<span class="title">String</span> <span class="title">tag</span>, <span class="title">int</span> <span class="title">eventID</span>, <span class="title">Object</span> <span class="title">data</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (tag.equals(HomeFragment.class.getSimpleName())</div><div class="line">                || tag.equals(SecondFragment.class.getSimpleName())</div><div class="line">                || tag.equals(ThirdFragment.class.getSimpleName())</div><div class="line">                || tag.equals(PersonFragment.class.getSimpleName())</div><div class="line">                ) &#123;</div><div class="line">            <span class="keyword">switch</span> (eventID) &#123;</div><div class="line">                <span class="keyword">case</span> R.id.tag_layout_f:<span class="comment">//返回到主界面</span></div><div class="line">                    <span class="comment">//设置被选中状态</span></div><div class="line">                    mBottomBar.setCurrentItem(<span class="number">0</span>);</div><div class="line"></div><div class="line">                    <span class="keyword">if</span> (currentFragment != homeFragment) &#123;</div><div class="line">                        <span class="keyword">if</span> (homeFragment == <span class="literal">null</span>) &#123;</div><div class="line">                            homeFragment = HomeFragment.getInstance();</div><div class="line">                        &#125;</div><div class="line">                        SmartShow(homeFragment);</div><div class="line">                        currentFragment = homeFragment;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// <span class="doctag">TODO:</span> 2017/6/28 add refresh</span></div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>ThirdFragment<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">   public <span class="keyword">void</span> onActivityResult(int requestCode, int resultCode, Intent data) &#123;</div><div class="line">       <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">       <span class="comment">// 消息</span></div><div class="line">       <span class="keyword">if</span> (requestCode == NOTICE) &#123;</div><div class="line">           <span class="keyword">if</span> (resultCode == NOTICE_RESULT) &#123;</div><div class="line">               <span class="comment">//返回到主界面</span></div><div class="line">               callbackAttachActivityWhenFragmentItemClick(R.id.tag_layout_f, <span class="literal">null</span>);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>BaseFragment<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">	public <span class="keyword">void</span> onAttach(Activity activity) &#123;</div><div class="line">		<span class="keyword">super</span>.onAttach(activity);</div><div class="line">		<span class="keyword">if</span> (activity <span class="keyword">instanceof</span> BaseFragmentCallback) &#123;</div><div class="line">			callback = (BaseFragmentCallback) activity;</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>具体 Clone or download看一下</p>
+<h2 id="6-Activity向Fragment返还数据"><a href="#6-Activity向Fragment返还数据" class="headerlink" title="6.Activity向Fragment返还数据"></a>6.Activity向Fragment返还数据</h2><h3 id="1-Activity主要通过setResult将数据返还，PersonFragment在onActivityResult去接受数据"><a href="#1-Activity主要通过setResult将数据返还，PersonFragment在onActivityResult去接受数据" class="headerlink" title="(1).Activity主要通过setResult将数据返还，PersonFragment在onActivityResult去接受数据"></a>(1).Activity主要通过setResult将数据返还，PersonFragment在onActivityResult去接受数据</h3><h3 id="2-具体实现PersonFragment"><a href="#2-具体实现PersonFragment" class="headerlink" title="(2).具体实现PersonFragment"></a>(2).具体实现<a href="https://github.com/madreain/FragmentFrame/blob/master/app/src/main/java/com/fragmentframe/fragment/PersonFragment.java" target="_blank" rel="external">PersonFragment</a></h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android框架/" rel="tag"># Android框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/02/20170702/" rel="next" title="VPN_Collect">
+                <i class="fa fa-chevron-left"></i> VPN_Collect
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一个Activity嵌套多个Fragment"><span class="nav-number">1.</span> <span class="nav-text">一个Activity嵌套多个Fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-底部导航栏"><span class="nav-number">1.1.</span> <span class="nav-text">1.底部导航栏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-BottomBar底部导航栏"><span class="nav-number">1.1.1.</span> <span class="nav-text">(1).BottomBar底部导航栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-BottomBarTab底部导航栏中的item，支持照片／照片加文字的格式"><span class="nav-number">1.1.2.</span> <span class="nav-text">(2).BottomBarTab底部导航栏中的item，支持照片／照片加文字的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Fragment重叠的问题"><span class="nav-number">1.2.</span> <span class="nav-text">2.Fragment重叠的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-经典的banner展示加内容展示嵌套"><span class="nav-number">1.3.</span> <span class="nav-text">3.经典的banner展示加内容展示嵌套</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实现思路"><span class="nav-number">1.3.1.</span> <span class="nav-text">(1).实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-具体实现HomeFragment"><span class="nav-number">1.3.2.</span> <span class="nav-text">(2).具体实现HomeFragment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Fragment嵌套Fragment实现左右滑动切换及其点击导航栏切换显示"><span class="nav-number">1.4.</span> <span class="nav-text">4.Fragment嵌套Fragment实现左右滑动切换及其点击导航栏切换显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-实现思路-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">(1).实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-具体实现HomeFragment-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">(2).具体实现HomeFragment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-MainActivity中的ThirdFragment点击进入FActivity，点击FActivity的操作返还到MainActivity，并将原先展示的ThirdFragment替换成HomeFragment（也可以携带数据返还）"><span class="nav-number">1.5.</span> <span class="nav-text">5.MainActivity中的ThirdFragment点击进入FActivity，点击FActivity的操作返还到MainActivity，并将原先展示的ThirdFragment替换成HomeFragment（也可以携带数据返还）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通过接口的方式来到达效果"><span class="nav-number">1.5.1.</span> <span class="nav-text">(1).通过接口的方式来到达效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Activity向Fragment返还数据"><span class="nav-number">1.6.</span> <span class="nav-text">6.Activity向Fragment返还数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Activity主要通过setResult将数据返还，PersonFragment在onActivityResult去接受数据"><span class="nav-number">1.6.1.</span> <span class="nav-text">(1).Activity主要通过setResult将数据返还，PersonFragment在onActivityResult去接受数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-具体实现PersonFragment"><span class="nav-number">1.6.2.</span> <span class="nav-text">(2).具体实现PersonFragment</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
