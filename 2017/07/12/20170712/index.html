@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="gridview," />
 
 
 
@@ -111,18 +111,17 @@
 
 
 
-<meta name="description" content="关于我Hi，我是吴俊（英文名madreain），一个继续爬坑之路上的Android中级工程师，拥有2年多的开发经验，原创业公司初创员工、Android主力开发。先担任上市公司Android开发。 联系我欢迎一起学习交流，可以通过以下的方式勾搭我：（现在在杭州，杭州的可以一起约个技术趴哦！！！） CSDN博客：http://blog.csdn.net/madreain github：https://">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我／联系我">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="gridview 第一个加载失败不显示今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listv">
+<meta name="keywords" content="gridview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gridview 第一个加载失败不显示">
+<meta property="og:url" content="http://yoursite.com/2017/07/12/20170712/index.html">
 <meta property="og:site_name" content="madreain的博客">
-<meta property="og:description" content="关于我Hi，我是吴俊（英文名madreain），一个继续爬坑之路上的Android中级工程师，拥有2年多的开发经验，原创业公司初创员工、Android主力开发。先担任上市公司Android开发。 联系我欢迎一起学习交流，可以通过以下的方式勾搭我：（现在在杭州，杭州的可以一起约个技术趴哦！！！） CSDN博客：http://blog.csdn.net/madreain github：https://">
-<meta property="og:image" content="http://yoursite.com/images/madreainWeChat.png">
-<meta property="og:updated_time" content="2017-07-06T14:50:59.000Z">
+<meta property="og:description" content="gridview 第一个加载失败不显示今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listv">
+<meta property="og:updated_time" content="2017-07-12T13:06:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我／联系我">
-<meta name="twitter:description" content="关于我Hi，我是吴俊（英文名madreain），一个继续爬坑之路上的Android中级工程师，拥有2年多的开发经验，原创业公司初创员工、Android主力开发。先担任上市公司Android开发。 联系我欢迎一起学习交流，可以通过以下的方式勾搭我：（现在在杭州，杭州的可以一起约个技术趴哦！！！） CSDN博客：http://blog.csdn.net/madreain github：https://">
-<meta name="twitter:image" content="http://yoursite.com/images/madreainWeChat.png">
+<meta name="twitter:title" content="gridview 第一个加载失败不显示">
+<meta name="twitter:description" content="gridview 第一个加载失败不显示今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listv">
 
 
 
@@ -150,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/12/20170712/"/>
 
 
 
 
 
-  <title>关于我／联系我 | madreain的博客</title>
+  <title>gridview 第一个加载失败不显示 | madreain的博客</title>
   
 
 
@@ -326,24 +325,215 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">关于我／联系我</h1>
+  
+
+  
+  
+  
+
+  
 
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/12/20170712/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
 
     
-    
-      <h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1><p>Hi，我是吴俊（英文名madreain），一个继续爬坑之路上的Android中级工程师，拥有2年多的开发经验，原创业公司初创员工、Android主力开发。先担任上市公司Android开发。</p>
-<h1 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h1><p>欢迎一起学习交流，可以通过以下的方式勾搭我：（现在在杭州，杭州的可以一起约个技术趴哦！！！）</p>
-<p>CSDN博客：<a href="http://blog.csdn.net/madreain" target="_blank" rel="external">http://blog.csdn.net/madreain</a></p>
-<p>github：<a href="https://github.com/madreain" target="_blank" rel="external">https://github.com/madreain</a></p>
-<p>qq：965244491</p>
-<p>WeChat：<br><img src="/images/madreainWeChat.png" alt="WeChat"></p>
+      <header class="post-header">
 
+        
+        
+          <h1 class="post-title" itemprop="name headline">gridview 第一个加载失败不显示</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T20:59:34+08:00">
+                2017-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/12/20170712/" class="leancloud_visitors" data-flag-title="gridview 第一个加载失败不显示">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="gridview-第一个加载失败不显示"><a href="#gridview-第一个加载失败不显示" class="headerlink" title="gridview 第一个加载失败不显示"></a>gridview 第一个加载失败不显示</h1><p>今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listview也存在同样的问题。</p>
+<p>解决方案：</p>
+<p>1.在Adapter中创建内部类用boolean变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class ModeDto &#123;</div><div class="line">    private boolean hasFirstLoaded = false;</div><div class="line"></div><div class="line">    public boolean isHasFirstLoaded() &#123;</div><div class="line">        return hasFirstLoaded;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setHasFirstLoaded(boolean hasFirstLoaded) &#123;</div><div class="line">        this.hasFirstLoaded = hasFirstLoaded;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.在初始化Adapter的时候初始化该类,</p>
+<p>定义全局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ModeDto modeDto;</div></pre></td></tr></table></figure>
+<p>初始化中进行初始化（一般可以写在initview()方法中）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">modeDto=new ModeDto();</div></pre></td></tr></table></figure>
+<p>记住千万不要放在getView里</p>
+<p>3.在getView的时候赋值并判断做出操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if (position == 0 &amp;&amp; modeDto.isHasFirstLoaded()) &#123;</div><div class="line">    return convertView;</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (position == 0) &#123;</div><div class="line">    modeDto.setHasFirstLoaded(true);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就解决了这个问题，遇见了这个问题的赶紧动手试一试哦</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gridview/" rel="tag"># gridview</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/11/20170711/" rel="next" title="一个Activity嵌套多个Fragment">
+                <i class="fa fa-chevron-left"></i> 一个Activity嵌套多个Fragment
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -491,7 +681,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于我"><span class="nav-number">1.</span> <span class="nav-text">关于我</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#联系我"><span class="nav-number">2.</span> <span class="nav-text">联系我</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gridview-第一个加载失败不显示"><span class="nav-number">1.</span> <span class="nav-text">gridview 第一个加载失败不显示</span></a></li></ol></div>
             
 
           </div>
@@ -622,10 +812,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
