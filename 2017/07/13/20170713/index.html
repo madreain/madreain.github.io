@@ -118,7 +118,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/13/20170713/index.html">
 <meta property="og:site_name" content="madreain的博客">
 <meta property="og:description" content="google推荐的图片加载库Glide的一些坑Glide简介： Glide 是 Google 员工的开源项目， Google I/O 上被推荐使用，一个高效、开源、Android设备上的媒体管理框架，它遵循BSD、MIT以及Apache 2.0协议发布。Glide具有获取、解码和展示视频剧照、图片、动画等功能，它还有灵活的API，这些API使开发者能够将Glide应用在几乎任何网络协议栈里。创建G">
-<meta property="og:updated_time" content="2017-07-13T14:33:57.000Z">
+<meta property="og:updated_time" content="2017-07-13T14:38:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="google推荐的图片加载库Glide的一些坑">
 <meta name="twitter:description" content="google推荐的图片加载库Glide的一些坑Glide简介： Glide 是 Google 员工的开源项目， Google I/O 上被推荐使用，一个高效、开源、Android设备上的媒体管理框架，它遵循BSD、MIT以及Apache 2.0协议发布。Glide具有获取、解码和展示视频剧照、图片、动画等功能，它还有灵活的API，这些API使开发者能够将Glide应用在几乎任何网络协议栈里。创建G">
@@ -499,9 +499,9 @@
 <p>13 .）设置监听请求接口</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Glide.with(this).load(imageUrl).listener(new RequestListener&lt;String, GlideDrawable&gt;() &#123;</div><div class="line">          @Override</div><div class="line">          public boolean onException(Exception e, String model, Target&lt;GlideDrawable&gt; target, boolean isFirstResource) &#123;</div><div class="line">              return false;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">          @Override</div><div class="line">          public boolean onResourceReady(GlideDrawable resource, String model, Target&lt;GlideDrawable&gt; target, boolean isFromMemoryCache, boolean isFirstResource) &#123;</div><div class="line">              //imageView.setImageDrawable(resource);</div><div class="line">              return false;</div><div class="line">          &#125;</div><div class="line">      &#125;).into(imageView);</div></pre></td></tr></table></figure>
 <p>设置监听的用处 可以用于监控请求发生错误来源，以及图片来源 是内存还是磁盘</p>
-<p>15.)设置动态GIF加载方式</p>
+<p>14.)设置动态GIF加载方式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Glide.with(this).load(imageUrl).asBitmap().into(imageView);//显示gif静态图片</div><div class="line">Glide.with(this).load(imageUrl).asGif().into(imageView);//显示gif动态图片</div></pre></td></tr></table></figure>
-<p> 16.）缓存的动态清理</p>
+<p>15.）缓存的动态清理</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Glide.get(this).clearDiskCache();//清理磁盘缓存 需要在子线程中执行</div><div class="line">Glide.get(this).clearMemory();//清理内存缓存  可以在UI主线程中进行</div></pre></td></tr></table></figure>
 <h3 id="2-Glide的坑"><a href="#2-Glide的坑" class="headerlink" title="2.Glide的坑"></a>2.Glide的坑</h3><p>1.）ImageView的setTag问题 </p>
 <p>问题描述：如果使用Glide的into(imageView)为ImageView设置图片的同时使用ImageView的setTag(final Object tag)方法，将会导致java.lang.IllegalArgumentException: You must not call setTag() on a view Glide is targeting异常。因为Glide的ViewTarget中通过view.setTag(tag)和view.getTag()标记请求的，由于Android 4.0之前Tag存储在静态map里，如果Glide使用setTag(int key, final Object tag)方法标记请求则可能会导致内存泄露，所以Glide默认使用view.setTag(tag)标记请求，你就不能重复调用了。 </p>
