@@ -1,0 +1,1009 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义ActionBar在项目开发中，我们经常要用到ActionBar，今天和大家讲解一下将ActionBar写成自定义view的写法，废话不多说，直接上真活。 分析问题：市面上的都是左边一个返回按钮，中间标题，右边是一个图标／文字直接显示 大致思路：自定义组合控件来达到ActionBar的效果，然后将颜色、字体、文字设置都写成动态设置／xml设置的，点击事件的设置，以此来达到自定义ActionB">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义ActionBar">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/20170718/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义ActionBar在项目开发中，我们经常要用到ActionBar，今天和大家讲解一下将ActionBar写成自定义view的写法，废话不多说，直接上真活。 分析问题：市面上的都是左边一个返回按钮，中间标题，右边是一个图标／文字直接显示 大致思路：自定义组合控件来达到ActionBar的效果，然后将颜色、字体、文字设置都写成动态设置／xml设置的，点击事件的设置，以此来达到自定义ActionB">
+<meta property="og:updated_time" content="2017-07-18T14:44:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义ActionBar">
+<meta name="twitter:description" content="自定义ActionBar在项目开发中，我们经常要用到ActionBar，今天和大家讲解一下将ActionBar写成自定义view的写法，废话不多说，直接上真活。 分析问题：市面上的都是左边一个返回按钮，中间标题，右边是一个图标／文字直接显示 大致思路：自定义组合控件来达到ActionBar的效果，然后将颜色、字体、文字设置都写成动态设置／xml设置的，点击事件的设置，以此来达到自定义ActionB">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/18/20170718/"/>
+
+
+
+
+
+  <title>自定义ActionBar | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/18/20170718/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义ActionBar</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T20:59:34+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/18/20170718/" class="leancloud_visitors" data-flag-title="自定义ActionBar">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义ActionBar"><a href="#自定义ActionBar" class="headerlink" title="自定义ActionBar"></a>自定义ActionBar</h1><p>在项目开发中，我们经常要用到ActionBar，今天和大家讲解一下将ActionBar写成自定义view的写法，废话不多说，直接上真活。</p>
+<p><strong>分析问题：</strong>市面上的都是左边一个返回按钮，中间标题，右边是一个图标／文字直接显示</p>
+<p><strong>大致思路：</strong>自定义组合控件来达到ActionBar的效果，然后将颜色、字体、文字设置都写成动态设置／xml设置的，点击事件的设置，以此来达到自定义ActionBar的效果</p>
+<h3 id="1-自定义ActionBar-xml布局"><a href="#1-自定义ActionBar-xml布局" class="headerlink" title="1.自定义ActionBar xml布局"></a>1.自定义ActionBar xml布局</h3><p>左边一个icon，中间文字，右边icon／文字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    android:id=&quot;@+id/action_bar_layout&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;@dimen/dp44&quot;</div><div class="line">    android:orientation=&quot;vertical&quot;&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id=&quot;@+id/txt_title&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;@dimen/dp44&quot;</div><div class="line">        android:gravity=&quot;center&quot;</div><div class="line">        android:singleLine=&quot;true&quot; /&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;ImageView</div><div class="line">        android:id=&quot;@+id/img_left&quot;</div><div class="line">        android:layout_width=&quot;wrap_content&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;</div><div class="line">        android:layout_centerVertical=&quot;true&quot;</div><div class="line">        android:contentDescription=&quot;@null&quot;</div><div class="line">        android:gravity=&quot;center&quot;</div><div class="line">        android:paddingLeft=&quot;@dimen/dp10&quot;</div><div class="line">        android:paddingStart=&quot;@dimen/dp10&quot;</div><div class="line">        android:paddingRight=&quot;@dimen/dp10&quot;</div><div class="line">        android:paddingEnd=&quot;@dimen/dp10&quot;</div><div class="line">        android:scaleType=&quot;centerInside&quot;</div><div class="line">        android:src=&quot;@mipmap/btn_return&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;ImageView</div><div class="line">        android:id=&quot;@+id/img_right&quot;</div><div class="line">        android:layout_width=&quot;wrap_content&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;</div><div class="line">        android:layout_alignParentEnd=&quot;true&quot;</div><div class="line">        android:layout_alignParentRight=&quot;true&quot;</div><div class="line">        android:layout_centerVertical=&quot;true&quot;</div><div class="line">        android:layout_marginEnd=&quot;@dimen/dp10&quot;</div><div class="line">        android:layout_marginLeft=&quot;@dimen/dp10&quot;</div><div class="line">        android:layout_marginRight=&quot;@dimen/dp10&quot;</div><div class="line">        android:layout_marginStart=&quot;@dimen/dp10&quot;</div><div class="line">        android:contentDescription=&quot;@null&quot;</div><div class="line">        android:gravity=&quot;center&quot;</div><div class="line">        android:src=&quot;@mipmap/message&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;TextView</div><div class="line">        android:id=&quot;@+id/txt_right&quot;</div><div class="line">        android:layout_width=&quot;wrap_content&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;</div><div class="line">        android:layout_alignParentEnd=&quot;true&quot;</div><div class="line">        android:layout_alignParentRight=&quot;true&quot;</div><div class="line">        android:gravity=&quot;center&quot;</div><div class="line">        android:paddingEnd=&quot;@dimen/dp10&quot;</div><div class="line">        android:paddingLeft=&quot;@dimen/dp10&quot;</div><div class="line">        android:paddingRight=&quot;@dimen/dp10&quot;</div><div class="line">        android:paddingStart=&quot;@dimen/dp10&quot;</div><div class="line">        android:visibility=&quot;gone&quot; /&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/RelativeLayout&gt;</div></pre></td></tr></table></figure>
+<h3 id="2-自定义ActionBar-java代码"><a href="#2-自定义ActionBar-java代码" class="headerlink" title="2.自定义ActionBar java代码"></a>2.自定义ActionBar java代码</h3><p>自定义ActionBar整体布局是RelativeLayout，所以我们的组合控件要继承RelativeLayout：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * Created by wujun on 2017/7/18.</div><div class="line"> *</div><div class="line"> * ActionBar</div><div class="line"> *</div><div class="line"> * @author madreain</div><div class="line"> * @desc ActionBar支持监听方法的监听、文字的设置</div><div class="line"> */</div><div class="line"></div><div class="line">public class ActionBarView extends RelativeLayout &#123;</div><div class="line"></div><div class="line">    private RelativeLayout action_bar_layout;</div><div class="line">    private TextView txt_title;</div><div class="line">    private ImageView img_left;</div><div class="line">    private ImageView img_right;</div><div class="line">    private TextView txt_right;</div><div class="line"></div><div class="line">    private int mBackgroudColor= getResources().getColor(R.color.colorAccent);</div><div class="line">    private int mTextColor= Color.WHITE;</div><div class="line">    private int mTitleSize= 20;</div><div class="line">    private int mTextSize= 16;</div><div class="line"></div><div class="line"></div><div class="line">    public ActionBarView(Context context) &#123;</div><div class="line">        super(context);</div><div class="line">        initView(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public ActionBarView(Context context, AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">        initView(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public ActionBarView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">        initView(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initView(Context context) &#123;</div><div class="line">        LayoutInflater.from(context).inflate(R.layout.actionbar, this, true);</div><div class="line">        txt_title= (TextView) findViewById(R.id.txt_title);</div><div class="line">        img_left= (ImageView) findViewById(R.id.img_left);</div><div class="line">        img_right= (ImageView) findViewById(R.id.img_right);</div><div class="line">        txt_right= (TextView) findViewById(R.id.txt_right);</div><div class="line">        action_bar_layout= (RelativeLayout) findViewById(R.id.action_bar_layout);</div><div class="line"></div><div class="line">        action_bar_layout.setBackgroundColor(mBackgroudColor);</div><div class="line">        txt_title.setTextColor(mTextColor);</div><div class="line">        txt_right.setTextColor(mTextColor);</div><div class="line"></div><div class="line">        txt_title.setTextSize(mTitleSize);</div><div class="line">        txt_right.setTextSize(mTextSize);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    public void setTitle(String title)&#123;</div><div class="line">        if(!TextUtils.isEmpty(title))&#123;</div><div class="line">            txt_title.setText(title);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setLeftListener(OnClickListener onClickListener)&#123;</div><div class="line">        img_left.setOnClickListener(onClickListener);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setRightListener(OnClickListener onClickListener)&#123;</div><div class="line">        img_right.setOnClickListener(onClickListener);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setRightTextListener(OnClickListener onClickListener)&#123;</div><div class="line">        txt_right.setOnClickListener(onClickListener);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setRightText(boolean isshow,String text)&#123;</div><div class="line">        if(isshow)&#123;</div><div class="line">            txt_right.setVisibility(VISIBLE);</div><div class="line">            img_right.setVisibility(GONE);</div><div class="line">            if(!TextUtils.isEmpty(text))&#123;</div><div class="line">                txt_right.setText(text);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-自定义属性"><a href="#3-自定义属性" class="headerlink" title="3.自定义属性"></a>3.自定义属性</h3><p>values目录下创建 attrs.xml：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;resources&gt;</div><div class="line">    &lt;declare-styleable name=&quot;ActionBarView&quot;&gt;</div><div class="line">        &lt;attr name=&quot;background_color&quot; format=&quot;color&quot;/&gt;</div><div class="line">        &lt;attr name=&quot;txt_color&quot; format=&quot;color&quot;/&gt;</div><div class="line">        &lt;attr name=&quot;title_size&quot; format=&quot;integer&quot;/&gt;</div><div class="line">        &lt;attr name=&quot;txt_size&quot; format=&quot;integer&quot;/&gt;</div><div class="line">    &lt;/declare-styleable&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+<p>这里我定义来四个属性，分别是背景颜色、文字颜色、标题字体大小、字体大小，为了引入自定义的属性，我们需要在<br>ActionBarView的构造函数中解析自定义属性的值：（我这里吧解析自定义属性的值单独写方法写出来的，便于代码的查看）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private void initTypedArray(Context context, AttributeSet attrs) &#123;</div><div class="line">        TypedArray mTypedArray=context.obtainStyledAttributes(attrs,R.styleable.ActionBarView);</div><div class="line">        mBackgroudColor=mTypedArray.getColor(R.styleable.ActionBarView_background_color,getResources().getColor(R.color.colorAccent));</div><div class="line">        mTextColor=mTypedArray.getColor(R.styleable.ActionBarView_txt_color, Color.WHITE);</div><div class="line">        mTextSize=mTypedArray.getInteger(R.styleable.ActionBarView_txt_size,16);</div><div class="line">        mTitleSize=mTypedArray.getInteger(R.styleable.ActionBarView_title_size,20);</div><div class="line">        //获取资源后要及时回收</div><div class="line">        mTypedArray.recycle();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>然后贴出自定义ActionBarView的全部代码；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by wujun on 2017/7/18.</div><div class="line"> *</div><div class="line"> * ActionBar</div><div class="line"> *</div><div class="line"> * @author madreain</div><div class="line"> * @desc ActionBar支持监听方法的监听、文字的设置</div><div class="line"> */</div><div class="line"></div><div class="line">public class ActionBarView extends RelativeLayout &#123;</div><div class="line"></div><div class="line">    private RelativeLayout action_bar_layout;</div><div class="line">    private TextView txt_title;</div><div class="line">    private ImageView img_left;</div><div class="line">    private ImageView img_right;</div><div class="line">    private TextView txt_right;</div><div class="line"></div><div class="line">    private int mBackgroudColor= getResources().getColor(R.color.colorAccent);</div><div class="line">    private int mTextColor= Color.WHITE;</div><div class="line">    private int mTitleSize= 20;</div><div class="line">    private int mTextSize= 16;</div><div class="line"></div><div class="line"></div><div class="line">    public ActionBarView(Context context) &#123;</div><div class="line">        super(context);</div><div class="line">        initView(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public ActionBarView(Context context, AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">        initTypedArray(context,attrs);</div><div class="line">        initView(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public ActionBarView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">        initTypedArray(context,attrs);</div><div class="line">        initView(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initTypedArray(Context context, AttributeSet attrs) &#123;</div><div class="line">        TypedArray mTypedArray=context.obtainStyledAttributes(attrs,R.styleable.ActionBarView);</div><div class="line">        mBackgroudColor=mTypedArray.getColor(R.styleable.ActionBarView_background_color,getResources().getColor(R.color.colorAccent));</div><div class="line">        mTextColor=mTypedArray.getColor(R.styleable.ActionBarView_txt_color, Color.WHITE);</div><div class="line">        mTextSize=mTypedArray.getInteger(R.styleable.ActionBarView_txt_size,16);</div><div class="line">        mTitleSize=mTypedArray.getInteger(R.styleable.ActionBarView_title_size,20);</div><div class="line">        //获取资源后要及时回收</div><div class="line">        mTypedArray.recycle();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initView(Context context) &#123;</div><div class="line">        LayoutInflater.from(context).inflate(R.layout.actionbar, this, true);</div><div class="line">        txt_title= (TextView) findViewById(R.id.txt_title);</div><div class="line">        img_left= (ImageView) findViewById(R.id.img_left);</div><div class="line">        img_right= (ImageView) findViewById(R.id.img_right);</div><div class="line">        txt_right= (TextView) findViewById(R.id.txt_right);</div><div class="line">        action_bar_layout= (RelativeLayout) findViewById(R.id.action_bar_layout);</div><div class="line"></div><div class="line">        action_bar_layout.setBackgroundColor(mBackgroudColor);</div><div class="line">        txt_title.setTextColor(mTextColor);</div><div class="line">        txt_right.setTextColor(mTextColor);</div><div class="line"></div><div class="line">        txt_title.setTextSize(mTitleSize);</div><div class="line">        txt_right.setTextSize(mTextSize);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    public void setTitle(String title)&#123;</div><div class="line">        if(!TextUtils.isEmpty(title))&#123;</div><div class="line">            txt_title.setText(title);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setLeftListener(OnClickListener onClickListener)&#123;</div><div class="line">        img_left.setOnClickListener(onClickListener);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setRightListener(OnClickListener onClickListener)&#123;</div><div class="line">        img_right.setOnClickListener(onClickListener);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setRightTextListener(OnClickListener onClickListener)&#123;</div><div class="line">        txt_right.setOnClickListener(onClickListener);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setRightText(boolean isshow,String text)&#123;</div><div class="line">        if(isshow)&#123;</div><div class="line">            txt_right.setVisibility(VISIBLE);</div><div class="line">            img_right.setVisibility(GONE);</div><div class="line">            if(!TextUtils.isEmpty(text))&#123;</div><div class="line">                txt_right.setText(text);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-xml中引用自定义ActionBarView"><a href="#4-xml中引用自定义ActionBarView" class="headerlink" title="4.xml中引用自定义ActionBarView"></a>4.xml中引用自定义ActionBarView</h3><p>自定义的属性xml里都能设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;com.actionbarview.ActionBarView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</div><div class="line">    android:id=&quot;@+id/action_barview&quot;</div><div class="line">    app:background_color=&quot;@color/colorAccent&quot;</div><div class="line">    app:txt_color=&quot;@android:color/white&quot;</div><div class="line">    app:title_size=&quot;20&quot;</div><div class="line">    app:txt_size=&quot;14&quot;</div><div class="line">    tools:context=&quot;com.actionbarview.Demo1Activity&quot;&gt;</div><div class="line"></div><div class="line">&lt;/com.actionbarview.ActionBarView&gt;</div></pre></td></tr></table></figure>
+<h3 id="5-项目中的调用"><a href="#5-项目中的调用" class="headerlink" title="5.项目中的调用"></a>5.项目中的调用</h3><p>1.左边icon，中间标题，右边icon</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class Demo1Activity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    private ActionBarView action_barview;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_demo1);</div><div class="line">        initView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initView() &#123;</div><div class="line">        action_barview = (ActionBarView) findViewById(R.id.action_barview);</div><div class="line"></div><div class="line">        action_barview.setTitle(&quot;demo1 标题&quot;);</div><div class="line">        action_barview.setLeftListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                finish();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        action_barview.setRightListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                Toast.makeText(Demo1Activity.this, &quot;进入到新的界面&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.左边icon，中间标题，右边文字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public class Demo2Activity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    private ActionBarView action_barview;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_demo2);</div><div class="line">        initView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initView() &#123;</div><div class="line">        action_barview = (ActionBarView) findViewById(R.id.action_barview);</div><div class="line">        action_barview.setTitle(&quot;demo2标题&quot;);</div><div class="line">        action_barview.setLeftListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                finish();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        action_barview.setRightText(true,&quot;消息&quot;);</div><div class="line">        action_barview.setRightTextListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                Toast.makeText(Demo2Activity.this, &quot;进入消息界面&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是我根据我实际项目中的去自定义的ActionBar，你也可以根据自己的实际项目去更改符合你项目的。</p>
+<p>最后附上<a href="https://github.com/madreain/ActionbarView" target="_blank" rel="external">GitHub demo地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/17/20170717/" rel="next" title="刷新加载控件">
+                <i class="fa fa-chevron-left"></i> 刷新加载控件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义ActionBar"><span class="nav-number">1.</span> <span class="nav-text">自定义ActionBar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-自定义ActionBar-xml布局"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.自定义ActionBar xml布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-自定义ActionBar-java代码"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.自定义ActionBar java代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-自定义属性"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.自定义属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-xml中引用自定义ActionBarView"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.xml中引用自定义ActionBarView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-项目中的调用"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.项目中的调用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
