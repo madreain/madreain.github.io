@@ -1,0 +1,1037 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义view————Animation实践篇深深的想扎根于自定义view之中，做出酷炫的效果，酷炫的效果很多时候都是借助动画来的，今天介绍一下在Android中开发动画效果的两套框架，分别为 Animation 和 Property Animation； 相对来说，Property Animation比Animation要强大太多，两者之间的主要区别在于： 区别一：需要的Anroid API l">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view————Animation实践篇">
+<meta property="og:url" content="http://yoursite.com/2017/07/26/20170726/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义view————Animation实践篇深深的想扎根于自定义view之中，做出酷炫的效果，酷炫的效果很多时候都是借助动画来的，今天介绍一下在Android中开发动画效果的两套框架，分别为 Animation 和 Property Animation； 相对来说，Property Animation比Animation要强大太多，两者之间的主要区别在于： 区别一：需要的Anroid API l">
+<meta property="og:image" content="http://yoursite.com/images/animation.gif">
+<meta property="og:updated_time" content="2017-07-27T12:10:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view————Animation实践篇">
+<meta name="twitter:description" content="自定义view————Animation实践篇深深的想扎根于自定义view之中，做出酷炫的效果，酷炫的效果很多时候都是借助动画来的，今天介绍一下在Android中开发动画效果的两套框架，分别为 Animation 和 Property Animation； 相对来说，Property Animation比Animation要强大太多，两者之间的主要区别在于： 区别一：需要的Anroid API l">
+<meta name="twitter:image" content="http://yoursite.com/images/animation.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/26/20170726/"/>
+
+
+
+
+
+  <title>自定义view————Animation实践篇 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/20170726/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义view————Animation实践篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T20:59:34+08:00">
+                2017-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/26/20170726/" class="leancloud_visitors" data-flag-title="自定义view————Animation实践篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义view————Animation实践篇"><a href="#自定义view————Animation实践篇" class="headerlink" title="自定义view————Animation实践篇"></a>自定义view————Animation实践篇</h1><p>深深的想扎根于自定义view之中，做出酷炫的效果，酷炫的效果很多时候都是借助动画来的，今天介绍一下<br>在Android中开发动画效果的两套框架，分别为 Animation 和 Property Animation；</p>
+<p>相对来说，Property Animation比Animation要强大太多，两者之间的主要区别在于：</p>
+<p>区别一：需要的Anroid API level不一样<br>Property Animation需要android API level 11的支持,当然可以使用nineoldandroids.jar进行兼容，而View Animation则是最原始的版本。</p>
+<p>区别二：适用范围不一样<br>Property Animation适用于所有的Object对象，而View Animation则只能应用于View对象。</p>
+<p>区别三，实际改变不一样：<br>Animation：改变的是view的绘制位置，而非实际属性；<br>Property Animation：改变的是view的实际属性；</p>
+<p>如：用两套框架分别对一个button做位移动画，用animation处理之后的点击响应会在原处，而用Property Animation处理后的点击响应会在最终位置处；</p>
+<h3 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h3><p>Animation又分为Tween Animation（补间动画） 和Frame Animation（帧动画）</p>
+<h4 id="帧动画（Frame-Animation）："><a href="#帧动画（Frame-Animation）：" class="headerlink" title="帧动画（Frame Animation）："></a>帧动画（Frame Animation）：</h4><p>帧动画其实就是按照一定的时间间隔进行快速的图片切换，达到视觉上的动画效果，这种动画相对来说缺点较多，比如：</p>
+<p>1.根据动画的复杂度需要切多张图，这样就不可避免的增大了包大小</p>
+<p>2.由于是多张图，运行时需要加载到内存，那么又会增大运行时的内存大小</p>
+<p>所以如果在动效上有别的方案选择，个人不太建议使用帧动画的实现方式，当然有时候不得不用，这时我们可以尽可能的在效果连贯的基础上减少图片张数；<br>帧动画的实现也相对简单，就举一个例子，但是例子之中有几条帧动画的使用规则，是我以前在使用的过程中遇到问题后总结出来的；</p>
+<p>1.在drawable目录下xml中定义如下文件，节点为animation-list，oneshot代表是否执行一次，duration代表每张图对应展示时间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;animation-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;  </div><div class="line">    android:oneshot=&quot;true&quot;&gt;  </div><div class="line">    &lt;item android:drawable=&quot;@drawable/rocket_thrust1&quot; android:duration=&quot;200&quot; /&gt;  </div><div class="line">    &lt;item android:drawable=&quot;@drawable/rocket_thrust2&quot; android:duration=&quot;200&quot; /&gt;  </div><div class="line">    &lt;item android:drawable=&quot;@drawable/rocket_thrust3&quot; android:duration=&quot;200&quot; /&gt;  </div><div class="line">&lt;/animation-list&gt;</div></pre></td></tr></table></figure>
+<p>2.然后将该drawable设置给对应的imageview</p>
+<p>3.在activity中</p>
+<p>animDrawable = (AnimationDrawable) imageView.getBackground();</p>
+<p>4.在onWindowFocusChanged()中调用：</p>
+<p>animDrawable.stop();</p>
+<p>animDrawable.start();</p>
+<h4 id="补间动画（Tween-Animation）："><a href="#补间动画（Tween-Animation）：" class="headerlink" title="补间动画（Tween Animation）："></a>补间动画（Tween Animation）：</h4><p>Animation下有五个子类：AlphaAnimation(渐变),RotateAnimation(旋转),ScaleAnimation(缩放),TranslateAnimation(位移)</p>
+<p>1)xml配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  </div><div class="line">&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;  </div><div class="line">    android:shareInterpolator=&quot;false&quot; &gt;  </div><div class="line">  </div><div class="line">    &lt;scale&gt;  </div><div class="line">  </div><div class="line">        &lt;!-- 单次运行时间 --&gt;  </div><div class="line">        android:duration=&quot;500&quot;  </div><div class="line">        &lt;!-- 运行完成后是否保持结束时的状态 --&gt;  </div><div class="line">        android:fillAfter=&quot;true&quot;  </div><div class="line">        &lt;!-- 运行完成后是否回到开始时的状态 --&gt;  </div><div class="line">        android:fillBefore=&quot;false&quot;  </div><div class="line">        &lt;!-- 初始时大小，1代表原大小，0代表无 --&gt;  </div><div class="line">        android:fromXScale=&quot;1&quot;  </div><div class="line">        android:fromYScale=&quot;1&quot;  </div><div class="line">        &lt;!-- 使用的插值器，控制运行过程中的速率 --&gt;  </div><div class="line">        android:interpolator=&quot;@android:anim/accelerate_interpolator&quot;  </div><div class="line">        &lt;!-- 相对中心点，50%代表自身中心，50%p代表相对父view的中心 --&gt;  </div><div class="line">        android:pivotX=&quot;50%&quot;  </div><div class="line">        android:pivotY=&quot;50%&quot;  </div><div class="line">        &lt;!-- 重复的次数，infinite代表永久循环 --&gt;  </div><div class="line">        android:repeatCount=&quot;infinite&quot;  </div><div class="line">        &lt;!-- 重复的模式， restart代表重新开始，reverse代表反转--&gt;  </div><div class="line">        android:repeatMode=&quot;restart&quot;  </div><div class="line">        &lt;!-- 延迟多久后开始 --&gt;  </div><div class="line">        android:startOffset=&quot;100&quot;  </div><div class="line">        &lt;!-- 要到达的缩放比例 --&gt;  </div><div class="line">        android:toXScale=&quot;0&quot;  </div><div class="line">        android:toYScale=&quot;0&quot; /&gt;  </div><div class="line">    &lt;/scale&gt;  </div><div class="line">      </div><div class="line">    &lt;translate  </div><div class="line">        android:duration=&quot;550&quot;  </div><div class="line">        &lt;!-- 相对当前位置的像素距离 --&gt;  </div><div class="line">        android:fromYDelta=&quot;300&quot;  </div><div class="line">        android:interpolator=&quot;@android:anim/accelerate_interpolator&quot;  </div><div class="line">        android:toYDelta=&quot;0&quot; /&gt;  </div><div class="line">  </div><div class="line">    &lt;alpha  </div><div class="line">        android:duration=&quot;550&quot;  </div><div class="line">        android:fromAlpha=&quot;0&quot;  </div><div class="line">        android:toAlpha=&quot;1&quot; /&gt;  </div><div class="line">  </div><div class="line">&lt;/set&gt;</div></pre></td></tr></table></figure>
+<p>代码中再去调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation1);  </div><div class="line">view.startAnimation(animation);</div></pre></td></tr></table></figure></p>
+<p>2)java代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">// false代表里面的子animation不共用一个插值器  </div><div class="line">AnimationSet animationSet = new AnimationSet(false);  </div><div class="line">// 从alpha 完全透明变为完全不透明  </div><div class="line">AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);  </div><div class="line">alphaAnimation.setDuration(500);  </div><div class="line">alphaAnimation.setFillAfter(true);  </div><div class="line">// 运行完成后是否回到开始时的状态  </div><div class="line">alphaAnimation.setFillBefore(false);  </div><div class="line">alphaAnimation.setInterpolator(new AccelerateInterpolator());  </div><div class="line">// 重复的次数，infinite代表永久循环  </div><div class="line">alphaAnimation.setRepeatCount(Animation.INFINITE);  </div><div class="line">// 重复的模式， restart代表重新开始，reverse代表反转  </div><div class="line">alphaAnimation.setRepeatMode(Animation.RESTART);  </div><div class="line">// 给动画设置对应的监听，可以在动画开始、结束或重复执行时做对应操作  </div><div class="line">alphaAnimation.setAnimationListener(new AnimationListener() &#123;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationStart(Animation animation) &#123;  </div><div class="line">         //开始时候回调  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationRepeat(Animation animation) &#123;  </div><div class="line">         //重复执行时回调  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationEnd(Animation animation) &#123;  </div><div class="line">         //一轮结束时回调  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">RotateAnimation rotateAnimation = new RotateAnimation(0, 360);  </div><div class="line">rotateAnimation.setDuration(500);  </div><div class="line">animationSet.addAnimation(alphaAnimation);  </div><div class="line">animationSet.addAnimation(rotateAnimation);  </div><div class="line">view.startAnimation(animationSet);</div></pre></td></tr></table></figure>
+<h3 id="Property-Animation（属性动画）"><a href="#Property-Animation（属性动画）" class="headerlink" title="Property Animation（属性动画）"></a>Property Animation（属性动画）</h3><p>在Property Animation中，可以对动画应用以下属性：</p>
+<p>1.TimeInterpolator(插值器，和低版本的Interpolator一样)：属性值的计算方式，如先快后慢</p>
+<p>2.TypeEvaluator：根据属性的开始、结束值与TimeInterpolator计算出的因子计算出当前时间的属性值</p>
+<p>3.Repeat Count and behavoir：重复次数与方式，如播放3次、5次、无限循环，可以此动画一直重复，或播放完时再反向播放</p>
+<p>4.Animation sets：动画集合，即可以同时对一个对象应用几个动画，这些动画可以同时播放也可以对不同动画设置不同开始偏移</p>
+<p>5.Frame refreash delay：多少时间刷新一次，即每隔多少时间计算一次属性值，默认为10ms，最终刷新时间还受系统进程调度与硬件的影响</p>
+<h4 id="ValueAnimator"><a href="#ValueAnimator" class="headerlink" title="ValueAnimator"></a>ValueAnimator</h4><p>ValueAnimator包含了 Property Animation 动画的所有核心功能，如动画时间，开始、结束属性值，相应时间属性值计算方法等。</p>
+<p>例：ValueAnimator 在2S内将view横向拉长为2倍，纵向压缩为0：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">// 在2S内将view横向拉长为2倍，纵向压缩为0  </div><div class="line">// 创建0－1的一个过程,任何复杂的过程都可以采用归一化，然后在addUpdateListener回调里去做自己想要的变化  </div><div class="line">ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);  </div><div class="line">// 设置过程的时间为2S  </div><div class="line">valueAnimator.setDuration(SCALE_ANIM_TIME);  </div><div class="line">// 设置这个过程是速度不断变快的  </div><div class="line">valueAnimator.setInterpolator(new AccelerateInterpolator());  </div><div class="line">// 这个过程中不断执行的回调  </div><div class="line">valueAnimator.addUpdateListener(new AnimatorUpdateListener() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;  </div><div class="line">        // 不断回调的在0-1这个范围内，经过插值器插值之后的返回值  </div><div class="line">        float value = (Float) animation.getAnimatedValue();  </div><div class="line">        // ViewHelper可直接用于修改view属性  </div><div class="line">        // 将宽在2S内放大一倍  </div><div class="line">        ViewHelper.setScaleX(mTestImage, 1 + value);  </div><div class="line">        // 将高在2S内压缩为0  </div><div class="line">        ViewHelper.setScaleY(mTestImage, 1 - value);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">// AnimatorListenerAdapter是AnimatorListener的空实现，根据需要覆盖的方法自行选择  </div><div class="line">valueAnimator.addListener(new AnimatorListenerAdapter() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationStart(Animator animation) &#123;  </div><div class="line">        super.onAnimationStart(animation);  </div><div class="line">        Toast.makeText(getApplicationContext(), &quot;onAnimationStart&quot;, Toast.LENGTH_SHORT)  </div><div class="line">                .show();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationEnd(Animator animation) &#123;  </div><div class="line">        super.onAnimationEnd(animation);  </div><div class="line">        Toast.makeText(getApplicationContext(), &quot;onAnimationEnd&quot;, Toast.LENGTH_SHORT)  </div><div class="line">                .show();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationCancel(Animator animation) &#123;  </div><div class="line">        super.onAnimationCancel(animation);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationRepeat(Animator animation) &#123;  </div><div class="line">        super.onAnimationRepeat(animation);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">valueAnimator.start();</div></pre></td></tr></table></figure>
+<p>android插值器有如下效果：</p>
+<p>AccelerateInterpolator　　　　　     加速，开始时慢中间加速<br>DecelerateInterpolator　　　 　　   减速，开始时快然后减速<br>AccelerateDecelerateInterolator　   先加速后减速，开始结束时慢，中间加速<br>AnticipateInterpolator　　　　　　  反向 ，先向相反方向改变一段再加速播放<br>AnticipateOvershootInterpolator　   反向加回弹，先向相反方向改变，再加速播放，会超出目的值然后缓慢移动至目的值<br>BounceInterpolator　　　　　　　  跳跃，快到目的值时值会跳跃，如目的值100，后面的值可能依次为85，77，70，80，90，100<br>CycleIinterpolator　　　　　　　　 循环，动画循环一定次数，值的改变为一正弦函数：Math.sin(2 <em> mCycles </em> Math.PI * input)<br>LinearInterpolator　　　　　　　　 线性，线性均匀改变<br>OvershottInterpolator　　　　　　  回弹，最后超出目的值然后缓慢改变到目的值<br>TimeInterpolator　　　　　　　　   一个接口，允许你自定义interpolator，以上几个都是实现了这个接口</p>
+<p>其实想实现对应的效果，其实是找一条曲线对对应条件进行模拟，然后根据曲线函数，和X值，得出每个时间点上对应的Y值（插值），这也就是插值器原理；</p>
+<h4 id="ObjectAnimator"><a href="#ObjectAnimator" class="headerlink" title="ObjectAnimator"></a>ObjectAnimator</h4><p>再次实现这个例子：ValueAnimator 在2S内将view横向拉长为2倍，纵向压缩为0：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">AnimatorSet animatorSet = new AnimatorSet();  </div><div class="line">// 将view在x方向上从原大小放大2倍  </div><div class="line">ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(mTestImage, &quot;scaleX&quot;, 1, 2);  </div><div class="line">scaleXAnimator.setDuration(SCALE_ANIM_TIME);  </div><div class="line">// 将view在y方向上从原大小压缩为0  </div><div class="line">ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(mTestImage, &quot;scaleY&quot;, 1, 0);  </div><div class="line">scaleYAnimator.setDuration(SCALE_ANIM_TIME);  </div><div class="line">// 设置加速模式  </div><div class="line">animatorSet.setInterpolator(new AccelerateInterpolator());  </div><div class="line">// 设置回调，当然也可以设置在单独的animator上，eg：scaleXAnimator  </div><div class="line">animatorSet.addListener(new AnimatorListenerAdapter() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationStart(Animator animation) &#123;  </div><div class="line">        super.onAnimationStart(animation);  </div><div class="line">        Toast.makeText(getApplicationContext(), &quot;onAnimationStart&quot;, Toast.LENGTH_SHORT)  </div><div class="line">                .show();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationEnd(Animator animation) &#123;  </div><div class="line">        super.onAnimationEnd(animation);  </div><div class="line">        Toast.makeText(getApplicationContext(), &quot;onAnimationEnd&quot;, Toast.LENGTH_SHORT)  </div><div class="line">                .show();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationCancel(Animator animation) &#123;  </div><div class="line">        super.onAnimationCancel(animation);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationRepeat(Animator animation) &#123;  </div><div class="line">        super.onAnimationRepeat(animation);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">animatorSet.playTogether(scaleXAnimator, scaleYAnimator);  </div><div class="line">animatorSet.start();</div></pre></td></tr></table></figure>
+<p>ObjectAnimator 是ValueAnimator 的子类，可以直接改变Object的属性，目前可供改变的属性主要有：<br>translationX,translationY           View相对于原始位置的偏移量<br>rotation,rotationX,rotationY       旋转，rotation用于2D旋转角度，3D中用到后两个<br>scaleX,scaleY                           缩放比<br>x,y                                             View的最终坐标，是View的left，top位置加上translationX，translationY<br>alpha                                         透明度</p>
+<p>animation讲的差不多了，接下来实现一个仿QQ悬浮窗动效</p>
+<p><a href="https://github.com/madreain/AnimationView" target="_blank" rel="external">仿QQ悬浮窗动效 github demo</a></p>
+<p><img src="/images/animation.gif" alt="效果图"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/24/20170724/" rel="next" title="自定义view————搜索动画">
+                <i class="fa fa-chevron-left"></i> 自定义view————搜索动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/27/20170727/" rel="prev" title="自定义view————进度条">
+                自定义view————进度条 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————Animation实践篇"><span class="nav-number">1.</span> <span class="nav-text">自定义view————Animation实践篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation"><span class="nav-number">1.0.1.</span> <span class="nav-text">Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#帧动画（Frame-Animation）："><span class="nav-number">1.0.1.1.</span> <span class="nav-text">帧动画（Frame Animation）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补间动画（Tween-Animation）："><span class="nav-number">1.0.1.2.</span> <span class="nav-text">补间动画（Tween Animation）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-Animation（属性动画）"><span class="nav-number">1.0.2.</span> <span class="nav-text">Property Animation（属性动画）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ValueAnimator"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">ValueAnimator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ObjectAnimator"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">ObjectAnimator</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
