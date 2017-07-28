@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gridview," />
+  <meta name="keywords" content="自定义view," />
 
 
 
@@ -111,17 +111,19 @@
 
 
 
-<meta name="description" content="gridview 第一个加载失败不显示今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listv">
-<meta name="keywords" content="gridview">
+<meta name="description" content="自定义view————loading框写自定义view，怎么能没有自己写的loading框了，今天给大家送上一个loading框，前期losing框是很简单的效果，三个状态：loading、success、error，不逼逼了，先上给糙一点的效果GIF，回头继续完善。  糙一点的loading框效果看完了，接下来说一下实现过程，采用WindowManager将losing框的view置于显示vie">
+<meta name="keywords" content="自定义view">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gridview 第一个加载失败不显示">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/20170712/index.html">
+<meta property="og:title" content="自定义view————loading框">
+<meta property="og:url" content="http://yoursite.com/2017/07/28/20170728/index.html">
 <meta property="og:site_name" content="madreain的博客">
-<meta property="og:description" content="gridview 第一个加载失败不显示今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listv">
-<meta property="og:updated_time" content="2017-07-12T13:06:26.000Z">
+<meta property="og:description" content="自定义view————loading框写自定义view，怎么能没有自己写的loading框了，今天给大家送上一个loading框，前期losing框是很简单的效果，三个状态：loading、success、error，不逼逼了，先上给糙一点的效果GIF，回头继续完善。  糙一点的loading框效果看完了，接下来说一下实现过程，采用WindowManager将losing框的view置于显示vie">
+<meta property="og:image" content="http://yoursite.com/images/loading.gif">
+<meta property="og:updated_time" content="2017-07-28T14:40:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gridview 第一个加载失败不显示">
-<meta name="twitter:description" content="gridview 第一个加载失败不显示今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listv">
+<meta name="twitter:title" content="自定义view————loading框">
+<meta name="twitter:description" content="自定义view————loading框写自定义view，怎么能没有自己写的loading框了，今天给大家送上一个loading框，前期losing框是很简单的效果，三个状态：loading、success、error，不逼逼了，先上给糙一点的效果GIF，回头继续完善。  糙一点的loading框效果看完了，接下来说一下实现过程，采用WindowManager将losing框的view置于显示vie">
+<meta name="twitter:image" content="http://yoursite.com/images/loading.gif">
 
 
 
@@ -149,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/12/20170712/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/28/20170728/"/>
 
 
 
 
 
-  <title>gridview 第一个加载失败不显示 | madreain的博客</title>
+  <title>自定义view————loading框 | madreain的博客</title>
   
 
 
@@ -347,7 +349,7 @@
 
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/12/20170712/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/28/20170728/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="madreain">
@@ -364,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">gridview 第一个加载失败不显示</h1>
+          <h1 class="post-title" itemprop="name headline">自定义view————loading框</h1>
         
 
         <div class="post-meta">
@@ -376,8 +378,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T20:59:34+08:00">
-                2017-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T20:59:34+08:00">
+                2017-07-28
               </time>
             
 
@@ -416,7 +418,7 @@
 
           
           
-             <span id="/2017/07/12/20170712/" class="leancloud_visitors" data-flag-title="gridview 第一个加载失败不显示">
+             <span id="/2017/07/28/20170728/" class="leancloud_visitors" data-flag-title="自定义view————loading框">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -444,19 +446,27 @@
       
 
       
-        <h1 id="gridview-第一个加载失败不显示"><a href="#gridview-第一个加载失败不显示" class="headerlink" title="gridview 第一个加载失败不显示"></a>gridview 第一个加载失败不显示</h1><p>今天项目开发过程中用到了gridview，多行多列的展示，结果发现，第一个item不显示内容和照片，思前想后打个断点，跟踪到position==0时内容和照片设置的方法都走了，怎么还是不显示了，后来度娘了一下，发现是复用出得问题。究其原因：在position=0的内容和照片还没有加载完毕的时候后面的就复用了，所以导致第一item没有加载出来，初步判断listview也存在同样的问题。</p>
-<p>解决方案：</p>
-<p>1.在Adapter中创建内部类用boolean变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class ModeDto &#123;</div><div class="line">    private boolean hasFirstLoaded = false;</div><div class="line"></div><div class="line">    public boolean isHasFirstLoaded() &#123;</div><div class="line">        return hasFirstLoaded;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setHasFirstLoaded(boolean hasFirstLoaded) &#123;</div><div class="line">        this.hasFirstLoaded = hasFirstLoaded;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.在初始化Adapter的时候初始化该类,</p>
-<p>定义全局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ModeDto modeDto;</div></pre></td></tr></table></figure>
-<p>初始化中进行初始化（一般可以写在initview()方法中）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">modeDto=new ModeDto();</div></pre></td></tr></table></figure>
-<p>记住千万不要放在getView里</p>
-<p>3.在getView的时候赋值并判断做出操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if (position == 0 &amp;&amp; modeDto.isHasFirstLoaded()) &#123;</div><div class="line">    return convertView;</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (position == 0) &#123;</div><div class="line">    modeDto.setHasFirstLoaded(true);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样就解决了这个问题，遇见了这个问题的赶紧动手试一试哦</p>
+        <h1 id="自定义view————loading框"><a href="#自定义view————loading框" class="headerlink" title="自定义view————loading框"></a>自定义view————loading框</h1><p>写自定义view，怎么能没有自己写的loading框了，今天给大家送上一个loading框，前期losing框是很简单的效果，三个状态：loading、success、error，不逼逼了，先上给糙一点的效果GIF，回头继续完善。</p>
+<p><img src="/images/loading.gif" alt="效果图"></p>
+<p>糙一点的loading框效果看完了，接下来说一下实现过程，采用WindowManager将losing框的view置于显示view的上层，起初上来是loading转圈状态，根据加载返回的结构设置成功或者失败。</p>
+<h3 id="loading状态"><a href="#loading状态" class="headerlink" title="loading状态"></a>loading状态</h3><p>ValueAnimator实现AnimatorUpdateListener、AnimatorListener监听方法，AnimatorUpdateListener中接受valueAnimator.getAnimatedValue();(不断回调的在0-1这个范围内，经过插值器插值之后的返回值),然后去画圈圈</p>
+<p>这里画的是一个通过改变不同起始角度画给一个240度的圆弧，以此达到loading效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mPath = new Path();</div><div class="line">loadingrectF = new RectF(-100, -100, 100, 100);</div><div class="line">mPath.addArc(loadingrectF, mAnimatorValue * 360, 240);</div><div class="line">canvas.drawPath(mPath, mPaint);</div><div class="line">canvas.drawColor(Color.parseColor(&quot;#33000000&quot;));</div></pre></td></tr></table></figure>
+<p>mAnimatorValue值的变化是AnimatorUpdateListener函数里面回调的值，然后通知重绘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">loadingvalueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onAnimationUpdate(ValueAnimator valueAnimator) &#123;</div><div class="line">                // 不断回调的在0-1这个范围内，经过插值器插值之后的返回值</div><div class="line">                mAnimatorValue = (float) valueAnimator.getAnimatedValue();</div><div class="line">                 //重绘</div><div class="line">                invalidate();</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>为了保证转了一圈过后继续转，这里引进Handler，在AnimatorListener的结束方法中进行通知动画继续</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">loadingvalueAnimator.addListener(new Animator.AnimatorListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onAnimationStart(Animator animator) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationEnd(Animator animator) &#123;</div><div class="line">                // getHandle发消息通知动画状态更新</div><div class="line">                mAnimatorHandler.sendEmptyMessage(0);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationCancel(Animator animator) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationRepeat(Animator animator) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>附上Handler相关代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mAnimatorHandler = new Handler() &#123;</div><div class="line">            @Override</div><div class="line">            public void handleMessage(Message msg) &#123;</div><div class="line">                super.handleMessage(msg);</div><div class="line">                switch (mcurrentState) &#123;</div><div class="line">                    case LODING:</div><div class="line">                        //保持loading时一直执行动画</div><div class="line">                        loadingvalueAnimator.start();</div><div class="line">                        break;</div><div class="line">                    case SUCCES:</div><div class="line">                        break;</div><div class="line">                    case ERROR:</div><div class="line">                        break;</div><div class="line">                    default:</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure>
+<p>到此为止，loading就能一直转了，接下来就是success、error两个状态了的讲解了</p>
+<h3 id="success状态"><a href="#success状态" class="headerlink" title="success状态"></a>success状态</h3><p>成功状态时，loading消失，显示成功的相关提醒（原谅我是一个程序员，做的loading不好看，准备后期功能完善后，会把loading、success、error状态的显示弄的像UI设计的一样），废话不多说了，该上菜了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line">   * 成功</div><div class="line">   */</div><div class="line">  public void setSuccess() &#123;</div><div class="line">      loadingvalueAnimator.removeAllListeners();</div><div class="line">      errorvalueAnimator.removeAllListeners();</div><div class="line">      addSuccesLoadingListener();</div><div class="line">      successvalueAnimator.start();</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>移除掉其他ValueAnimator对应的监听方法，为success加上ValueAnimator的监听方法，这里就是显示一下success状态的文案，保持500ms，然后显示（这一块可以改成其他动画酷炫效果）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">successvalueAnimator.addListener(new Animator.AnimatorListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onAnimationStart(Animator animator) &#123;</div><div class="line">                //动画开始，去绘制success的文案</div><div class="line">                mcurrentState = State.SUCCES;</div><div class="line">                invalidate();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationEnd(Animator animator) &#123;</div><div class="line">                //将当前绘制的view设置宽高都为零，也可以采取移除的方法</div><div class="line">                if (mWindowManager != null &amp;&amp; loadingView != null) &#123;</div><div class="line">//                    mWindowManager.removeView(loadingView);</div><div class="line">                    loainglayoutParams = new WindowManager.LayoutParams(0,</div><div class="line">                            0, WindowManager.LayoutParams.TYPE_TOAST,</div><div class="line">                            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSPARENT);</div><div class="line">                    mWindowManager.updateViewLayout(loadingView, loainglayoutParams);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationCancel(Animator animator) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationRepeat(Animator animator) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<h3 id="error状态"><a href="#error状态" class="headerlink" title="error状态"></a>error状态</h3><p>和success状态同理，只是文案不一样</p>
+<h3 id="代码中使用"><a href="#代码中使用" class="headerlink" title="代码中使用"></a>代码中使用</h3><p>添加到activity开始loading动画，待结果返回时然后设置相关状态显示500ms，然后显示消失，接下来贴出模拟的loading—&gt;success—&gt;dismiss的一个过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">LoadingView loadingview = new LoadingView(this);</div><div class="line"></div><div class="line">Handler mSuccesHandler = new Handler() &#123;</div><div class="line">    @Override</div><div class="line">    public void handleMessage(Message msg) &#123;</div><div class="line">        super.handleMessage(msg);</div><div class="line">        if (succes &lt;= 50) &#123;</div><div class="line">            succes += 1;</div><div class="line">            mSuccesHandler.sendEmptyMessageDelayed(0, 100);</div><div class="line">        &#125; else &#123;</div><div class="line">            loadingview.setSuccess();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">loadingview.addViewStartLoading(loadingview, this);</div><div class="line">mSuccesHandler.sendEmptyMessageDelayed(0, 100);</div></pre></td></tr></table></figure>
+<p>最后为大家献上<a href="https://github.com/madreain/LoadingView" target="_blank" rel="external">自定义view————loading框 github demo</a>，后期会将loading框优化，添加各种样式</p>
 
       
     </div>
@@ -507,7 +517,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gridview/" rel="tag"># gridview</a>
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
           
         </div>
       
@@ -520,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/11/20170711/" rel="next" title="一个Activity嵌套多个Fragment">
-                <i class="fa fa-chevron-left"></i> 一个Activity嵌套多个Fragment
+              <a href="/2017/07/27/20170727/" rel="next" title="自定义view————进度条">
+                <i class="fa fa-chevron-left"></i> 自定义view————进度条
               </a>
             
           </div>
@@ -529,10 +539,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/13/20170713/" rel="prev" title="google推荐的图片加载库Glide的一些坑">
-                google推荐的图片加载库Glide的一些坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -695,7 +701,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gridview-第一个加载失败不显示"><span class="nav-number">1.</span> <span class="nav-text">gridview 第一个加载失败不显示</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————loading框"><span class="nav-number">1.</span> <span class="nav-text">自定义view————loading框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#loading状态"><span class="nav-number">1.0.1.</span> <span class="nav-text">loading状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#success状态"><span class="nav-number">1.0.2.</span> <span class="nav-text">success状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error状态"><span class="nav-number">1.0.3.</span> <span class="nav-text">error状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码中使用"><span class="nav-number">1.0.4.</span> <span class="nav-text">代码中使用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
