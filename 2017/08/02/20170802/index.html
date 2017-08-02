@@ -1,0 +1,1162 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android推荐," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Android开发推荐在互联网迅速发展的今天，程序员真的有点烂大街了，最近频繁听到朋友都工作了，又去转行做开发的，去培训机构培训然后出来长时间找不到工作的。各种跨专业、工作后转型。互联网行业竞争越来越激烈的今天，高效的快速开发，稳固的基础才是从中取胜的关键。今天向Android开发者推荐一些开发的插件及其一些开发的技巧，只是个人的一些愚见，希望对你有所帮助。 代码的规范代码的规范对于一个程序员的长">
+<meta name="keywords" content="Android推荐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发推荐">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/20170802/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="Android开发推荐在互联网迅速发展的今天，程序员真的有点烂大街了，最近频繁听到朋友都工作了，又去转行做开发的，去培训机构培训然后出来长时间找不到工作的。各种跨专业、工作后转型。互联网行业竞争越来越激烈的今天，高效的快速开发，稳固的基础才是从中取胜的关键。今天向Android开发者推荐一些开发的插件及其一些开发的技巧，只是个人的一些愚见，希望对你有所帮助。 代码的规范代码的规范对于一个程序员的长">
+<meta property="og:image" content="https://github.com/boredream/BorePlugin/blob/master/screenshot/LayoutCreator.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1736058-d65d25ad72076eaf?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/166866-ff9dc336af72d7d7.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2017-08-02T09:51:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发推荐">
+<meta name="twitter:description" content="Android开发推荐在互联网迅速发展的今天，程序员真的有点烂大街了，最近频繁听到朋友都工作了，又去转行做开发的，去培训机构培训然后出来长时间找不到工作的。各种跨专业、工作后转型。互联网行业竞争越来越激烈的今天，高效的快速开发，稳固的基础才是从中取胜的关键。今天向Android开发者推荐一些开发的插件及其一些开发的技巧，只是个人的一些愚见，希望对你有所帮助。 代码的规范代码的规范对于一个程序员的长">
+<meta name="twitter:image" content="https://github.com/boredream/BorePlugin/blob/master/screenshot/LayoutCreator.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/02/20170802/"/>
+
+
+
+
+
+  <title>Android开发推荐 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/20170802/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android开发推荐</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T20:59:34+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/02/20170802/" class="leancloud_visitors" data-flag-title="Android开发推荐">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android开发推荐"><a href="#Android开发推荐" class="headerlink" title="Android开发推荐"></a>Android开发推荐</h1><p>在互联网迅速发展的今天，程序员真的有点烂大街了，最近频繁听到朋友都工作了，又去转行做开发的，去培训机构培训然后出来长时间找不到工作的。各种跨专业、工作后转型。互联网行业竞争越来越激烈的今天，高效的快速开发，稳固的基础才是从中取胜的关键。今天向Android开发者推荐一些开发的插件及其一些开发的技巧，只是个人的一些愚见，希望对你有所帮助。</p>
+<h3 id="代码的规范"><a href="#代码的规范" class="headerlink" title="代码的规范"></a>代码的规范</h3><p>代码的规范对于一个程序员的长远发展是相当重要的，android的代码规范其实和java是基本上一样的，这里推荐<a href="http://download.csdn.net/detail/madreain/9876576" target="_blank" rel="external">阿里巴巴java开发手册</a>，阿里还在不断更新完善，感谢阿里为业内人士做的巨大贡献，这一小步，影响很大。如果所有人都按照这个规范，当你接手别人的项目的时候还在为这个代码块是干什么的，项目的迭代去抓耳挠腮吗？？？</p>
+<h3 id="Android高效开发工具推荐"><a href="#Android高效开发工具推荐" class="headerlink" title="Android高效开发工具推荐"></a>Android高效开发工具推荐</h3><h4 id="Android-Studio-自动生成布局代码插件LayoutCreator"><a href="#Android-Studio-自动生成布局代码插件LayoutCreator" class="headerlink" title="Android Studio 自动生成布局代码插件LayoutCreator"></a>Android Studio 自动生成布局代码插件LayoutCreator</h4><p>说到这里，很多人应该都会比较熟悉<a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">JakeWharton大神贡献的butterknife</a>，类似的依赖注入还有<a href="http://androidannotations.org/" target="_blank" rel="external">androidannotations</a>、<a href="http://square.github.io/dagger/" target="_blank" rel="external">Dagger 2</a>,但是用这些真的好吗？？？其实是很影响性能的，这里以butterknife的源码来分析</p>
+<p>ButterKnife.bind过程</p>
+<p>源码看进去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">static void bind(@NonNull Object target, @NonNull Object source, @NonNull Finder finder) &#123;</div><div class="line"> Class&lt;?&gt; targetClass = target.getClass();</div><div class="line"> try &#123;</div><div class="line">   ViewBinder&lt;Object&gt; viewBinder = findViewBinderForClass(targetClass);</div><div class="line">   viewBinder.bind(finder, target, source);</div><div class="line"> &#125; catch (Exception e) &#123;</div><div class="line">   //省略异常处理</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再来看看另外一个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">private static ViewBinder&lt;Object&gt; findViewBinderForClass(Class&lt;?&gt; cls)</div><div class="line">   throws IllegalAccessException, InstantiationException &#123;</div><div class="line"> ViewBinder&lt;Object&gt; viewBinder = BINDERS.get(cls);</div><div class="line"> //先找缓存</div><div class="line"> if (viewBinder != null) &#123;</div><div class="line">   return viewBinder;</div><div class="line"> &#125;</div><div class="line"> //检查下是否支持这个类</div><div class="line"> String clsName = cls.getName();</div><div class="line"> if (clsName.startsWith(&quot;android.&quot;) || clsName.startsWith(&quot;java.&quot;)) &#123;</div><div class="line">   return NOP_VIEW_BINDER;</div><div class="line"> &#125;</div><div class="line"> try &#123;</div><div class="line">   //找到类名为 Activity 的类名加 &quot;$$ViewBinder&quot; 的类，实例化，并返回</div><div class="line">   Class&lt;?&gt; viewBindingClass = Class.forName(clsName + &quot;$$ViewBinder&quot;);</div><div class="line">   //noinspection unchecked</div><div class="line">   viewBinder = (ViewBinder&lt;Object&gt;) viewBindingClass.newInstance();</div><div class="line"> &#125; catch (ClassNotFoundException e) &#123;</div><div class="line">   //注意这里支持了继承关系</div><div class="line">   viewBinder = findViewBinderForClass(cls.getSuperclass());</div><div class="line"> &#125;</div><div class="line"> //缓存 viewBinder</div><div class="line"> BINDERS.put(cls, viewBinder);</div><div class="line"> return viewBinder;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看完源码ButterKnife对性能有一定的影响，并且引入了更多的类和方法，增加了安装包的大小。但是，对开发效率的提升也是显而易见的，尤其是配合AS插件的使用。如何取舍，完全是由作为开发者的你来决定了。其他的几个注入的第三方库类似的，所以在这里为了不影响性能，又避免写findViewById，因此推荐LayoutCreator</p>
+<ul>
+<li><p>安装</p>
+<p>方式一. 下载项目中的jar包,通过本地disk方式导入</p>
+<p>方式二. 在Android Studio的插件中心搜索LayoutCreator下载安装</p>
+</li>
+</ul>
+<p>用法截图<br><img src="https://github.com/boredream/BorePlugin/blob/master/screenshot/LayoutCreator.gif" alt="image">  </p>
+<h4 id="Android-Code-Generator根据布局文件快速生成对应的Activity，Fragment，Adapter，Menu。"><a href="#Android-Code-Generator根据布局文件快速生成对应的Activity，Fragment，Adapter，Menu。" class="headerlink" title="Android Code Generator根据布局文件快速生成对应的Activity，Fragment，Adapter，Menu。"></a>Android Code Generator根据布局文件快速生成对应的Activity，Fragment，Adapter，Menu。</h4><p>有了上面的LayoutCreator神器，再加上这个神器，估计差不多省去了很多coding的时间了，是不是感觉终于有时间腾出来谈个女朋友了呀！！！祝没有女朋友的攻城狮们早日找到女朋友。。。</p>
+<ul>
+<li><p>安装</p>
+<p>方式一. 下载项目中的jar包,通过本地disk方式导入</p>
+<p>方式二. Preferences/Settings-&gt;Plugins-&gt;Browse repositories… 然后在搜索框输入Android code Generator。</p>
+</li>
+</ul>
+<p>用法截图<br><img src="http://upload-images.jianshu.io/upload_images/1736058-d65d25ad72076eaf?imageMogr2/auto-orient/strip" alt="image"></p>
+<h4 id="插件GsonFormat快速实现JavaBean"><a href="#插件GsonFormat快速实现JavaBean" class="headerlink" title="插件GsonFormat快速实现JavaBean"></a>插件GsonFormat快速实现JavaBean</h4><p>还在为返回JSONObject格式的字符串而一个一个对着写参数吗？？？GsonFormat一个根据JSONObject格式的字符串,自动生成实体类参数。 以后写实体类就是秒秒钟的事！！！</p>
+<ul>
+<li><p>安装</p>
+<p>方式一. 下载GsonFormat.jar包,通过本地disk方式导入</p>
+<p>方式二. Android studio File-&gt;Settings..-&gt;Plugins–&gt;Browse repositores..搜索GsonFormat，安装插件,重启android studio</p>
+</li>
+</ul>
+<p>用法截图<br><img src="http://upload-images.jianshu.io/upload_images/166866-ff9dc336af72d7d7.gif?imageMogr2/auto-orient/strip" alt="gsonFormat.gif"></p>
+<h4 id="其他插件推荐"><a href="#其他插件推荐" class="headerlink" title="其他插件推荐"></a>其他插件推荐</h4><p>安装方式都有两种，可以参考上面进行安装</p>
+<p><a href="https://github.com/inmite/android-selector-chapek" target="_blank" rel="external">SelectorChapek</a></p>
+<p>设计师给我们提供好了各种资源，每个按钮都要写一个selector是不是很麻烦？这么这个插件就为解决这个问题而生，你只需要做的是告诉设计师们按照规范命名就好了，其他一键搞定。</p>
+<p><a href="https://github.com/square/leakcanary" target="_blank" rel="external">LeakCanary</a></p>
+<p>强烈推荐，帮助你在开发阶段方便的检测出内存泄露的问题，使用起来更简单方便。</p>
+<p><a href="https://www.genymotion.com/" target="_blank" rel="external">Genymotion</a></p>
+<p>强大的让所有人都认识</p>
+<p><a href="https://plugins.jetbrains.com/plugin/7332-android-parcelable-code-generator" target="_blank" rel="external">Android Parcelable code generator</a></p>
+<p>在类中插入实现了Parcelable接口的代码。</p>
+<p><a href="https://plugins.jetbrains.com/plugin/7647-android-material-design-icon-generator" target="_blank" rel="external">Android Material Design Icon Generator</a></p>
+<p>将Material Design的图标导入到程序中。</p>
+<p><a href="https://plugins.jetbrains.com/plugin/7658-android-drawable-importer" target="_blank" rel="external">Android Drawable Importer</a></p>
+<p>这是一个非常强大的图片导入插件。它导入Android图标与Material图标的Drawable ，批量导入Drawable ，多源导入Drawable（即导入某张图片各种dpi对应的图片）</p>
+<p>Android studio的插件还有很多很多，选择一些常用的，别装太多插件哦，要是你想要什么功能的插件可留言，我为你推荐</p>
+<h3 id="常用开源库"><a href="#常用开源库" class="headerlink" title="常用开源库"></a>常用开源库</h3><p>Android是开源的，因此也诞生了一批又一批的开源大牛，然后这些大牛写了牛逼的开源库，让我们今天的工作更简单，在这里想大家介绍一些常用的开源库</p>
+<h4 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h4><p><a href="https://github.com/square/okhttp" target="_blank" rel="external">okhttp</a><br>okhttp相关延伸：<a href="https://github.com/amitshekhariitbhu/Fast-Android-Networking" target="_blank" rel="external">Fast-Android-Networking</a>、<a href="https://github.com/hongyangAndroid/okhttputils" target="_blank" rel="external">okhttputils</a>、<a href="https://github.com/yanzhenjie/NoHttp" target="_blank" rel="external">NoHttp</a></p>
+<p><a href="https://github.com/square/retrofit" target="_blank" rel="external">retrofit</a> 这是一个很高深的网络请求，基于okhttp</p>
+<p>现在主流的是这两个，还有volley、xutil等就不在介绍了</p>
+<h4 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h4><p><a href="https://github.com/google/gson" target="_blank" rel="external">gson</a></p>
+<p><a href="https://github.com/alibaba/fastjson" target="_blank" rel="external">fastjson</a></p>
+<h4 id="照片加载"><a href="#照片加载" class="headerlink" title="照片加载"></a>照片加载</h4><p><a href="https://github.com/bumptech/glide" target="_blank" rel="external">glide</a></p>
+<p><a href="https://github.com/facebook/fresco" target="_blank" rel="external">fresco</a></p>
+<p><a href="https://github.com/square/picasso" target="_blank" rel="external">picasso</a></p>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">greenDAO</a></p>
+<p><a href="https://github.com/j256/ormlite-android" target="_blank" rel="external">ormlite</a></p>
+<p><a href="https://github.com/LitePalFramework/LitePal" target="_blank" rel="external">LitePal</a></p>
+<p><a href="https://github.com/realm/realm-java" target="_blank" rel="external">realm-java</a></p>
+<h4 id="刷新控件"><a href="#刷新控件" class="headerlink" title="刷新控件"></a>刷新控件</h4><p>参考<a href="https://madreain.github.io/2017/07/17/20170717/" target="_blank" rel="external">刷新加载控件</a></p>
+<h4 id="事件总线"><a href="#事件总线" class="headerlink" title="事件总线"></a>事件总线</h4><p>其实为个人不建议使用事件总线，因为代码逻辑不清楚，后期迭代维护麻烦；观察者独有的，观察者可能会造成接口的膨胀</p>
+<p><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a></p>
+<h4 id="圆角"><a href="#圆角" class="headerlink" title="圆角"></a>圆角</h4><p><a href="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a></p>
+<h4 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h4><p><a href="https://github.com/PhilJay/MPAndroidChart" target="_blank" rel="external">MPAndroidChart</a></p>
+<p><a href="https://github.com/Idtk/SmallChart" target="_blank" rel="external">SmallChart</a></p>
+<p><a href="https://github.com/diogobernardino/WilliamChart" target="_blank" rel="external">WilliamChart</a></p>
+<p><a href="https://github.com/lecho/hellocharts-android" target="_blank" rel="external">hellocharts-android</a></p>
+<h4 id="ImageVie手势操作"><a href="#ImageVie手势操作" class="headerlink" title="ImageVie手势操作"></a>ImageVie手势操作</h4><p><a href="https://github.com/chrisbanes/PhotoView" target="_blank" rel="external">PhotoView</a></p>
+<p><a href="https://github.com/boycy815/PinchImageView" target="_blank" rel="external">PinchImageView</a></p>
+<h4 id="照片选择器"><a href="#照片选择器" class="headerlink" title="照片选择器"></a>照片选择器</h4><p><a href="https://github.com/crazycodeboy/TakePhoto" target="_blank" rel="external">TakePhoto</a></p>
+<p><a href="https://github.com/donglua/PhotoPicker" target="_blank" rel="external">PhotoPicker</a></p>
+<p><a href="https://github.com/lovetuzitong/MultiImageSelector" target="_blank" rel="external">MultiImageSelector</a></p>
+<h4 id="loading框"><a href="#loading框" class="headerlink" title="loading框"></a>loading框</h4><p><a href="https://github.com/81813780/AVLoadingIndicatorView" target="_blank" rel="external">AVLoadingIndicatorView</a></p>
+<p><a href="https://github.com/ybq/Android-SpinKit" target="_blank" rel="external">Android-SpinKit</a></p>
+<p><a href="https://github.com/dinuscxj/LoadingDrawable" target="_blank" rel="external">LoadingDrawable</a></p>
+<p><a href="https://github.com/ldoublem/LoadingView" target="_blank" rel="external">LoadingView</a></p>
+<h4 id="自定义对话框"><a href="#自定义对话框" class="headerlink" title="自定义对话框"></a>自定义对话框</h4><p><a href="https://github.com/pedant/sweet-alert-dialog" target="_blank" rel="external">sweet-alert-dialog</a></p>
+<p><a href="https://github.com/orhanobut/dialogplus" target="_blank" rel="external">dialogplus</a></p>
+<p><a href="https://github.com/drakeet/MaterialDialog" target="_blank" rel="external">MaterialDialog</a></p>
+<p><a href="https://github.com/afollestad/material-dialogs" target="_blank" rel="external">material-dialogs</a></p>
+<h4 id="媒体播放器"><a href="#媒体播放器" class="headerlink" title="媒体播放器"></a>媒体播放器</h4><ul>
+<li>视频</li>
+</ul>
+<p><a href="https://github.com/lipangit/JieCaoVideoPlayer" target="_blank" rel="external">JieCaoVideoPlayer</a></p>
+<p><a href="https://github.com/google/ExoPlayer" target="_blank" rel="external">ExoPlayer</a></p>
+<p><a href="https://github.com/pili-engineering/PLDroidPlayer" target="_blank" rel="external">PLDroidPlayer</a></p>
+<p><a href="https://github.com/CarGuo/GSYVideoPlayer" target="_blank" rel="external">GSYVideoPlayer</a></p>
+<ul>
+<li>音频</li>
+</ul>
+<p><a href="https://github.com/googlesamples/android-UniversalMusicPlayer" target="_blank" rel="external">android-UniversalMusicPlayer</a></p>
+<p><a href="https://github.com/naman14/Timber" target="_blank" rel="external">Timber</a></p>
+<ul>
+<li>直播</li>
+</ul>
+<p><a href="https://github.com/daniulive/SmarterStreaming" target="_blank" rel="external">SmarterStreaming</a></p>
+<h4 id="其他推荐"><a href="#其他推荐" class="headerlink" title="其他推荐"></a>其他推荐</h4><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a></p>
+<p><a href="https://github.com/ReactiveX/RxAndroid" target="_blank" rel="external">RxAndroid</a></p>
+<p><a href="https://github.com/daimajia/AndroidSwipeLayout" target="_blank" rel="external">AndroidSwipeLayout</a>别人讨厌各种仿ios什么效果，程序员可以写着玩玩没问题。仿iOS各种左右滑效果</p>
+<p><a href="https://github.com/dmytrodanylyk/circular-progress-button" target="_blank" rel="external">circular-progress-button</a>带进度显示的Button,让操作更炫酷</p>
+<p><a href="https://github.com/zcweng/ToggleButton" target="_blank" rel="external">ToggleButton</a>状态切换的 Button，类似 iOS，用 View 实现</p>
+<p><a href="https://github.com/yanzhenjie/AndPermission" target="_blank" rel="external">AndPermission</a>权限管理</p>
+<p><a href="https://github.com/Blankj/AndroidUtilCode" target="_blank" rel="external">AndroidUtilCode</a>工具类大集合</p>
+<h3 id="代码撰写注意点"><a href="#代码撰写注意点" class="headerlink" title="代码撰写注意点"></a>代码撰写注意点</h3><h4 id="xml布局"><a href="#xml布局" class="headerlink" title="xml布局"></a>xml布局</h4><ul>
+<li><p>注意事项</p>
+<ul>
+<li><p>避免黄色警告</p>
+</li>
+<li><p>过时方法不要用</p>
+</li>
+<li><p>include的使用</p>
+</li>
+<li><p>merge的使用</p>
+</li>
+<li><p>viewstub的使用</p>
+</li>
+<li><p>避免布局嵌套过深；简单布局linearlayout,复杂布局relativelayout；有些效果多考虑自定义view是否能实现，别用view叠加实现</p>
+</li>
+<li><p>style的使用，减少代码量</p>
+</li>
+<li><p>weight的合理使用</p>
+</li>
+<li><p>margain和padding合理比较进行选择使用</p>
+</li>
+<li><p>最新的布局方式ConstaintLayout的使用</p>
+</li>
+<li><p>避免不必要的渲染，可借助第三方工具</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h4><ul>
+<li><p>注意事项</p>
+<ul>
+<li><p>为了提高UE，需考虑缓存、数据存储优化、算法优化、JNI、逻辑优化、需求优化（后面会详细述说优化相关）</p>
+</li>
+<li><p>代码结果清晰，多方法，避免一个方法执行很多行代码</p>
+</li>
+<li><p>避免警告；多做异常处理；判断条件多考虑</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h4><ul>
+<li><p>注意事项</p>
+<ul>
+<li><p>AndroidStudio的lint清除无用的资源</p>
+</li>
+<li><p>注意第三方引入的资源删除时需注意(典型：某盟)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>重点推荐：多coding，多看底层，知其然知其所以然    </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android推荐/" rel="tag"># Android推荐</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/01/20170801/" rel="next" title="开源项目分享————掘梦">
+                <i class="fa fa-chevron-left"></i> 开源项目分享————掘梦
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTg4NC82NDQ5"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android开发推荐"><span class="nav-number">1.</span> <span class="nav-text">Android开发推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码的规范"><span class="nav-number">1.0.1.</span> <span class="nav-text">代码的规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android高效开发工具推荐"><span class="nav-number">1.0.2.</span> <span class="nav-text">Android高效开发工具推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Studio-自动生成布局代码插件LayoutCreator"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Android Studio 自动生成布局代码插件LayoutCreator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Code-Generator根据布局文件快速生成对应的Activity，Fragment，Adapter，Menu。"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Android Code Generator根据布局文件快速生成对应的Activity，Fragment，Adapter，Menu。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件GsonFormat快速实现JavaBean"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">插件GsonFormat快速实现JavaBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他插件推荐"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">其他插件推荐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用开源库"><span class="nav-number">1.0.3.</span> <span class="nav-text">常用开源库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络请求"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据解析"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">数据解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#照片加载"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">照片加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刷新控件"><span class="nav-number">1.0.3.5.</span> <span class="nav-text">刷新控件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件总线"><span class="nav-number">1.0.3.6.</span> <span class="nav-text">事件总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#圆角"><span class="nav-number">1.0.3.7.</span> <span class="nav-text">圆角</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表"><span class="nav-number">1.0.3.8.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageVie手势操作"><span class="nav-number">1.0.3.9.</span> <span class="nav-text">ImageVie手势操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#照片选择器"><span class="nav-number">1.0.3.10.</span> <span class="nav-text">照片选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loading框"><span class="nav-number">1.0.3.11.</span> <span class="nav-text">loading框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义对话框"><span class="nav-number">1.0.3.12.</span> <span class="nav-text">自定义对话框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体播放器"><span class="nav-number">1.0.3.13.</span> <span class="nav-text">媒体播放器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他推荐"><span class="nav-number">1.0.3.14.</span> <span class="nav-text">其他推荐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码撰写注意点"><span class="nav-number">1.0.4.</span> <span class="nav-text">代码撰写注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#xml布局"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">xml布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java代码"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">java代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源管理"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">资源管理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
