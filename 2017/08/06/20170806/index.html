@@ -111,22 +111,19 @@
 
 
 
-<meta name="description" content="自定义view速查表Canvas常用操作速查表   操作分类 相关API 备注     绘制颜色 drawColor, drawRGB, drawARGB 使用单一颜色填充整个画布   绘制基本形状 drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc 依">
+<meta name="description" content="自定义dialog发现android原生的dialog在开发中不怎么受待见，今天讲解一下自定义dialog，有闲情逸致的可以好好的写写，最好有一个美工好好的帮你设计，那样做出来的效果肯定是杠杠的，话不多说上图为正    简单分析一下，背景需要引入style，为了更好的适配，所有的控件大小位置全是根据当前手机的屏幕大小来决定的(下面来啰嗦这里)，其他的好像也没有什么了 设置好看的背景 这个的背景利用">
 <meta name="keywords" content="自定义view">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义view速查表">
-<meta property="og:url" content="http://yoursite.com/2017/07/20/20170720/index.html">
+<meta property="og:title" content="自定义dialog">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/20170806/index.html">
 <meta property="og:site_name" content="madreain的博客">
-<meta property="og:description" content="自定义view速查表Canvas常用操作速查表   操作分类 相关API 备注     绘制颜色 drawColor, drawRGB, drawARGB 使用单一颜色填充整个画布   绘制基本形状 drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc 依">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/00/B%C3%A9zier_1_big.gif">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3d/B%C3%A9zier_2_big.gif">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/db/B%C3%A9zier_3_big.gif">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a4/B%C3%A9zier_4_big.gif">
-<meta property="og:updated_time" content="2017-08-02T01:59:03.000Z">
+<meta property="og:description" content="自定义dialog发现android原生的dialog在开发中不怎么受待见，今天讲解一下自定义dialog，有闲情逸致的可以好好的写写，最好有一个美工好好的帮你设计，那样做出来的效果肯定是杠杠的，话不多说上图为正    简单分析一下，背景需要引入style，为了更好的适配，所有的控件大小位置全是根据当前手机的屏幕大小来决定的(下面来啰嗦这里)，其他的好像也没有什么了 设置好看的背景 这个的背景利用">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/7/787176161794bf645a6cfdd30b16ff83">
+<meta property="og:updated_time" content="2017-08-07T09:44:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义view速查表">
-<meta name="twitter:description" content="自定义view速查表Canvas常用操作速查表   操作分类 相关API 备注     绘制颜色 drawColor, drawRGB, drawARGB 使用单一颜色填充整个画布   绘制基本形状 drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc 依">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/00/B%C3%A9zier_1_big.gif">
+<meta name="twitter:title" content="自定义dialog">
+<meta name="twitter:description" content="自定义dialog发现android原生的dialog在开发中不怎么受待见，今天讲解一下自定义dialog，有闲情逸致的可以好好的写写，最好有一个美工好好的帮你设计，那样做出来的效果肯定是杠杠的，话不多说上图为正    简单分析一下，背景需要引入style，为了更好的适配，所有的控件大小位置全是根据当前手机的屏幕大小来决定的(下面来啰嗦这里)，其他的好像也没有什么了 设置好看的背景 这个的背景利用">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/8/7/787176161794bf645a6cfdd30b16ff83">
 
 
 
@@ -154,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/20/20170720/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/06/20170806/"/>
 
 
 
 
 
-  <title>自定义view速查表 | madreain的博客</title>
+  <title>自定义dialog | madreain的博客</title>
   
 
 
@@ -352,7 +349,7 @@
 
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/20/20170720/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/20170806/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="madreain">
@@ -369,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自定义view速查表</h1>
+          <h1 class="post-title" itemprop="name headline">自定义dialog</h1>
         
 
         <div class="post-meta">
@@ -381,8 +378,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-20T20:59:34+08:00">
-                2017-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T20:59:34+08:00">
+                2017-08-06
               </time>
             
 
@@ -404,8 +401,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
                   </a>
                 </span>
 
@@ -421,7 +418,7 @@
 
           
           
-             <span id="/2017/07/20/20170720/" class="leancloud_visitors" data-flag-title="自定义view速查表">
+             <span id="/2017/08/06/20170806/" class="leancloud_visitors" data-flag-title="自定义dialog">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -449,315 +446,23 @@
       
 
       
-        <h1 id="自定义view速查表"><a href="#自定义view速查表" class="headerlink" title="自定义view速查表"></a>自定义view速查表</h1><h2 id="Canvas常用操作速查表"><a href="#Canvas常用操作速查表" class="headerlink" title="Canvas常用操作速查表"></a>Canvas常用操作速查表</h2><table>
-<thead>
-<tr>
-<th>操作分类</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>绘制颜色</td>
-<td>drawColor, drawRGB, drawARGB</td>
-<td>使用单一颜色填充整个画布</td>
-</tr>
-<tr>
-<td>绘制基本形状</td>
-<td>drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc</td>
-<td>依次为 点、线、矩形、圆角矩形、椭圆、圆、圆弧</td>
-</tr>
-<tr>
-<td>绘制图片</td>
-<td>drawBitmap, drawPicture</td>
-<td>绘制位图和图片)</td>
-</tr>
-<tr>
-<td>绘制文本</td>
-<td>drawText,    drawPosText, drawTextOnPath</td>
-<td>依次为 绘制文字、绘制文字时指定每个文字位置、根据路径绘制文字</td>
-</tr>
-<tr>
-<td>绘制路径</td>
-<td>drawPath</td>
-<td>绘制路径，绘制贝塞尔曲线时也需要用到该函数</td>
-</tr>
-<tr>
-<td>顶点操作</td>
-<td>drawVertices, drawBitmapMesh</td>
-<td>通过对顶点操作可以使图像形变，drawVertices直接对画布作用、 drawBitmapMesh只对绘制的Bitmap作用</td>
-</tr>
-<tr>
-<td>画布剪裁</td>
-<td>clipPath,    clipRect</td>
-<td>设置画布的显示区域</td>
-</tr>
-<tr>
-<td>画布快照</td>
-<td>save, restore, saveLayerXxx, restoreToCount, getSaveCount</td>
-<td>依次为 保存当前状态、 回滚到上一次保存的状态、 保存图层状态、 会滚到指定状态、 获取保存次数</td>
-</tr>
-<tr>
-<td>画布变换</td>
-<td>translate, scale, rotate, skew</td>
-<td>依次为 位移、缩放、 旋转、错切</td>
-</tr>
-<tr>
-<td>Matrix(矩阵)</td>
-<td>getMatrix, setMatrix, concat</td>
-<td>实际画布的位移，缩放等操作的都是图像矩阵Matrix，只不过Matrix比较难以理解和使用，故封装了一些常用的方法。</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>操作类型</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>基础方法</td>
-<td>getDensity, getWidth, getHeight，getDrawFilter，isHardwareAccelerated(API 11)，getMaximumBitmapWidth，getMaximumBitmapHeight，getDensity，quickReject，isOpaque，setBitmap，setDrawFilter</td>
-<td>使用单一颜色填充画布</td>
-</tr>
-<tr>
-<td>绘制颜色</td>
-<td>drawColor, drawRGB, drawARGB，drawPaint</td>
-<td>使用单一颜色填充画布</td>
-</tr>
-<tr>
-<td>绘制基本形状</td>
-<td>drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc</td>
-<td>依次为 点、线、矩形、圆角矩形、椭圆、圆、圆弧</td>
-</tr>
-<tr>
-<td>绘制图片</td>
-<td>drawBitmap, drawPicture</td>
-<td>绘制位图和图片</td>
-</tr>
-<tr>
-<td>绘制文本</td>
-<td>drawText,    drawPosText, drawTextOnPath</td>
-<td>依次为 绘制文字、绘制文字时指定每个文字位置、根据路径绘制文字</td>
-</tr>
-<tr>
-<td>绘制路径</td>
-<td>drawPath</td>
-<td>绘制路径，绘制贝塞尔曲线时也需要用到该函数</td>
-</tr>
-<tr>
-<td>顶点操作</td>
-<td>drawVertices, drawBitmapMesh</td>
-<td>通过对顶点操作可以使图像形变，drawVertices直接对画布作用、 drawBitmapMesh只对绘制的Bitmap作用</td>
-</tr>
-<tr>
-<td>画布剪裁</td>
-<td>clipPath,    clipRect， clipRegion，getClipBounds</td>
-<td>画布剪裁相关方法</td>
-</tr>
-<tr>
-<td>画布快照</td>
-<td>save, restore, saveLayer, saveLayerXxx, restoreToCount, getSaveCount</td>
-<td>依次为 保存当前状态、 回滚到上一次保存的状态、 保存图层状态、 回滚到指定状态、 获取保存次数</td>
-</tr>
-<tr>
-<td>画布变换</td>
-<td>translate, scale, rotate, skew</td>
-<td>依次为 位移、缩放、 旋转、错切</td>
-</tr>
-<tr>
-<td>Matrix(矩阵)</td>
-<td>getMatrix, setMatrix, concat</td>
-<td>实际画布的位移，缩放等操作的都是图像矩阵Matrix，只不过Matrix比较难以理解和使用，故封装了一些常用的方法。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Path常用操作速查表"><a href="#Path常用操作速查表" class="headerlink" title="Path常用操作速查表"></a>Path常用操作速查表</h2><p>API21以上，很不爽，得吐槽</p>
-<table>
-<thead>
-<tr>
-<th>作用</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>移动起点</td>
-<td>moveTo</td>
-<td>移动下一次操作的起点位置</td>
-</tr>
-<tr>
-<td>设置终点</td>
-<td>setLastPoint</td>
-<td>重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同</td>
-</tr>
-<tr>
-<td>连接直线</td>
-<td>lineTo</td>
-<td>添加上一个点到当前点之间的直线到Path</td>
-</tr>
-<tr>
-<td>闭合路径</td>
-<td>close</td>
-<td>连接第一个点连接到最后一个点，形成一个闭合区域</td>
-</tr>
-<tr>
-<td>添加内容</td>
-<td>addRect, addRoundRect,  addOval, addCircle,     addPath, addArc, arcTo</td>
-<td>添加(矩形， 圆角矩形， 椭圆， 圆， 路径， 圆弧) 到当前Path (注意addArc和arcTo的区别)</td>
-</tr>
-<tr>
-<td>是否为空</td>
-<td>isEmpty</td>
-<td>判断Path是否为空</td>
-</tr>
-<tr>
-<td>是否为矩形</td>
-<td>isRect</td>
-<td>判断path是否是一个矩形</td>
-</tr>
-<tr>
-<td>替换路径</td>
-<td>set</td>
-<td>用新的路径替换到当前路径所有内容</td>
-</tr>
-<tr>
-<td>偏移路径</td>
-<td>offset</td>
-<td>对当前路径之前的操作进行偏移(不会影响之后的操作)</td>
-</tr>
-<tr>
-<td>贝塞尔曲线</td>
-<td>quadTo, cubicTo</td>
-<td>分别为二次和三次贝塞尔曲线的方法</td>
-</tr>
-<tr>
-<td>rXxx方法</td>
-<td>rMoveTo, rLineTo, rQuadTo, rCubicTo</td>
-<td><strong>不带r的方法是基于原点的坐标系(偏移量)， rXxx方法是基于当前点坐标系(偏移量)</strong></td>
-</tr>
-<tr>
-<td>填充模式</td>
-<td>setFillType, getFillType, isInverseFillType, toggleInverseFillType</td>
-<td>设置,获取,判断和切换填充模式</td>
-</tr>
-<tr>
-<td>提示方法</td>
-<td>incReserve</td>
-<td>提示Path还有多少个点等待加入<strong>(这个方法貌似会让Path优化存储结构)</strong></td>
-</tr>
-<tr>
-<td>布尔操作(API19)</td>
-<td>op</td>
-<td>对两个Path进行布尔运算(即取交集、并集等操作)</td>
-</tr>
-<tr>
-<td>计算边界</td>
-<td>computeBounds</td>
-<td>计算Path的边界</td>
-</tr>
-<tr>
-<td>重置路径</td>
-<td>reset, rewind</td>
-<td>清除Path中的内容<br> <strong>reset不保留内部数据结构，但会保留FillType.</strong><br> <strong>rewind会保留内部的数据结构，但不保留FillType</strong></td>
-</tr>
-<tr>
-<td>矩阵操作</td>
-<td>transform</td>
-<td>矩阵变换</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Matrix常用操作速查表"><a href="#Matrix常用操作速查表" class="headerlink" title="Matrix常用操作速查表"></a>Matrix常用操作速查表</h2><table>
-<thead>
-<tr>
-<th>方法类别</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>基本方法</td>
-<td>equals hashCode toString toShortString</td>
-<td>比较、 获取哈希值、 转换为字符串</td>
-</tr>
-<tr>
-<td>数值操作</td>
-<td>set reset setValues getValues</td>
-<td>设置、 重置、 设置数值、 获取数值</td>
-</tr>
-<tr>
-<td>数值计算</td>
-<td>mapPoints mapRadius mapRect mapVectors</td>
-<td>计算变换后的数值</td>
-</tr>
-<tr>
-<td>设置(set)</td>
-<td>setConcat setRotate setScale setSkew setTranslate</td>
-<td>设置变换</td>
-</tr>
-<tr>
-<td>前乘(pre)</td>
-<td>preConcat preRotate preScale preSkew preTranslate</td>
-<td>前乘变换</td>
-</tr>
-<tr>
-<td>后乘(post)</td>
-<td>postConcat postRotate postScale postSkew postTranslate</td>
-<td>后乘变换</td>
-</tr>
-<tr>
-<td>特殊方法</td>
-<td>setPolyToPoly setRectToRect rectStaysRect setSinCos</td>
-<td>一些特殊操作</td>
-</tr>
-<tr>
-<td>矩阵相关</td>
-<td>invert isAffine(API21) isIdentity</td>
-<td>求逆矩阵、 是否为仿射矩阵、 是否为单位矩阵 …</td>
-</tr>
-</tbody>
-</table>
-<h2 id="贝塞尔曲线常用操作速查表"><a href="#贝塞尔曲线常用操作速查表" class="headerlink" title="贝塞尔曲线常用操作速查表"></a>贝塞尔曲线常用操作速查表</h2><blockquote>
-<p><strong>表格中演示动画均来自维基百科</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">贝塞尔曲线</th>
-<th>对应的方法</th>
-<th>演示动画</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"> 一阶曲线<br>(线性曲线)</td>
-<td>lineTo</td>
-<td><img src="https://upload.wikimedia.org/wikipedia/commons/0/00/B%C3%A9zier_1_big.gif" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center"> 二阶曲线</td>
-<td>quadTo</td>
-<td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/B%C3%A9zier_2_big.gif" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center"> 三阶曲线</td>
-<td>cubicTo</td>
-<td><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/B%C3%A9zier_3_big.gif" alt=""></td>
-</tr>
-<tr>
-<td style="text-align:center"> 四阶曲线</td>
-<td>无</td>
-<td><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/B%C3%A9zier_4_big.gif" alt=""></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="自定义dialog"><a href="#自定义dialog" class="headerlink" title="自定义dialog"></a>自定义dialog</h1><p>发现android原生的dialog在开发中不怎么受待见，今天讲解一下自定义dialog，有闲情逸致的可以好好的写写，最好有一个美工好好的帮你设计，那样做出来的效果肯定是杠杠的，话不多说上图为正</p>
+<p> <img src="https://user-gold-cdn.xitu.io/2017/8/7/787176161794bf645a6cfdd30b16ff83" alt="效果图"></p>
+<p> 简单分析一下，背景需要引入style，为了更好的适配，所有的控件大小位置全是根据当前手机的屏幕大小来决定的(下面来啰嗦这里)，其他的好像也没有什么了</p>
+<h3 id="设置好看的背景"><a href="#设置好看的背景" class="headerlink" title="设置好看的背景"></a>设置好看的背景</h3><p> 这个的背景利用style、shape来达到这种效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;style name=&quot;dialog&quot; parent=&quot;@android:style/Theme.Dialog&quot;&gt;</div><div class="line">    &lt;item name=&quot;android:windowFrame&quot;&gt;@null&lt;/item&gt;</div><div class="line">    &lt;!--边框--&gt;</div><div class="line">    &lt;item name=&quot;android:windowIsFloating&quot;&gt;true&lt;/item&gt;</div><div class="line">    &lt;!--是否浮现在activity之上--&gt;</div><div class="line">    &lt;item name=&quot;android:windowIsTranslucent&quot;&gt;false&lt;/item&gt;</div><div class="line">    &lt;!--半透明--&gt;</div><div class="line">    &lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;</div><div class="line">    &lt;!--无标题--&gt;</div><div class="line">    &lt;item name=&quot;android:windowBackground&quot;&gt;@android:color/transparent&lt;/item&gt;</div><div class="line">    &lt;!--背景透明--&gt;</div><div class="line">    &lt;item name=&quot;android:backgroundDimEnabled&quot;&gt;true&lt;/item&gt;</div><div class="line">    &lt;!--模糊--&gt;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<p>圆角</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</div><div class="line">    &lt;solid android:color=&quot;@android:color/white&quot; /&gt;</div><div class="line">    &lt;!--&lt;corners android:bottomRightRadius=&quot;20dp&quot;--&gt;</div><div class="line">        &lt;!--android:bottomLeftRadius=&quot;20dp&quot;/&gt;--&gt;</div><div class="line">    &lt;corners android:radius=&quot;@dimen/radius&quot;/&gt;</div><div class="line">    &lt;stroke android:width=&quot;1dp&quot; android:color=&quot;@color/linecolor&quot;/&gt;</div><div class="line">&lt;/shape&gt;</div></pre></td></tr></table></figure>
+<p>代码中结合使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public MDialog(@NonNull Context context) &#123;</div><div class="line">    super(context, R.style.dialog);</div><div class="line">    mContext = context;</div><div class="line">    init(context);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public MDialog(@NonNull Context context, @StyleRes int themeResId) &#123;</div><div class="line">    super(context, themeResId);</div><div class="line">    mContext = context;</div><div class="line">    init(context);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.mdialog);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>背景的效果就出来了</p>
+<h3 id="整体布局、控件适配"><a href="#整体布局、控件适配" class="headerlink" title="整体布局、控件适配"></a>整体布局、控件适配</h3><p>这里根据屏幕的宽度-左右预留的空袭来设置dialog显示的宽度，高度采取的是宽：高=6：4，里面的子控件标题：按钮=3：1（3+1=整体的高度），左右两边的按钮都是以中间的竖线为基准进行大小位置的设置。（根据自己实践代码，根据设计图给出的宽高比进行设置，避免使用具体宽高多少，那样机型适配展示很丑）</p>
+<p>整体的高度获取（android适配真的很重要，影响UE）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * 获取屏幕的宽度，设置宽高比，从而得到高度</div><div class="line">     * @param context</div><div class="line">     */</div><div class="line">    private void init(Context context) &#123;</div><div class="line">        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);</div><div class="line">        width = windowManager.getDefaultDisplay().getWidth() - dip2px(60);</div><div class="line">        height = width / 6 * 4;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>整体、控件设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 根据屏幕大小  设置整体屏幕 标题，按钮的所占位置</div><div class="line"> */</div><div class="line">private void setDialogSize() &#123;</div><div class="line">    //适配所有屏幕 6：4</div><div class="line">    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(width, height);</div><div class="line">    dialog_layout.setLayoutParams(layoutParams);</div><div class="line">    //标题</div><div class="line">    RelativeLayout.LayoutParams layoutParamsTitle = new RelativeLayout.LayoutParams(width, height / 4 * 3);</div><div class="line">    txt_title.setLayoutParams(layoutParamsTitle);</div><div class="line">    //按钮</div><div class="line">    RelativeLayout.LayoutParams layoutParamsLeft = new RelativeLayout.LayoutParams(width, height / 4);</div><div class="line">    layoutParamsLeft.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.shu_line);</div><div class="line">    layoutParamsLeft.addRule(RelativeLayout.LEFT_OF, R.id.shu_line);</div><div class="line">    txt_left.setLayoutParams(layoutParamsLeft);</div><div class="line"></div><div class="line">    RelativeLayout.LayoutParams layoutParamsRight = new RelativeLayout.LayoutParams(width, height / 4);</div><div class="line">    layoutParamsRight.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.shu_line);</div><div class="line">    layoutParamsRight.addRule(RelativeLayout.RIGHT_OF, R.id.shu_line);</div><div class="line">    txt_right.setLayoutParams(layoutParamsRight);</div><div class="line">    //分割线</div><div class="line">    RelativeLayout.LayoutParams layoutParamsline = new RelativeLayout.LayoutParams(dip2px(1), height / 4);</div><div class="line">    layoutParamsline.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);</div><div class="line">    layoutParamsline.addRule(RelativeLayout.CENTER_HORIZONTAL);</div><div class="line">    shu_line.setLayoutParams(layoutParamsline);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="文字显示的设置、左右两边按钮的回调"><a href="#文字显示的设置、左右两边按钮的回调" class="headerlink" title="文字显示的设置、左右两边按钮的回调"></a>文字显示的设置、左右两边按钮的回调</h3><p>实践项目，文字的显示，已经左右两边按钮点击后的后续操作等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 左边点击按钮的回调 记得设置dialog.dismiss</div><div class="line"> *</div><div class="line"> * @param onClickListener</div><div class="line"> */</div><div class="line">public void setonLeftChilk(View.OnClickListener onClickListener) &#123;</div><div class="line">    txt_left.setOnClickListener(onClickListener);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 右边点击按钮的回调 记得设置dialog.dismiss</div><div class="line"> *</div><div class="line"> * @param onClickListener</div><div class="line"> */</div><div class="line">public void setonRightChilk(View.OnClickListener onClickListener) &#123;</div><div class="line">    txt_right.setOnClickListener(onClickListener);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 设置提示内容</div><div class="line"> *</div><div class="line"> * @param titlecharacter</div><div class="line"> */</div><div class="line">public void setTitlecharacter(CharSequence titlecharacter) &#123;</div><div class="line">    this.titlecharacter = titlecharacter;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 设置左边显示内容</div><div class="line"> *</div><div class="line"> * @param leftcharacter</div><div class="line"> */</div><div class="line">public void setLeftcharacter(CharSequence leftcharacter) &#123;</div><div class="line">    this.leftcharacter = leftcharacter;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 设置右边显示内容</div><div class="line"> *</div><div class="line"> * @param rightcharacter</div><div class="line"> */</div><div class="line">public void setRightcharacter(CharSequence rightcharacter) &#123;</div><div class="line">    this.rightcharacter = rightcharacter;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码中使用"><a href="#代码中使用" class="headerlink" title="代码中使用"></a>代码中使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">txt.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                mDialog = new MDialog(MainActivity.this);</div><div class="line">                mDialog.setTitlecharacter(&quot;测试&quot;);</div><div class="line">                mDialog.setLeftcharacter(&quot;取消哦&quot;);</div><div class="line">                mDialog.setRightcharacter(&quot;确定哦&quot;);</div><div class="line">                mDialog.show();</div><div class="line"></div><div class="line">                mDialog.setonLeftChilk(new View.OnClickListener() &#123;</div><div class="line">                    @Override</div><div class="line">                    public void onClick(View view) &#123;</div><div class="line">                        mDialog.dismiss();</div><div class="line">                        // TODO: 2017/8/7</div><div class="line">                        Toast.makeText(MainActivity.this, &quot;左边按钮的其他操作&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">                mDialog.setonRightChilk(new View.OnClickListener() &#123;</div><div class="line">                    @Override</div><div class="line">                    public void onClick(View view) &#123;</div><div class="line">                        mDialog.dismiss();</div><div class="line">                        // TODO: 2017/8/7</div><div class="line">                        Toast.makeText(MainActivity.this, &quot;右边按钮的其他操作&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>如果你想给dialog弄给花出来，一定要找个美工配合，要不然你造出来的花效果不佳</p>
+<p><a href="https://github.com/madreain/MDialog" target="_blank" rel="external">MDialog GitHub demo地址</a></p>
 
       
     </div>
@@ -821,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/19/20170719/" rel="next" title="自定义view资料总结">
-                <i class="fa fa-chevron-left"></i> 自定义view资料总结
+              <a href="/2017/08/04/20170804/" rel="next" title="Mac破解软件">
+                <i class="fa fa-chevron-left"></i> Mac破解软件
               </a>
             
           </div>
@@ -830,10 +535,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/21/20170721/" rel="prev" title="自定义view————雷达图">
-                自定义view————雷达图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -999,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view速查表"><span class="nav-number">1.</span> <span class="nav-text">自定义view速查表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Canvas常用操作速查表"><span class="nav-number">1.1.</span> <span class="nav-text">Canvas常用操作速查表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path常用操作速查表"><span class="nav-number">1.2.</span> <span class="nav-text">Path常用操作速查表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix常用操作速查表"><span class="nav-number">1.3.</span> <span class="nav-text">Matrix常用操作速查表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝塞尔曲线常用操作速查表"><span class="nav-number">1.4.</span> <span class="nav-text">贝塞尔曲线常用操作速查表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义dialog"><span class="nav-number">1.</span> <span class="nav-text">自定义dialog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置好看的背景"><span class="nav-number">1.0.1.</span> <span class="nav-text">设置好看的背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体布局、控件适配"><span class="nav-number">1.0.2.</span> <span class="nav-text">整体布局、控件适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字显示的设置、左右两边按钮的回调"><span class="nav-number">1.0.3.</span> <span class="nav-text">文字显示的设置、左右两边按钮的回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码中使用"><span class="nav-number">1.0.4.</span> <span class="nav-text">代码中使用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
