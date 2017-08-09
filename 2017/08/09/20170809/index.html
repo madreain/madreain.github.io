@@ -1,0 +1,1036 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义view————码表真的玩起了自定义view，就一直想造点什么自定义view来练练手，今天就码表来给大家讲解一下码表的撰写过程。  效果图看了，废话就不多说了，直接来上真家伙。分享过程：码表的底层背景；码表显示的当前进度；当前速度值显示；速度刻度值；对当前进度进行渐变处理 码表的底层背景效果图可以看出，首先画给黑色的背景，这里用drawArc()来画，算出具体的RectF及其开始角度和结束角">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view————码表">
+<meta property="og:url" content="http://yoursite.com/2017/08/09/20170809/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义view————码表真的玩起了自定义view，就一直想造点什么自定义view来练练手，今天就码表来给大家讲解一下码表的撰写过程。  效果图看了，废话就不多说了，直接来上真家伙。分享过程：码表的底层背景；码表显示的当前进度；当前速度值显示；速度刻度值；对当前进度进行渐变处理 码表的底层背景效果图可以看出，首先画给黑色的背景，这里用drawArc()来画，算出具体的RectF及其开始角度和结束角">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/9/a6fb6f23d83a09599bf4497ffa6962ad">
+<meta property="og:updated_time" content="2017-08-09T12:46:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view————码表">
+<meta name="twitter:description" content="自定义view————码表真的玩起了自定义view，就一直想造点什么自定义view来练练手，今天就码表来给大家讲解一下码表的撰写过程。  效果图看了，废话就不多说了，直接来上真家伙。分享过程：码表的底层背景；码表显示的当前进度；当前速度值显示；速度刻度值；对当前进度进行渐变处理 码表的底层背景效果图可以看出，首先画给黑色的背景，这里用drawArc()来画，算出具体的RectF及其开始角度和结束角">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/8/9/a6fb6f23d83a09599bf4497ffa6962ad">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/09/20170809/"/>
+
+
+
+
+
+  <title>自定义view————码表 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/09/20170809/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义view————码表</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T20:59:34+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/09/20170809/" class="leancloud_visitors" data-flag-title="自定义view————码表">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义view————码表"><a href="#自定义view————码表" class="headerlink" title="自定义view————码表"></a>自定义view————码表</h1><p>真的玩起了自定义view，就一直想造点什么自定义view来练练手，今天就码表来给大家讲解一下码表的撰写过程。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/9/a6fb6f23d83a09599bf4497ffa6962ad" alt="效果图"></p>
+<p>效果图看了，废话就不多说了，直接来上真家伙。分享过程：码表的底层背景；码表显示的当前进度；当前速度值显示；速度刻度值；对当前进度进行渐变处理</p>
+<h3 id="码表的底层背景"><a href="#码表的底层背景" class="headerlink" title="码表的底层背景"></a>码表的底层背景</h3><p>效果图可以看出，首先画给黑色的背景，这里用drawArc()来画，算出具体的RectF及其开始角度和结束角度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//开始的角度</div><div class="line"> private float mStart = -210;</div><div class="line"> //总的角度</div><div class="line"> private static final int FULL_ANGLE = 240;</div><div class="line"> //进度条的宽度</div><div class="line"> private float progressWidth = dipToPx(8);</div><div class="line"> </div><div class="line"> //画底盘</div><div class="line"> RectF mBigOval = new RectF(progressWidth / 2, progressWidth / 2,</div><div class="line">              getWidth() - (progressWidth + 1) / 2, getHeight() - (progressWidth + 1) / 2);</div><div class="line"> canvas.drawArc(mBigOval, mStart, FULL_ANGLE, false, mBackgroundPaint); //底色的弧</div></pre></td></tr></table></figure>
+<p>mBackgroundPaint的相关设置可以去设置你自己想要的效果   </p>
+<h3 id="码表的当前进度"><a href="#码表的当前进度" class="headerlink" title="码表的当前进度"></a>码表的当前进度</h3><p>码表的底层背景说完了，接下来就来介绍一下码表的时时刻刻变化的当前进度，其实和码表的底层背景的绘制是一样的，只不过就是角度时变化的</p>
+<p>首先算出当前速度占这个码表的角度是多少，我这里的最大角度是240，最高速度是300，当时速度占的总角度=当前速度／300*240<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * 计算当前速度占最高速度的多少</div><div class="line">     * 240是角度</div><div class="line">     *</div><div class="line">     * @param delta</div><div class="line">     */</div><div class="line">    public void setDelta(float delta) &#123;</div><div class="line">        this.mspeed = delta;</div><div class="line">        this.delta = delta * 240 / 300;</div><div class="line">        invalidate();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>角度算好了就是画了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">canvas.drawArc(mBigOval, mStart, delta, false, mProgressPaint); // 速度的弧</div></pre></td></tr></table></figure>
+<p>到这一步为止，码表就能时时的根据速度来动态变化了，就下来就是来给这个码表加些花了</p>
+<h3 id="当前速度值显示"><a href="#当前速度值显示" class="headerlink" title="当前速度值显示"></a>当前速度值显示</h3><p>速度值动态显示用drawText()就能显示，但是这样的设置，位置不是居中，因此我们需要计算出当前速度值文字显示的宽高，然后计算准确的位置来达到好的展示效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//获取文字的宽度及其高度</div><div class="line">        Rect rect = new Rect();</div><div class="line">        String speed = mspeed + &quot;Km/h&quot;;</div><div class="line">        mtxtPaint.getTextBounds(speed, 0, speed.length(), rect);</div><div class="line">        textheight = rect.height();</div><div class="line">        textwidth = rect.width();</div><div class="line">        //速度显示</div><div class="line">        canvas.drawText(speed, mwidth / 2 - textwidth / 2, mheight / 2 - textheight / 2, mtxtPaint);</div></pre></td></tr></table></figure>
+<p>到了这一步，去看看车子里的仪表盘差了速度刻度值，不行，这个花也得加上去</p>
+<h3 id="速度刻度值显示"><a href="#速度刻度值显示" class="headerlink" title="速度刻度值显示"></a>速度刻度值显示</h3><p>我这里的最大速度是300，我用50为一个大节点，共分为0、50、100、150、200、250、300，0-50之间有小刻度值，画线drawLine(),画刻度值drawText()，再结合rotate()来达到心中的效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">canvas.translate(mwidth / 2, mheight / 2);</div><div class="line">        //循转60</div><div class="line">        canvas.rotate(60);</div><div class="line">//        //画速度刻度值盘</div><div class="line">        int count = 45;</div><div class="line">        for (int i = 0; i &lt; count; i++) &#123;</div><div class="line">            if (i &lt;= 30) &#123;</div><div class="line">                if (i % 5 == 0) &#123;</div><div class="line">                    canvas.drawLine(0, radius + 10, 0, radius + 60, tmpPaint);</div><div class="line">//                    canvas.drawLine(0, radius, 0, radius + 30, tmpPaint);</div><div class="line">                    //设置码率</div><div class="line">                    Rect recttxt = new Rect();</div><div class="line">                    String value = String.valueOf(i / 5 * 50);</div><div class="line">                    tmpPaint.getTextBounds(value, 0, value.length(), recttxt);</div><div class="line">                    valueheight = recttxt.height();</div><div class="line">                    valuewidth = recttxt.width();</div><div class="line">                    //文字旋转180</div><div class="line">                    canvas.save();</div><div class="line">                    canvas.rotate(180, 0, radius);</div><div class="line">//                    canvas.drawText(value, -4f, radius + 25f, tmpPaint);</div><div class="line">                    canvas.drawText(value, -valuewidth / 2, radius + 25f - valueheight / 2, tmpPaint);</div><div class="line">                    canvas.restore();</div><div class="line">                &#125; else &#123;</div><div class="line">                    canvas.drawLine(0, radius + 40, 0, radius + 60, tmpPaint);</div><div class="line">//                    canvas.drawLine(0, radius + 10, 0, radius + 30, tmpPaint);</div><div class="line">                &#125;</div><div class="line">                canvas.rotate(360 / count, 0f, 0f); //旋转画纸</div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>速度刻度值就出来了，需要注意 </p>
+<ul>
+<li>canvas.rotate(60)是为了保证0刻度是和进度是从同一个位置开始的；</li>
+<li>canvas.rotate(360 / count, 0f, 0f); //旋转画纸保证刻度线的位置；</li>
+<li>文字宽高的计算上面已经提到过了</li>
+<li>canvas.rotate(180, 0, radius);是为了保证文字不是倒立的，需另外注意canvas.save();，canvas.restore();保持和恢复方法</li>
+</ul>
+<p>大致完整的功能是已经出来了，接下来就是给进度条的变化加一个大大的彩花</p>
+<h3 id="当前进度渐变处理"><a href="#当前进度渐变处理" class="headerlink" title="当前进度渐变处理"></a>当前进度渐变处理</h3><p>进度渐变处理，对mProgressPaint（当前进度条的画笔）进行属性的设置达到彩色渐变效果，setShader()方法结合SweepGradient</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//下面是给渐变颜色做准备的</div><div class="line">     //中心点x、y</div><div class="line">     centerX = mwidth / 2;</div><div class="line">     centerY = mheight / 2;</div><div class="line">     sweepGradient = new SweepGradient(centerX, centerY, colors, null);</div><div class="line">     rotateMatrix = new Matrix();</div><div class="line">     //这个方法很重要</div><div class="line">     rotateMatrix.setRotate(118, centerX, centerY);</div><div class="line">     sweepGradient.setLocalMatrix(rotateMatrix);</div><div class="line">     mProgressPaint.setShader(sweepGradient);</div></pre></td></tr></table></figure>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div></pre></td><td class="code"><pre><div class="line">package com.speedtableview;</div><div class="line"></div><div class="line">import android.content.Context;</div><div class="line">import android.graphics.Canvas;</div><div class="line">import android.graphics.Color;</div><div class="line">import android.graphics.Matrix;</div><div class="line">import android.graphics.Paint;</div><div class="line">import android.graphics.Rect;</div><div class="line">import android.graphics.RectF;</div><div class="line">import android.graphics.SweepGradient;</div><div class="line">import android.util.AttributeSet;</div><div class="line">import android.view.View;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by wujun on 2017/8/9.</div><div class="line"> * 码表</div><div class="line"> * 最高速度300</div><div class="line"> *</div><div class="line"> * @author madreain</div><div class="line"> * @desc</div><div class="line"> */</div><div class="line"></div><div class="line">public class SpeedTableView extends View &#123;</div><div class="line"></div><div class="line">    //进度</div><div class="line">    private Paint mProgressPaint;</div><div class="line">    //背景</div><div class="line">    private Paint mBackgroundPaint;</div><div class="line">    //速度</div><div class="line">    private Paint mtxtPaint;</div><div class="line">    //速率刻度</div><div class="line">    private Paint tmpPaint;</div><div class="line">    //进度条的宽度</div><div class="line">    private float progressWidth = dipToPx(8);</div><div class="line">    //开始的角度</div><div class="line">    private float mStart = -210;</div><div class="line">    //总的角度</div><div class="line">    private static final int FULL_ANGLE = 240;</div><div class="line">    //当前速度占的角度值</div><div class="line">    private float delta = 0;</div><div class="line">    //速度</div><div class="line">    private float mspeed = 0;</div><div class="line">    //半径</div><div class="line">    float radius;</div><div class="line">    //宽高</div><div class="line">    int mwidth, mheight;</div><div class="line">    //速度值文字显示的宽高</div><div class="line">    int textheight;</div><div class="line">    int textwidth;</div><div class="line">    //速度刻度值文字的宽高</div><div class="line">    int valueheight;</div><div class="line">    int valuewidth;</div><div class="line">    //渐变的颜色</div><div class="line">    private int[] colors = new int[]&#123;Color.GREEN, Color.YELLOW, Color.RED, Color.RED&#125;;</div><div class="line">    //    private PaintFlagsDrawFilter mDrawFilter;</div><div class="line">    //扫描/梯度渲染</div><div class="line">    private SweepGradient sweepGradient;</div><div class="line">    //</div><div class="line">    private Matrix rotateMatrix;</div><div class="line">    //中心点x,y</div><div class="line">    float centerX, centerY;</div><div class="line"></div><div class="line"></div><div class="line">    public SpeedTableView(Context context) &#123;</div><div class="line">        super(context);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public SpeedTableView(Context context, AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public SpeedTableView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onSizeChanged(int w, int h, int oldw, int oldh) &#123;</div><div class="line">        super.onSizeChanged(w, h, oldw, oldh);</div><div class="line">        //宽高</div><div class="line">        mwidth = w;</div><div class="line">        mheight = h;</div><div class="line">        //半径</div><div class="line">        radius = (float) (Math.min(mwidth, mheight) / 2 * 0.8);</div><div class="line">        //下面是给渐变颜色做准备的</div><div class="line">        //中心点x、y</div><div class="line">        centerX = mwidth / 2;</div><div class="line">        centerY = mheight / 2;</div><div class="line">        sweepGradient = new SweepGradient(centerX, centerY, colors, null);</div><div class="line">        rotateMatrix = new Matrix();</div><div class="line">        //这个方法很重要</div><div class="line">        rotateMatrix.setRotate(118, centerX, centerY);</div><div class="line">        sweepGradient.setLocalMatrix(rotateMatrix);</div><div class="line">        mProgressPaint.setShader(sweepGradient);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void init() &#123;</div><div class="line">        //背景</div><div class="line">        mBackgroundPaint = new Paint();</div><div class="line">        mBackgroundPaint.setAntiAlias(true); //消除锯齿</div><div class="line">        mBackgroundPaint.setStyle(Paint.Style.STROKE); //绘制空心圆</div><div class="line">        mBackgroundPaint.setStrokeWidth(progressWidth); //设置进度条宽度</div><div class="line">        mBackgroundPaint.setColor(Color.rgb(31, 34, 34)); //设置进度条颜色</div><div class="line">        mBackgroundPaint.setStrokeJoin(Paint.Join.ROUND);</div><div class="line">        mBackgroundPaint.setStrokeCap(Paint.Cap.ROUND); //设置圆角</div><div class="line">        //进度</div><div class="line">        mProgressPaint = new Paint();</div><div class="line">        mProgressPaint.setAntiAlias(true); //消除锯齿</div><div class="line">        mProgressPaint.setStyle(Paint.Style.STROKE); //绘制空心圆</div><div class="line">        mProgressPaint.setStrokeWidth(progressWidth); //设置进度条宽度</div><div class="line">        mProgressPaint.setColor(Color.rgb(200, 200, 200)); //设置进度条颜色</div><div class="line">        mProgressPaint.setStrokeJoin(Paint.Join.ROUND);</div><div class="line">        mProgressPaint.setStrokeCap(Paint.Cap.ROUND); //设置圆角</div><div class="line">        //速度值</div><div class="line">        mtxtPaint = new Paint();</div><div class="line">        mtxtPaint.setAntiAlias(true);</div><div class="line">        mtxtPaint.setStrokeJoin(Paint.Join.ROUND);</div><div class="line">        mtxtPaint.setStrokeCap(Paint.Cap.ROUND); //设置圆角</div><div class="line">        mtxtPaint.setTextSize(100);</div><div class="line">        //速度刻度值</div><div class="line">        tmpPaint = new Paint(mtxtPaint); //小刻度画笔对象</div><div class="line">        tmpPaint.setStrokeWidth(2);</div><div class="line">        tmpPaint.setTextSize(30);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);</div><div class="line">        int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);</div><div class="line">        int sideLength = Math.min(widthSpecSize, heightSpecSize);</div><div class="line">        setMeasuredDimension(sideLength, sideLength);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDraw(Canvas canvas) &#123;</div><div class="line">        //画底盘及其速度盘</div><div class="line">        RectF mBigOval = new RectF(progressWidth / 2, progressWidth / 2,</div><div class="line">                getWidth() - (progressWidth + 1) / 2, getHeight() - (progressWidth + 1) / 2);</div><div class="line">        canvas.drawArc(mBigOval, mStart, FULL_ANGLE, false, mBackgroundPaint); //底色的弧</div><div class="line">        canvas.drawArc(mBigOval, mStart, delta, false, mProgressPaint); // 速度的弧</div><div class="line"></div><div class="line">        //获取文字的宽度及其高度</div><div class="line">        Rect rect = new Rect();</div><div class="line">        String speed = mspeed + &quot;Km/h&quot;;</div><div class="line">        mtxtPaint.getTextBounds(speed, 0, speed.length(), rect);</div><div class="line">        textheight = rect.height();</div><div class="line">        textwidth = rect.width();</div><div class="line">        //速度显示</div><div class="line">        canvas.drawText(speed, mwidth / 2 - textwidth / 2, mheight / 2 - textheight / 2, mtxtPaint);</div><div class="line"></div><div class="line"></div><div class="line">//        canvas.save();</div><div class="line">        canvas.translate(mwidth / 2, mheight / 2);</div><div class="line">        //循转60</div><div class="line">        canvas.rotate(60);</div><div class="line">//        //画速度刻度值盘</div><div class="line">        int count = 45;</div><div class="line">        for (int i = 0; i &lt; count; i++) &#123;</div><div class="line">            if (i &lt;= 30) &#123;</div><div class="line">                if (i % 5 == 0) &#123;</div><div class="line">                    canvas.drawLine(0, radius + 10, 0, radius + 60, tmpPaint);</div><div class="line">//                    canvas.drawLine(0, radius, 0, radius + 30, tmpPaint);</div><div class="line">                    //设置码率</div><div class="line">                    Rect recttxt = new Rect();</div><div class="line">                    String value = String.valueOf(i / 5 * 50);</div><div class="line">                    tmpPaint.getTextBounds(value, 0, value.length(), recttxt);</div><div class="line">                    valueheight = recttxt.height();</div><div class="line">                    valuewidth = recttxt.width();</div><div class="line">                    //文字旋转180</div><div class="line">                    canvas.save();</div><div class="line">                    canvas.rotate(180, 0, radius);</div><div class="line">//                    canvas.drawText(value, -4f, radius + 25f, tmpPaint);</div><div class="line">                    canvas.drawText(value, -valuewidth / 2, radius + 25f - valueheight / 2, tmpPaint);</div><div class="line">                    canvas.restore();</div><div class="line">                &#125; else &#123;</div><div class="line">                    canvas.drawLine(0, radius + 40, 0, radius + 60, tmpPaint);</div><div class="line">//                    canvas.drawLine(0, radius + 10, 0, radius + 30, tmpPaint);</div><div class="line">                &#125;</div><div class="line">                canvas.rotate(360 / count, 0f, 0f); //旋转画纸</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">//        canvas.restore();</div><div class="line"></div><div class="line"></div><div class="line">        super.onDraw(canvas);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private int dipToPx(float dip) &#123;</div><div class="line">        float density = getContext().getResources().getDisplayMetrics().density;</div><div class="line">        return (int) (dip * density + 0.5f * (dip &gt;= 0 ? 1 : -1));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 计算当前速度占最高速度的多少</div><div class="line">     * 240是角度</div><div class="line">     *</div><div class="line">     * @param delta</div><div class="line">     */</div><div class="line">    public void setDelta(float delta) &#123;</div><div class="line">        this.mspeed = delta;</div><div class="line">        this.delta = delta * 240 / 300;</div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上还有很多可优化及其可提取出来的属性设置，可根据自己项目需求进行修改</p>
+<p><a href="https://github.com/madreain/SpeedTableView" target="_blank" rel="external">SpeedTableView github地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/07/20170807/" rel="next" title="UI使用及其优化">
+                <i class="fa fa-chevron-left"></i> UI使用及其优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTg4NC82NDQ5"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————码表"><span class="nav-number">1.</span> <span class="nav-text">自定义view————码表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#码表的底层背景"><span class="nav-number">1.0.1.</span> <span class="nav-text">码表的底层背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码表的当前进度"><span class="nav-number">1.0.2.</span> <span class="nav-text">码表的当前进度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前速度值显示"><span class="nav-number">1.0.3.</span> <span class="nav-text">当前速度值显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#速度刻度值显示"><span class="nav-number">1.0.4.</span> <span class="nav-text">速度刻度值显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前进度渐变处理"><span class="nav-number">1.0.5.</span> <span class="nav-text">当前进度渐变处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">1.0.6.</span> <span class="nav-text">完整代码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
