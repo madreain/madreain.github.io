@@ -1,0 +1,1023 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义view————广告弹窗今天给大家带来自定义view————广告弹窗，效果图中的照片文字都是随便找的，实际项目中根据UI的设计稍微修改修改基本上就能达到预想的效果了(注：女神刘亦菲的图是好好找的！！！)  效果图看完了，接下来分析一下实现过程，首先整体是继承Dialog去实现的，组合自定义view达到预想效果，倒计时是一个画圈圈的过程，接下来详细讲解吧 画给倒计时的圈圈一个背景色的底盘dra">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view————广告弹窗">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/20170810/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义view————广告弹窗今天给大家带来自定义view————广告弹窗，效果图中的照片文字都是随便找的，实际项目中根据UI的设计稍微修改修改基本上就能达到预想的效果了(注：女神刘亦菲的图是好好找的！！！)  效果图看完了，接下来分析一下实现过程，首先整体是继承Dialog去实现的，组合自定义view达到预想效果，倒计时是一个画圈圈的过程，接下来详细讲解吧 画给倒计时的圈圈一个背景色的底盘dra">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/10/edfa64620248f724e5526bb7daee61be">
+<meta property="og:updated_time" content="2017-08-10T13:03:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view————广告弹窗">
+<meta name="twitter:description" content="自定义view————广告弹窗今天给大家带来自定义view————广告弹窗，效果图中的照片文字都是随便找的，实际项目中根据UI的设计稍微修改修改基本上就能达到预想的效果了(注：女神刘亦菲的图是好好找的！！！)  效果图看完了，接下来分析一下实现过程，首先整体是继承Dialog去实现的，组合自定义view达到预想效果，倒计时是一个画圈圈的过程，接下来详细讲解吧 画给倒计时的圈圈一个背景色的底盘dra">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/8/10/edfa64620248f724e5526bb7daee61be">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/20170810/"/>
+
+
+
+
+
+  <title>自定义view————广告弹窗 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/20170810/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义view————广告弹窗</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T20:59:34+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/10/20170810/" class="leancloud_visitors" data-flag-title="自定义view————广告弹窗">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义view————广告弹窗"><a href="#自定义view————广告弹窗" class="headerlink" title="自定义view————广告弹窗"></a>自定义view————广告弹窗</h1><p>今天给大家带来自定义view————广告弹窗，效果图中的照片文字都是随便找的，实际项目中根据UI的设计稍微修改修改基本上就能达到预想的效果了(注：女神刘亦菲的图是好好找的！！！)</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/10/edfa64620248f724e5526bb7daee61be" alt="效果图"></p>
+<p>效果图看完了，接下来分析一下实现过程，首先整体是继承Dialog去实现的，组合自定义view达到预想效果，倒计时是一个画圈圈的过程，接下来详细讲解吧</p>
+<h3 id="画给倒计时的圈圈"><a href="#画给倒计时的圈圈" class="headerlink" title="画给倒计时的圈圈"></a>画给倒计时的圈圈</h3><p>一个背景色的底盘drawCircle()，一个画圈圈drawArc(),一个文字的显示，今天这里的文字显示采取了一个新的实现方式StaticLayout(android中处理文字换行的一个工具类)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//画底盘</div><div class="line">        canvas.drawCircle(width / 2, height / 2, min / 2, circlePaint);</div><div class="line">        //画边框</div><div class="line">        RectF rectF;</div><div class="line">        if (width &gt; height) &#123;</div><div class="line">            rectF = new RectF(width / 2 - min / 2 + borderWidth / 2, 0 + borderWidth / 2, width / 2 + min / 2 - borderWidth / 2, height - borderWidth / 2);</div><div class="line">        &#125; else &#123;</div><div class="line">            rectF = new RectF(borderWidth / 2, height / 2 - min / 2 + borderWidth / 2, width - borderWidth / 2, height / 2 - borderWidth / 2 + min / 2);</div><div class="line">        &#125;</div><div class="line">        canvas.drawArc(rectF, -90, progress, false, borderPaint);</div><div class="line">        //画居中的文字</div><div class="line">        canvas.translate(width / 2, height / 2 - staticLayout.getHeight() / 2);</div><div class="line">        staticLayout.draw(canvas);</div></pre></td></tr></table></figure>
+<p>看到这里staticLayout是那里来的呀，看下面就知道了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int textWidth = (int) textPaint.measureText(text.substring(0, text.length()));</div><div class="line">    staticLayout = new StaticLayout(text, textPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1F, 0, false);</div></pre></td></tr></table></figure>
+<p>静态的圈圈背景都已经就位，现在开始执行倒计时动画，这里写的是5s</p>
+<h3 id="是时候让圈圈动起来了"><a href="#是时候让圈圈动起来了" class="headerlink" title="是时候让圈圈动起来了"></a>是时候让圈圈动起来了</h3><p>这里采用倒计时器来倒计时然后通知刷新动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//倒计时</div><div class="line">  public void start() &#123;</div><div class="line">      if (listener != null) &#123;</div><div class="line">          listener.onStartCount();</div><div class="line">      &#125;</div><div class="line">      //倒计时器     第一个参数表示总时间，第二个参数表示间隔时间</div><div class="line">      new CountDownTimer((long) lastTime, 30) &#123;</div><div class="line">          @Override</div><div class="line">          public void onTick(long millisUntilFinished) &#123;</div><div class="line">              progress = 360 - ((lastTime - millisUntilFinished) / lastTime) * 360;</div><div class="line">              invalidate();</div><div class="line">          &#125;</div><div class="line"> </div><div class="line">          @Override</div><div class="line">          public void onFinish() &#123;</div><div class="line">              progress = 0;</div><div class="line">              invalidate();</div><div class="line">              if (listener != null) &#123;</div><div class="line">                  listener.onFinishCount();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;.start();</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>倒计时的准备工作做好了，将倒计时的完整代码奉上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by Administrator on 2017/8/10.</div><div class="line"> * 广告倒计时</div><div class="line"> *</div><div class="line"> * @auther madreain</div><div class="line"> */</div><div class="line"></div><div class="line">public class CountDownView extends View &#123;</div><div class="line"></div><div class="line">    private static final int BACKGROUND_COLOR = 0x50555555;</div><div class="line">    private static final float BORDER_WIDTH = 15f;</div><div class="line">    private static final int BORDER_COLOR = 0xFF6ADBFE;</div><div class="line">    private static final String TEXT = &quot;跳过&quot;;</div><div class="line">    private static final float TEXT_SIZE = 50f;</div><div class="line">    private static final int TEXT_COLOR = 0xFFFFFFFF;</div><div class="line"></div><div class="line">    int width;</div><div class="line">    int height;</div><div class="line">    int min;</div><div class="line"></div><div class="line">    private int backgroundColor;</div><div class="line">    private float borderWidth;</div><div class="line">    private int borderColor;</div><div class="line">    private String text;</div><div class="line">    private int textColor;</div><div class="line">    private float textSize;</div><div class="line"></div><div class="line">    private Paint circlePaint;</div><div class="line">    private TextPaint textPaint;</div><div class="line">    private Paint borderPaint;</div><div class="line"></div><div class="line">    private float progress = 360;</div><div class="line">    private StaticLayout staticLayout;</div><div class="line"></div><div class="line">    private CountDownTimerListener listener;</div><div class="line"></div><div class="line">    //倒计时 显示5秒什么的</div><div class="line">    float lastTime = 5000;</div><div class="line"></div><div class="line">    public CountDownView(Context context) &#123;</div><div class="line">        this(context, null);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public CountDownView(Context context, AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CountDownView);</div><div class="line">        backgroundColor = ta.getColor(R.styleable.CountDownView_background_color, BACKGROUND_COLOR);</div><div class="line">        borderWidth = ta.getDimension(R.styleable.CountDownView_borders_width, BORDER_WIDTH);</div><div class="line">        borderColor = ta.getColor(R.styleable.CountDownView_borders_color, BORDER_COLOR);</div><div class="line">        text = ta.getString(R.styleable.CountDownView_text);</div><div class="line">        if (text == null) &#123;</div><div class="line">            text = TEXT;</div><div class="line">        &#125;</div><div class="line">        textSize = ta.getDimension(R.styleable.CountDownView_text_size, TEXT_SIZE);</div><div class="line">        textColor = ta.getColor(R.styleable.CountDownView_text_color, TEXT_COLOR);</div><div class="line">        ta.recycle();</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void init() &#123;</div><div class="line">        circlePaint = new Paint();</div><div class="line">        circlePaint.setAntiAlias(true);</div><div class="line">        circlePaint.setDither(true);</div><div class="line">        circlePaint.setColor(backgroundColor);</div><div class="line">        circlePaint.setStyle(Paint.Style.FILL);</div><div class="line"></div><div class="line">        textPaint = new TextPaint();</div><div class="line">        textPaint.setAntiAlias(true);</div><div class="line">        textPaint.setDither(true);</div><div class="line">        textPaint.setColor(textColor);</div><div class="line">        textPaint.setTextSize(textSize);</div><div class="line">        textPaint.setTextAlign(Paint.Align.CENTER);</div><div class="line"></div><div class="line">        borderPaint = new Paint();</div><div class="line">        borderPaint.setAntiAlias(true);</div><div class="line">        borderPaint.setDither(true);</div><div class="line">        borderPaint.setColor(borderColor);</div><div class="line">        borderPaint.setStrokeWidth(borderWidth);</div><div class="line">        borderPaint.setStyle(Paint.Style.STROKE);</div><div class="line"></div><div class="line">        int textWidth = (int) textPaint.measureText(text.substring(0, text.length()));</div><div class="line">        staticLayout = new StaticLayout(text, textPaint, textWidth, Layout.Alignment.ALIGN_NORMAL, 1F, 0, false);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">        int width = MeasureSpec.getSize(widthMeasureSpec);</div><div class="line">        int widthMode = MeasureSpec.getMode(widthMeasureSpec);</div><div class="line">        int height = MeasureSpec.getSize(heightMeasureSpec);</div><div class="line">        int heightMode = MeasureSpec.getMode(heightMeasureSpec);</div><div class="line">        if (widthMode != MeasureSpec.EXACTLY) &#123;</div><div class="line">            width = staticLayout.getWidth();</div><div class="line">        &#125;</div><div class="line">        if (heightMode != MeasureSpec.EXACTLY) &#123;</div><div class="line">            height = staticLayout.getHeight();</div><div class="line">        &#125;</div><div class="line">        setMeasuredDimension(width, height);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onSizeChanged(int w, int h, int oldw, int oldh) &#123;</div><div class="line">        super.onSizeChanged(w, h, oldw, oldh);</div><div class="line">        width=w;</div><div class="line">        height=h;</div><div class="line">        min = Math.min(width, height);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDraw(Canvas canvas) &#123;</div><div class="line">        //画底盘</div><div class="line">        canvas.drawCircle(width / 2, height / 2, min / 2, circlePaint);</div><div class="line">        //画边框</div><div class="line">        RectF rectF;</div><div class="line">        if (width &gt; height) &#123;</div><div class="line">            rectF = new RectF(width / 2 - min / 2 + borderWidth / 2, 0 + borderWidth / 2, width / 2 + min / 2 - borderWidth / 2, height - borderWidth / 2);</div><div class="line">        &#125; else &#123;</div><div class="line">            rectF = new RectF(borderWidth / 2, height / 2 - min / 2 + borderWidth / 2, width - borderWidth / 2, height / 2 - borderWidth / 2 + min / 2);</div><div class="line">        &#125;</div><div class="line">        canvas.drawArc(rectF, -90, progress, false, borderPaint);</div><div class="line">        //画居中的文字</div><div class="line">        canvas.translate(width / 2, height / 2 - staticLayout.getHeight() / 2);</div><div class="line">        staticLayout.draw(canvas);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    //倒计时</div><div class="line">    public void start() &#123;</div><div class="line">        if (listener != null) &#123;</div><div class="line">            listener.onStartCount();</div><div class="line">        &#125;</div><div class="line">        //倒计时器     第一个参数表示总时间，第二个参数表示间隔时间</div><div class="line">        new CountDownTimer((long) lastTime, 30) &#123;</div><div class="line">            @Override</div><div class="line">            public void onTick(long millisUntilFinished) &#123;</div><div class="line">                progress = 360 - ((lastTime - millisUntilFinished) / lastTime) * 360;</div><div class="line">                invalidate();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onFinish() &#123;</div><div class="line">                progress = 0;</div><div class="line">                invalidate();</div><div class="line">                if (listener != null) &#123;</div><div class="line">                    listener.onFinishCount();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setCountDownTimerListener(CountDownTimerListener listener) &#123;</div><div class="line">        this.listener = listener;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public interface CountDownTimerListener &#123;</div><div class="line">        void onStartCount();</div><div class="line"></div><div class="line">        void onChangeCount(int second);</div><div class="line"></div><div class="line">        void onFinishCount();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="广告弹窗"><a href="#广告弹窗" class="headerlink" title="广告弹窗"></a>广告弹窗</h3><p>广告弹窗上的倒计时已经准备好了，开始组合自定义view的撰写了，后期实际项目开发中，这一块可以根据实际情况修改组合的view布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by Administrator on 2017/8/10.</div><div class="line"> * 闪屏广告</div><div class="line"> *</div><div class="line"> * @auther madreain</div><div class="line"> */</div><div class="line"></div><div class="line">public class SplashDialog extends Dialog &#123;</div><div class="line"></div><div class="line">    private Context mContext;</div><div class="line">    //展示的</div><div class="line">    AdvertisingImgModel advertisingImgModel;</div><div class="line"></div><div class="line">    //背景照片</div><div class="line">    private ImageView img_background;</div><div class="line">    //倒计时</div><div class="line">    private CountDownView count_down_view;</div><div class="line"></div><div class="line">    private OnSplashDetailClickListener onSplashDetailClickListener;</div><div class="line"></div><div class="line">    public SplashDialog(Context context, AdvertisingImgModel advertisingImgModel) &#123;</div><div class="line">        super(context, R.style.ADDialog);</div><div class="line">        mContext = context;</div><div class="line">        this.advertisingImgModel = advertisingImgModel;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.splash_dialog);</div><div class="line">        full(true);</div><div class="line">        initView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * @param enable false 显示，true 隐藏</div><div class="line">     */</div><div class="line">    private void full(boolean enable) &#123;</div><div class="line">        WindowManager.LayoutParams p = this.getWindow().getAttributes();</div><div class="line">        if (enable) &#123;</div><div class="line"></div><div class="line">            p.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;//|=：或等于，取其一</div><div class="line"></div><div class="line">        &#125; else &#123;</div><div class="line">            p.flags &amp;= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);//&amp;=：与等于，取其二同时满足，     ~ ： 取反</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        getWindow().setAttributes(p);</div><div class="line">        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initView() &#123;</div><div class="line"></div><div class="line">        img_background = (ImageView) findViewById(R.id.img_background);</div><div class="line">        Glide.with(mContext).load(advertisingImgModel.getImgurl()).into(img_background);</div><div class="line">        //广告倒计时</div><div class="line">        count_down_view = (CountDownView) findViewById(R.id.count_down_view);</div><div class="line">        count_down_view.setCountDownTimerListener(new CountDownView.CountDownTimerListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onStartCount() &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onChangeCount(int second) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onFinishCount() &#123;</div><div class="line">                dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        //启动倒计时</div><div class="line">        count_down_view.start();</div><div class="line">        //点击跳过按钮</div><div class="line">        count_down_view.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        //点击事件</div><div class="line">        img_background.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                if (onSplashDetailClickListener != null) &#123;</div><div class="line">                    onSplashDetailClickListener.onSplashDetailClick(advertisingImgModel);</div><div class="line">                &#125;</div><div class="line">                dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    public void setOnSplashDetailClickListener(OnSplashDetailClickListener onSplashDetailClickListener) &#123;</div><div class="line">        this.onSplashDetailClickListener = onSplashDetailClickListener;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public interface OnSplashDetailClickListener &#123;</div><div class="line">        void onSplashDetailClick(AdvertisingImgModel advertisingImgModel);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码中使用"><a href="#代码中使用" class="headerlink" title="代码中使用"></a>代码中使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">txt.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">          @Override</div><div class="line">          public void onClick(View view) &#123;</div><div class="line">              AdvertisingImgModel advertisingImgModel = new AdvertisingImgModel(1, &quot;http://bmob-cdn-10899.b0.upaiyun.com/2017/05/09/34b6d85c406894f3803d949a78c4546e.jpg&quot;);</div><div class="line">              splashDialog = new SplashDialog(MainActivity.this, advertisingImgModel);</div><div class="line">              splashDialog.setOnSplashDetailClickListener(new SplashDialog.OnSplashDetailClickListener() &#123;</div><div class="line">                  @Override</div><div class="line">                  public void onSplashDetailClick(AdvertisingImgModel advertisingImgModel) &#123;</div><div class="line">                      Toast.makeText(MainActivity.this, &quot;跳转到广告的详情页&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                  &#125;</div><div class="line">              &#125;);</div><div class="line">              splashDialog.show();</div><div class="line">          &#125;</div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/madreain/SplashView" target="_blank" rel="external">SplashView github demo</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/09/20170809/" rel="next" title="自定义view————码表">
+                <i class="fa fa-chevron-left"></i> 自定义view————码表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTg4NC82NDQ5"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————广告弹窗"><span class="nav-number">1.</span> <span class="nav-text">自定义view————广告弹窗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#画给倒计时的圈圈"><span class="nav-number">1.0.1.</span> <span class="nav-text">画给倒计时的圈圈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是时候让圈圈动起来了"><span class="nav-number">1.0.2.</span> <span class="nav-text">是时候让圈圈动起来了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广告弹窗"><span class="nav-number">1.0.3.</span> <span class="nav-text">广告弹窗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码中使用"><span class="nav-number">1.0.4.</span> <span class="nav-text">代码中使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
