@@ -1,0 +1,1038 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义view————Banner轮播今天给大家项目中应用很广泛的Banner轮播，每一个app都会用到这个，并且有时候会在多处去应用，这时候就在想了，把Banner轮播写成自定义view，直接传显示数据，接受点击事件的回调。在自己的实际项目中，可以根据自身的效果稍作修改，客官们，先上图（这次全部选择的是女神刘亦菲的照片）  各位客官，效果看了是否满意呀，来分析一下流程：viewpager+自身的">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view————Banner轮播">
+<meta property="og:url" content="http://yoursite.com/2017/08/12/20170812/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义view————Banner轮播今天给大家项目中应用很广泛的Banner轮播，每一个app都会用到这个，并且有时候会在多处去应用，这时候就在想了，把Banner轮播写成自定义view，直接传显示数据，接受点击事件的回调。在自己的实际项目中，可以根据自身的效果稍作修改，客官们，先上图（这次全部选择的是女神刘亦菲的照片）  各位客官，效果看了是否满意呀，来分析一下流程：viewpager+自身的">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/12/4d4e2bce34005066dcfea1fbac72cc15">
+<meta property="og:updated_time" content="2017-08-12T09:35:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view————Banner轮播">
+<meta name="twitter:description" content="自定义view————Banner轮播今天给大家项目中应用很广泛的Banner轮播，每一个app都会用到这个，并且有时候会在多处去应用，这时候就在想了，把Banner轮播写成自定义view，直接传显示数据，接受点击事件的回调。在自己的实际项目中，可以根据自身的效果稍作修改，客官们，先上图（这次全部选择的是女神刘亦菲的照片）  各位客官，效果看了是否满意呀，来分析一下流程：viewpager+自身的">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/8/12/4d4e2bce34005066dcfea1fbac72cc15">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/12/20170812/"/>
+
+
+
+
+
+  <title>自定义view————Banner轮播 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/12/20170812/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义view————Banner轮播</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T20:59:34+08:00">
+                2017-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/12/20170812/" class="leancloud_visitors" data-flag-title="自定义view————Banner轮播">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义view————Banner轮播"><a href="#自定义view————Banner轮播" class="headerlink" title="自定义view————Banner轮播"></a>自定义view————Banner轮播</h1><p>今天给大家项目中应用很广泛的Banner轮播，每一个app都会用到这个，并且有时候会在多处去应用，这时候就在想了，把Banner轮播写成自定义view，直接传显示数据，接受点击事件的回调。在自己的实际项目中，可以根据自身的效果稍作修改，客官们，先上图（这次全部选择的是女神刘亦菲的照片）</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/12/4d4e2bce34005066dcfea1fbac72cc15" alt="效果图"></p>
+<p>各位客官，效果看了是否满意呀，来分析一下流程：viewpager+自身的监听方法+Handler实现滑动切换banner和banner轮播自身循环</p>
+<h3 id="显示view的选择"><a href="#显示view的选择" class="headerlink" title="显示view的选择"></a>显示view的选择</h3><p>根据效果图，我们选取FrameLayout为父布局，里面用ViewPager+LinearLayout(代码中再去设置选择和未选择的状态)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;&gt;</div><div class="line"></div><div class="line">    &lt;android.support.v4.view.ViewPager</div><div class="line">        android:id=&quot;@+id/viewpager&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;</div><div class="line">        android:unselectedAlpha=&quot;1&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;LinearLayout</div><div class="line">        android:id=&quot;@+id/layout_page&quot;</div><div class="line">        android:layout_width=&quot;fill_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:layout_gravity=&quot;center|bottom&quot;</div><div class="line">        android:gravity=&quot;center&quot;</div><div class="line">        android:orientation=&quot;horizontal&quot;</div><div class="line">        android:padding=&quot;10dip&quot; /&gt;</div><div class="line"></div><div class="line">&lt;/FrameLayout&gt;</div></pre></td></tr></table></figure>
+<p>将需要显示的view添加到自定义view中去显示，因为FrameLayout是父布局，我们这里也是继承FrameLayout去自定义view</p>
+<p>这里在onFinishInflate()方法中去添加view，可以去了解一下onFinishInflate()的用法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onFinishInflate() &#123;</div><div class="line">    super.onFinishInflate();</div><div class="line">    View view = LayoutInflater.from(mContext).inflate(R.layout.banner_layout, null);</div><div class="line">    viewpager_banner = (ViewPager) view.findViewById(R.id.viewpager);</div><div class="line">    layout_page = (LinearLayout) view.findViewById(R.id.layout_page);</div><div class="line">    addView(view);</div><div class="line"></div><div class="line">    bannerModelList = new ArrayList&lt;&gt;();</div><div class="line">    bannerviewsList = new ArrayList&lt;&gt;();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="根据假数据显示内容"><a href="#根据假数据显示内容" class="headerlink" title="根据假数据显示内容"></a>根据假数据显示内容</h3><p>实际项目中，数据都是传递过来的，我们也采用info传值过来的，然后根据数据进行显示的相关设置，后期可根基自己项目的info去修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * Created by wujun on 2017/8/11.</div><div class="line"> * banner的实体类，根据自己的实际项目去定制</div><div class="line"> * @author madreain</div><div class="line"> * @desc</div><div class="line"> */</div><div class="line"></div><div class="line">public class BannerModel &#123;</div><div class="line">    private int id;</div><div class="line">    private String imgurl;</div><div class="line"></div><div class="line">    public BannerModel() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public BannerModel(int id, String imgurl) &#123;</div><div class="line">        this.id = id;</div><div class="line">        this.imgurl = imgurl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getId() &#123;</div><div class="line">        return id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setId(int id) &#123;</div><div class="line">        this.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getImgurl() &#123;</div><div class="line">        return imgurl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setImgurl(String imgurl) &#123;</div><div class="line">        this.imgurl = imgurl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String toString() &#123;</div><div class="line">        return &quot;BannerModel&#123;&quot; +</div><div class="line">                &quot;id=&quot; + id +</div><div class="line">                &quot;, imgurl=&apos;&quot; + imgurl + &apos;\&apos;&apos; +</div><div class="line">                &apos;&#125;&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>数据有了，就要有数据设置的方法和拿数据做展示</p>
+<p>继承PagerAdapter去显示banner轮播中的照片</p>
+<p>layout_page.addview()去添加效果图中的小圆点</p>
+<p>addOnPageChangeListener()实现左右切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">    /**</div><div class="line">     * 第一次设置数据的方法</div><div class="line">     *</div><div class="line">     * @param mbannerModelList</div><div class="line">     */</div><div class="line">    public void setBannerModelList(List&lt;BannerModel&gt; mbannerModelList) &#123;</div><div class="line">        this.bannerModelList = mbannerModelList;</div><div class="line">        // 本地</div><div class="line">        if (bannerModelList != null) &#123;</div><div class="line">            if (bannerModelList.size() &gt; 0) &#123;</div><div class="line">                //本地存储</div><div class="line">                bannerModelListSize = bannerModelList.size();</div><div class="line"></div><div class="line">                for (BannerModel bannerModel : bannerModelList) &#123;</div><div class="line">                    ImageView imageView = new ImageView(mContext);</div><div class="line">                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);</div><div class="line">                    // + &quot;!thumb&quot;  缩略图</div><div class="line">                    Glide.with(mContext).load(bannerModel.getImgurl()).into(imageView);</div><div class="line">                    bannerviewsList.add(imageView);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //添加小圆点的图片</div><div class="line">        if (bannerModelList != null) &#123;</div><div class="line">            imageViews = new ImageView[bannerModelListSize];</div><div class="line">            for (int i = 0; i &lt; bannerviewsList.size(); i++) &#123;</div><div class="line">                imageView = new ImageView(mContext);</div><div class="line">                //设置小圆点imageview的参数</div><div class="line">                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(20, 20);</div><div class="line">                layoutParams.setMargins(10, 0, 10, 0);</div><div class="line">//            imageView.setLayoutParams(new ViewGroup.LayoutParams(20,20));//创建一个宽高均为20 的布局</div><div class="line">                imageView.setLayoutParams(layoutParams);//创建一个宽高均为20 的布局</div><div class="line">                imageView.setPadding(20, 0, 20, 0);</div><div class="line">                //默认选中的是第一张图片，此时第一个小圆点是选中状态，其他不是</div><div class="line">                if (i == 0) &#123;</div><div class="line">                    imageView.setBackgroundResource(R.drawable.shape_intro);</div><div class="line">                &#125; else &#123;</div><div class="line">                    imageView.setBackgroundResource(R.drawable.shape_intro_nor);</div><div class="line">                &#125;</div><div class="line">                //将imageviews添加到小圆点视图组</div><div class="line">                layout_page.addView(imageView);</div><div class="line">                imageViews[i] = imageView;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">            bannerViewPagerAdapter = new BannerViewPagerAdapter(bannerviewsList);</div><div class="line">            viewpager_banner.setAdapter(bannerViewPagerAdapter);</div><div class="line">            viewpager_banner.addOnPageChangeListener(new GuidePageChangeListener());</div><div class="line">//            viewpager_banner.setOnPageChangeListener(new GuidePageChangeListener());</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>继承PagerAdapter去显示banner轮播中的照片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">//照片轮播的适配器</div><div class="line">    private class BannerViewPagerAdapter extends PagerAdapter &#123;</div><div class="line">        private List&lt;View&gt; views;</div><div class="line"></div><div class="line">        private BannerViewPagerAdapter(List&lt;View&gt; views) &#123;</div><div class="line">            this.views = views;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void destroyItem(ViewGroup container, int position, Object object) &#123;</div><div class="line">            container.removeView(views.get(position));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void finishUpdate(ViewGroup container) &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public int getCount() &#123;</div><div class="line">            if (views != null) &#123;</div><div class="line">                return views.size();</div><div class="line">            &#125;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public Object instantiateItem(ViewGroup container, final int position) &#123;</div><div class="line">            container.addView(views.get(position));</div><div class="line"></div><div class="line">            //单独的点击事件</div><div class="line">            views.get(position).setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">                public void onClick(View view) &#123;</div><div class="line">                   //todo这里后面将点击进行接口回调返回</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            return views.get(position);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public boolean isViewFromObject(View view, Object object) &#123;</div><div class="line">            return view == object;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>addOnPageChangeListener()实现左右切换，实现OnPageChangeListener，来回切换，照片显示改变，小圆点的选中与未选中也跟着改变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">//viewpager 监听   照片轮播</div><div class="line">    private class GuidePageChangeListener implements ViewPager.OnPageChangeListener &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onPageScrolled(int arg0, float arg1, int arg2) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onPageSelected(int position) &#123;</div><div class="line">            for (int i = 0; i &lt; imageViews.length; i++) &#123;</div><div class="line">                //设置index 防止下次自动播放顺序出错</div><div class="line">                index = viewpager_banner.getCurrentItem();</div><div class="line">                imageViews[position].setBackgroundResource(R.drawable.shape_intro);</div><div class="line">                //不是当前选中的page，其小圆点设置为未选中的状态</div><div class="line">                if (position != i) &#123;</div><div class="line">                    imageViews[i].setBackgroundResource(R.drawable.shape_intro_nor);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onPageScrollStateChanged(int state) &#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="无限循环轮播"><a href="#无限循环轮播" class="headerlink" title="无限循环轮播"></a>无限循环轮播</h3><p>实际项目中的banner轮播是无限循环轮播的，这里我们使用Handler来达到预期的效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">//自动播放</div><div class="line">  private final int AUTO_MSG = 1;</div><div class="line">  private final int HANDLE_MSG = AUTO_MSG + 1;</div><div class="line">  private static final int PHOTO_CHANGE_TIME = 2000;//定时变量</div><div class="line">  private int index = 0;</div><div class="line"></div><div class="line"></div><div class="line">//照片轮播设置无限循环播放</div><div class="line">  private Handler mHandler = new Handler() &#123;</div><div class="line">      public void handleMessage(Message msg) &#123;</div><div class="line">          switch (msg.what) &#123;</div><div class="line">              case AUTO_MSG:</div><div class="line">                  //无线循环播放</div><div class="line">                  if (index &gt;= bannerModelListSize) &#123;</div><div class="line">                      index = 0;</div><div class="line">                  &#125;</div><div class="line">                  viewpager_banner.setCurrentItem(index++);//收到消息后设置当前要显示的图片</div><div class="line">                  mHandler.sendEmptyMessageDelayed(AUTO_MSG, PHOTO_CHANGE_TIME);</div><div class="line">                  break;</div><div class="line">              case HANDLE_MSG:</div><div class="line">                  mHandler.sendEmptyMessageDelayed(AUTO_MSG, PHOTO_CHANGE_TIME);</div><div class="line">                  break;</div><div class="line">              default:</div><div class="line">                  break;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<p>方法写完了，什么去触发了，我这里是在设置数据后调用，调用方法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//设置自动播放</div><div class="line">        mHandler.sendEmptyMessageDelayed(AUTO_MSG, PHOTO_CHANGE_TIME);</div></pre></td></tr></table></figure>
+<h3 id="刷新方法"><a href="#刷新方法" class="headerlink" title="刷新方法"></a>刷新方法</h3><p>实际项目中banner轮播是要有刷新方法的，其实刷新方法和设置数据方法类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"> /**</div><div class="line">     * 刷新的方法</div><div class="line">     *</div><div class="line">     * @param mbannerModelList</div><div class="line">     */</div><div class="line">    public void refreshBannerModelList(List&lt;BannerModel&gt; mbannerModelList) &#123;</div><div class="line">        this.bannerModelList = mbannerModelList;</div><div class="line">        if (bannerModelList.size() &gt; 0) &#123;</div><div class="line">            bannerModelListSize = bannerModelList.size();</div><div class="line"></div><div class="line">            //刷新时上一次的数据要进行清除</div><div class="line">            if (bannerviewsList != null) &#123;</div><div class="line">                bannerviewsList.clear();</div><div class="line">            &#125; else &#123;</div><div class="line">                bannerviewsList = new ArrayList&lt;View&gt;();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            for (BannerModel bannerModel : bannerModelList) &#123;</div><div class="line"></div><div class="line">                ImageView imageView = new ImageView(mContext);</div><div class="line">                imageView.setScaleType(ImageView.ScaleType.FIT_XY);</div><div class="line">                Glide.with(mContext).load(bannerModel.getImgurl()).into(imageView);</div><div class="line"></div><div class="line">                bannerviewsList.add(imageView);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //添加小圆点的图片</div><div class="line">        if (bannerModelList != null) &#123;</div><div class="line"></div><div class="line">            //照片轮播下方的小圆点刷新时需要重新加载  并将上次的进行remove</div><div class="line">            if (layout_page != null) &#123;</div><div class="line">                layout_page.removeAllViews();</div><div class="line">            &#125;</div><div class="line">            //小圆点显示的个数就是照片轮播的实体个数</div><div class="line">            imageViews = new ImageView[bannerModelListSize];</div><div class="line">            for (int i = 0; i &lt; bannerviewsList.size(); i++) &#123;</div><div class="line">                imageView = new ImageView(mContext);</div><div class="line">                //设置小圆点imageview的参数</div><div class="line">                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(20, 20);</div><div class="line">                layoutParams.setMargins(10, 0, 10, 0);</div><div class="line">//            imageView.setLayoutParams(new ViewGroup.LayoutParams(20,20));//创建一个宽高均为20 的布局</div><div class="line">                imageView.setLayoutParams(layoutParams);//创建一个宽高均为20 的布局</div><div class="line">                imageView.setPadding(20, 0, 20, 0);</div><div class="line">                //默认选中的是第一张图片，此时第一个小圆点是选中状态，其他不是</div><div class="line">                if (i == 0) &#123;</div><div class="line">                    imageView.setBackgroundResource(R.drawable.shape_intro);</div><div class="line">                &#125; else &#123;</div><div class="line">                    imageView.setBackgroundResource(R.drawable.shape_intro_nor);</div><div class="line">                &#125;</div><div class="line">                //将imageviews添加到小圆点视图组</div><div class="line">                layout_page.addView(imageView);</div><div class="line">                imageViews[i] = imageView;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            bannerViewPagerAdapter = new BannerViewPagerAdapter(bannerviewsList);</div><div class="line">            viewpager_banner.setAdapter(bannerViewPagerAdapter);</div><div class="line">            viewpager_banner.addOnPageChangeListener(new GuidePageChangeListener());</div><div class="line">//            viewpager_banner.setOnPageChangeListener(new GuidePageChangeListener());</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="点击事件回调"><a href="#点击事件回调" class="headerlink" title="点击事件回调"></a>点击事件回调</h3><p>我们将点击事件后的结果进行回调，采用接口，设置相关监听方法，在使用中直接拿到数据进行跳转</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">private OnSelectItemClickstener onSelectItemClickstener;</div><div class="line"></div><div class="line">/***</div><div class="line"> * bannerview点击监听方法</div><div class="line"> * @param onSelectItemClickstener</div><div class="line"> */</div><div class="line">public void setsetSelectItemClickstener(OnSelectItemClickstener onSelectItemClickstener) &#123;</div><div class="line">    this.onSelectItemClickstener = onSelectItemClickstener;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 接受回调参数</div><div class="line"> */</div><div class="line">interface OnSelectItemClickstener &#123;</div><div class="line">    void onSelectItem(int position, BannerModel bannerModel);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接口准备好了，在什么时候去调用了，当然是在banner点击的时候去调用呀，上面注释todo的地方去将接口进行回调</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//单独的点击事件</div><div class="line">           views.get(position).setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">               public void onClick(View view) &#123;</div><div class="line">                   if (onSelectItemClickstener != null) &#123;</div><div class="line">                       BannerModel bannerModel = bannerModelList.get(position);</div><div class="line">                       onSelectItemClickstener.onSelectItem(position, bannerModel);</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">           &#125;);</div></pre></td></tr></table></figure>
+<h3 id="代码中使用"><a href="#代码中使用" class="headerlink" title="代码中使用"></a>代码中使用</h3><p> xml布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    android:orientation=&quot;vertical&quot;</div><div class="line">    tools:context=&quot;com.bannerview.MainActivity&quot;&gt;</div><div class="line"></div><div class="line">    &lt;com.bannerview.BannerView</div><div class="line">        android:id=&quot;@+id/bannerView&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;200dp&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;Button</div><div class="line">        android:id=&quot;@+id/btn&quot;</div><div class="line">        android:text=&quot;刷新&quot;</div><div class="line">        android:layout_width=&quot;368dp&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot; /&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure></p>
+<p>java代码中使用，第一次设置数据，模拟刷新数据，点击事件跳转模拟</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">btn = (Button) findViewById(R.id.btn);</div><div class="line">bannerView = (BannerView) findViewById(R.id.bannerView);</div><div class="line"></div><div class="line">final List&lt;BannerModel&gt; bannerModelList = new ArrayList&lt;&gt;();</div><div class="line">bannerModelList.add(new BannerModel(1, &quot;http://bmob-cdn-10899.b0.upaiyun.com/2017/05/09/1add12e3407aa2ac80899838f5e5a097.jpg&quot;));</div><div class="line">bannerModelList.add(new BannerModel(2, &quot;http://bmob-cdn-10899.b0.upaiyun.com/2017/05/09/34b6d85c406894f3803d949a78c4546e.jpg&quot;));</div><div class="line">bannerModelList.add(new BannerModel(3, &quot;http://bmob-cdn-10899.b0.upaiyun.com/2017/05/09/1664c954400bf4d880fdd4d70b31ff2c.jpg&quot;));</div><div class="line">//第一次设置数据</div><div class="line">bannerView.setBannerModelList(bannerModelList);</div><div class="line">//模拟执行刷新</div><div class="line">btn.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">    @Override</div><div class="line">    public void onClick(View view) &#123;</div><div class="line">        bannerView.refreshBannerModelList(bannerModelList);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">/**</div><div class="line"> * 点击事件的数据回调</div><div class="line"> * 实际项目中根据数据挑战到相应的界面</div><div class="line"> */</div><div class="line">bannerView.setsetSelectItemClickstener(new BannerView.OnSelectItemClickstener() &#123;</div><div class="line">    @Override</div><div class="line">    public void onSelectItem(int position, BannerModel bannerModel) &#123;</div><div class="line">        Toast.makeText(MainActivity.this, &quot;第&quot;+position +&quot;个&quot;+ bannerModel.toString(), Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/madreain/BannerView" target="_blank" rel="external">BannerView github demo地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/20170810/" rel="next" title="自定义view————广告弹窗">
+                <i class="fa fa-chevron-left"></i> 自定义view————广告弹窗
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTg4NC82NDQ5"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————Banner轮播"><span class="nav-number">1.</span> <span class="nav-text">自定义view————Banner轮播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示view的选择"><span class="nav-number">1.0.1.</span> <span class="nav-text">显示view的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据假数据显示内容"><span class="nav-number">1.0.2.</span> <span class="nav-text">根据假数据显示内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无限循环轮播"><span class="nav-number">1.0.3.</span> <span class="nav-text">无限循环轮播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刷新方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">刷新方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击事件回调"><span class="nav-number">1.0.5.</span> <span class="nav-text">点击事件回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码中使用"><span class="nav-number">1.0.6.</span> <span class="nav-text">代码中使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
