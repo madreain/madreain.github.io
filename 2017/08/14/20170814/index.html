@@ -1,0 +1,1037 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义view————涂鸦画板今天给大家带来一个特别有意思的自定义view—涂鸦，先看看效果  效果看了，挺好玩吧，其实就是利用万能的Path来画路径，颜色，画笔大小，就是一些设置，废话不多说，直接上真家伙 触摸事件处理这里的触摸事件主要有按下(MotionEvent.ACTION_DOWN)、移动(MotionEvent.ACTION_MOVE)、抬起(MotionEvent.ACTION_UP">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view————涂鸦画板">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/20170814/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义view————涂鸦画板今天给大家带来一个特别有意思的自定义view—涂鸦，先看看效果  效果看了，挺好玩吧，其实就是利用万能的Path来画路径，颜色，画笔大小，就是一些设置，废话不多说，直接上真家伙 触摸事件处理这里的触摸事件主要有按下(MotionEvent.ACTION_DOWN)、移动(MotionEvent.ACTION_MOVE)、抬起(MotionEvent.ACTION_UP">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/14/95178a118b7f303bf4a2200c7a09937b">
+<meta property="og:updated_time" content="2017-08-14T13:37:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view————涂鸦画板">
+<meta name="twitter:description" content="自定义view————涂鸦画板今天给大家带来一个特别有意思的自定义view—涂鸦，先看看效果  效果看了，挺好玩吧，其实就是利用万能的Path来画路径，颜色，画笔大小，就是一些设置，废话不多说，直接上真家伙 触摸事件处理这里的触摸事件主要有按下(MotionEvent.ACTION_DOWN)、移动(MotionEvent.ACTION_MOVE)、抬起(MotionEvent.ACTION_UP">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/8/14/95178a118b7f303bf4a2200c7a09937b">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/20170814/"/>
+
+
+
+
+
+  <title>自定义view————涂鸦画板 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/20170814/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义view————涂鸦画板</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T20:59:34+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/14/20170814/" class="leancloud_visitors" data-flag-title="自定义view————涂鸦画板">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义view————涂鸦画板"><a href="#自定义view————涂鸦画板" class="headerlink" title="自定义view————涂鸦画板"></a>自定义view————涂鸦画板</h1><p>今天给大家带来一个特别有意思的自定义view—涂鸦，先看看效果</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/14/95178a118b7f303bf4a2200c7a09937b" alt="效果图"></p>
+<p>效果看了，挺好玩吧，其实就是利用万能的Path来画路径，颜色，画笔大小，就是一些设置，废话不多说，直接上真家伙</p>
+<h3 id="触摸事件处理"><a href="#触摸事件处理" class="headerlink" title="触摸事件处理"></a>触摸事件处理</h3><p>这里的触摸事件主要有按下(MotionEvent.ACTION_DOWN)、移动(MotionEvent.ACTION_MOVE)、抬起(MotionEvent.ACTION_UP),需要对其分别做相应的处理</p>
+<p>触摸事件处理方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">    public boolean onTouchEvent(MotionEvent event) &#123;</div><div class="line">        float x = event.getX();</div><div class="line">        float y = event.getY();</div><div class="line">        switch (event.getAction()) &#123;</div><div class="line">            case MotionEvent.ACTION_DOWN:</div><div class="line">                // 每次down下去重新new一个Path</div><div class="line">                mPath = new Path();</div><div class="line">                //每一次记录的路径对象是不一样的</div><div class="line">                dp = new DrawPath();</div><div class="line">                dp.path = mPath;</div><div class="line">                dp.paint = mPaint;</div><div class="line">                touch_start(x, y);</div><div class="line">                invalidate();</div><div class="line">                break;</div><div class="line">            case MotionEvent.ACTION_MOVE:</div><div class="line">                touch_move(x, y);</div><div class="line">                invalidate();</div><div class="line">                break;</div><div class="line">            case MotionEvent.ACTION_UP:</div><div class="line">                touch_up();</div><div class="line">                invalidate();</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">        return true;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>按下(MotionEvent.ACTION_DOWN)后执行的touch_start(x, y);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">private void touch_start(float x, float y) &#123;</div><div class="line">    mPath.moveTo(x, y);</div><div class="line">    mX = x;</div><div class="line">    mY = y;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>移动(MotionEvent.ACTION_MOVE)后执行的touch_move(x, y);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">private void touch_move(float x, float y) &#123;</div><div class="line">    float dx = Math.abs(x - mX);</div><div class="line">    float dy = Math.abs(mY - y);</div><div class="line">    if (dx &gt;= TOUCH_TOLERANCE || dy &gt;= TOUCH_TOLERANCE) &#123;</div><div class="line">        // 从x1,y1到x2,y2画一条贝塞尔曲线，更平滑(直接用mPath.lineTo也可以)</div><div class="line">        mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);</div><div class="line">        //mPath.lineTo(mX,mY);</div><div class="line">        mX = x;</div><div class="line">        mY = y;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>抬起(MotionEvent.ACTION_UP)后执行的touch_up();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">private void touch_up() &#123;</div><div class="line">    mPath.lineTo(mX, mY);</div><div class="line">    mCanvas.drawPath(mPath, mPaint);</div><div class="line">    //将一条完整的路径保存下来(相当于入栈操作)</div><div class="line">    savePath.add(dp);</div><div class="line">    mPath = null;// 重新置空</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后看一下onDraw</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onDraw(Canvas canvas) &#123;</div><div class="line">    //canvas.drawColor(0xFFAAAAAA);</div><div class="line">    // 将前面已经画过得显示出来</div><div class="line">    canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);</div><div class="line">    if (mPath != null) &#123;</div><div class="line">        // 实时的显示</div><div class="line">        canvas.drawPath(mPath, mPaint);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>整个过程走完了，接下来就来考虑一下其他过程</p>
+<h3 id="撤销、恢复、重做三个操作"><a href="#撤销、恢复、重做三个操作" class="headerlink" title="撤销、恢复、重做三个操作"></a>撤销、恢复、重做三个操作</h3><p>撤销操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 撤销</div><div class="line"> * 撤销的核心思想就是将画布清空，</div><div class="line"> * 将保存下来的Path路径最后一个移除掉，</div><div class="line"> * 重新将路径画在画布上面。</div><div class="line"> */</div><div class="line">public void undo() &#123;</div><div class="line">    if (savePath != null &amp;&amp; savePath.size() &gt; 0) &#123;</div><div class="line">        DrawPath drawPath = savePath.get(savePath.size() - 1);</div><div class="line">        deletePath.add(drawPath);</div><div class="line">        savePath.remove(savePath.size() - 1);</div><div class="line">        redrawOnBitmap();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>恢复操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 恢复，恢复的核心就是将删除的那条路径重新添加到savapath中重新绘画即可</div><div class="line"> */</div><div class="line">public void recover() &#123;</div><div class="line">    if (deletePath.size() &gt; 0) &#123;</div><div class="line">        //将删除的路径列表中的最后一个，也就是最顶端路径取出（栈）,并加入路径保存列表中</div><div class="line">        DrawPath dp = deletePath.get(deletePath.size() - 1);</div><div class="line">        savePath.add(dp);</div><div class="line">        //将取出的路径重绘在画布上</div><div class="line">        mCanvas.drawPath(dp.path, dp.paint);</div><div class="line">        //将该路径从删除的路径列表中去除</div><div class="line">        deletePath.remove(deletePath.size() - 1);</div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>重做操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 重做</div><div class="line"> */</div><div class="line">public void redo() &#123;</div><div class="line">    if (savePath != null &amp;&amp; savePath.size() &gt; 0) &#123;</div><div class="line">        savePath.clear();</div><div class="line">        redrawOnBitmap();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">private void redrawOnBitmap() &#123;</div><div class="line">    /*mBitmap = Bitmap.createBitmap(screenWidth, screenHeight,</div><div class="line">            Bitmap.Config.RGB_565);</div><div class="line">    mCanvas.setBitmap(mBitmap);// 重新设置画布，相当于清空画布*/</div><div class="line">    initCanvas();</div><div class="line">    Iterator&lt;DrawPath&gt; iter = savePath.iterator();</div><div class="line">    while (iter.hasNext()) &#123;</div><div class="line">        DrawPath drawPath = iter.next();</div><div class="line">        mCanvas.drawPath(drawPath.path, drawPath.paint);</div><div class="line">    &#125;</div><div class="line">    invalidate();// 刷新</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>初始化相关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public void initCanvas() &#123;</div><div class="line">    setPaintStyle();</div><div class="line">    if (screenWidth &gt; 0 &amp;&amp; screenHeight &gt; 0) &#123;</div><div class="line">        mBitmapPaint = new Paint(Paint.DITHER_FLAG);</div><div class="line">        //画布大小</div><div class="line">        mBitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);</div><div class="line">        mBitmap.eraseColor(Color.argb(0, 0, 0, 0));</div><div class="line">        mCanvas = new Canvas(mBitmap);  //所有mCanvas画的东西都被保存在了mBitmap中</div><div class="line">        mCanvas.drawColor(Color.TRANSPARENT);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//初始化画笔样式</div><div class="line">private void setPaintStyle() &#123;</div><div class="line">    mPaint = new Paint();</div><div class="line">    mPaint.setStyle(Paint.Style.STROKE);</div><div class="line">    mPaint.setStrokeJoin(Paint.Join.ROUND);// 设置外边缘</div><div class="line">    mPaint.setStrokeCap(Paint.Cap.ROUND);// 形状</div><div class="line">    mPaint.setAntiAlias(true);</div><div class="line">    mPaint.setDither(true);</div><div class="line">    if (currentStyle == 1) &#123;</div><div class="line">        mPaint.setStrokeWidth(currentSize);</div><div class="line">        mPaint.setColor(currentColor);</div><div class="line">    &#125; else &#123;//橡皮擦</div><div class="line">        mPaint.setAlpha(0);</div><div class="line">        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));</div><div class="line">        mPaint.setColor(Color.TRANSPARENT);</div><div class="line">        mPaint.setStrokeWidth(50);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="样式相关修改"><a href="#样式相关修改" class="headerlink" title="样式相关修改"></a>样式相关修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">//以下为样式修改内容</div><div class="line">//设置画笔样式</div><div class="line">public void selectPaintStyle(int which) &#123;</div><div class="line">    if (which == 0) &#123;</div><div class="line">        currentStyle = 1;</div><div class="line">        setPaintStyle();</div><div class="line">    &#125;</div><div class="line">    //当选择的是橡皮擦时，设置颜色为白色</div><div class="line">    if (which == 1) &#123;</div><div class="line">        currentStyle = 2;</div><div class="line">        setPaintStyle();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//选择画笔大小</div><div class="line">public void selectPaintSize(int which) &#123;</div><div class="line">    currentSize = which;</div><div class="line">    setPaintStyle();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//设置画笔颜色</div><div class="line">public void selectPaintColor(int which) &#123;</div><div class="line">    currentColor = paintColor[which];</div><div class="line">    setPaintStyle();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>到此为止，涂鸦的效果有了，实际项目中都是对一个照片进行涂鸦操作，因此添加照片进行再次封装，达到实际项目中的那种效果</p>
+<h3 id="添加照片进行涂鸦"><a href="#添加照片进行涂鸦" class="headerlink" title="添加照片进行涂鸦"></a>添加照片进行涂鸦</h3><p>利用组合自定义view，结合上面的TabletView和ImageView来到实际项目效果</p>
+<p>xml布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    android:id=&quot;@+id/layout&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;&gt;</div><div class="line"></div><div class="line">    &lt;ImageView</div><div class="line">        android:id=&quot;@+id/img&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;com.tabletview.TabletView</div><div class="line">        android:id=&quot;@+id/tabletview&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot; /&gt;</div><div class="line"></div><div class="line">&lt;/FrameLayout&gt;</div></pre></td></tr></table></figure></p>
+<p>继承FrameLayout，在onFinishInflate()中添加view<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onFinishInflate() &#123;</div><div class="line">    super.onFinishInflate();</div><div class="line">    View view = LayoutInflater.from(mContext).inflate(R.layout.tuya, null);</div><div class="line">    layout = (FrameLayout) view.findViewById(R.id.layout);</div><div class="line">    img = (ImageView) view.findViewById(R.id.img);</div><div class="line">    tabletview = (TabletView) view.findViewById(R.id.tabletview);</div><div class="line">    addView(view);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>获得TabletView去执行相关操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 去拿到TabletView去执行相关的操作</div><div class="line"> * @return</div><div class="line"> */</div><div class="line">public TabletView getTabletview() &#123;</div><div class="line">    return tabletview;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>设置照片的方法，实际项目中可利用照片、相册选择照片返回设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 设置照片，根据实际项目可支持照片选择、相册、拍照</div><div class="line"> * @param bitmap</div><div class="line"> */</div><div class="line">public void setImgBitmap(Bitmap bitmap) &#123;</div><div class="line">    img.setImageBitmap(bitmap);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>保存照片，这里的权限问题根据6.0、7.0、8.0得设置，可以参考其他的权限讲解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 保存照片</div><div class="line"> */</div><div class="line">public void saveToSDCard() &#123;</div><div class="line">    new Thread() &#123;</div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            SystemClock.sleep(1000);</div><div class="line">            //view层的截图</div><div class="line">            layout.setDrawingCacheEnabled(true);</div><div class="line">            Bitmap newBitmap = Bitmap.createBitmap(layout.getDrawingCache());</div><div class="line">            layout.setDrawingCacheEnabled(false);</div><div class="line"></div><div class="line">            //获得系统当前时间，并以该时间作为文件名</div><div class="line">            SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);</div><div class="line">            Date curDate = new Date(System.currentTimeMillis());//获取当前时间</div><div class="line">            String str = formatter.format(curDate) + &quot;paint.png&quot;;</div><div class="line">            File file = new File(&quot;sdcard/&quot; + str);</div><div class="line">            if (!file.exists()) &#123;</div><div class="line">                try &#123;</div><div class="line">                    file.createNewFile();</div><div class="line">                &#125; catch (IOException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            FileOutputStream fos = null;</div><div class="line">            try &#123;</div><div class="line">                fos = new FileOutputStream(file);</div><div class="line">            &#125; catch (Exception e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            newBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;.start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码中应用"><a href="#代码中应用" class="headerlink" title="代码中应用"></a>代码中应用</h3><p>xml布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    tools:context=&quot;com.tabletview.MainActivity&quot;&gt;</div><div class="line"></div><div class="line">    &lt;com.tabletview.TuyaView</div><div class="line">        android:id=&quot;@+id/tuyaview&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;/&gt;</div><div class="line">    </div><div class="line">    &lt;LinearLayout</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:orientation=&quot;vertical&quot;&gt;</div><div class="line"></div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_undo&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;撤销&quot; /&gt;</div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_redo&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;重做&quot; /&gt;</div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_save&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;保存&quot; /&gt;</div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_recover&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;恢复&quot; /&gt;</div><div class="line"></div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_paintcolor&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;颜色&quot; /&gt;</div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_paintsize&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;画笔大小&quot; /&gt;</div><div class="line"></div><div class="line">        &lt;Button</div><div class="line">            android:id=&quot;@+id/btn_paintstyle&quot;</div><div class="line">            android:layout_width=&quot;wrap_content&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot;</div><div class="line">            android:text=&quot;画笔类型&quot; /&gt;</div><div class="line"></div><div class="line">        &lt;SeekBar</div><div class="line">            android:id=&quot;@+id/sb_size&quot;</div><div class="line">            android:layout_width=&quot;match_parent&quot;</div><div class="line">            android:layout_height=&quot;wrap_content&quot; /&gt;</div><div class="line"></div><div class="line">    &lt;/LinearLayout&gt;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">&lt;/RelativeLayout&gt;</div></pre></td></tr></table></figure>
+<p>java代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">    private void initView() &#123;</div><div class="line">        btn_undo = (Button) findViewById(R.id.btn_undo);</div><div class="line">        btn_undo.setOnClickListener(this);</div><div class="line">        btn_redo = (Button) findViewById(R.id.btn_redo);</div><div class="line">        btn_redo.setOnClickListener(this);</div><div class="line">        btn_save = (Button) findViewById(R.id.btn_save);</div><div class="line">        btn_save.setOnClickListener(this);</div><div class="line">        btn_recover = (Button) findViewById(R.id.btn_recover);</div><div class="line">        btn_recover.setOnClickListener(this);</div><div class="line">        sb_size = (SeekBar) findViewById(R.id.sb_size);</div><div class="line">        sb_size.setOnClickListener(this);</div><div class="line">        btn_paintcolor = (Button) findViewById(R.id.btn_paintcolor);</div><div class="line">        btn_paintcolor.setOnClickListener(this);</div><div class="line">        btn_paintsize = (Button) findViewById(R.id.btn_paintsize);</div><div class="line">        btn_paintsize.setOnClickListener(this);</div><div class="line">        btn_paintstyle = (Button) findViewById(R.id.btn_paintstyle);</div><div class="line">        btn_paintstyle.setOnClickListener(this);</div><div class="line"></div><div class="line">        tuyaview = (TuyaView) findViewById(R.id.tuyaview);</div><div class="line">        //设置照片</div><div class="line">        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);</div><div class="line">        tuyaview.setImgBitmap(bitmap);</div><div class="line">//</div><div class="line">        tabletView = tuyaview.getTabletview();</div><div class="line">        tabletView.requestFocus();</div><div class="line">        tabletView.selectPaintSize(sb_size.getProgress());</div><div class="line">        sb_size.setOnSeekBarChangeListener(new MySeekChangeListener());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    class MySeekChangeListener implements SeekBar.OnSeekBarChangeListener &#123;</div><div class="line">        @Override</div><div class="line">        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) &#123;</div><div class="line">            tabletView.selectPaintSize(seekBar.getProgress());</div><div class="line">            //Toast.makeText(MainActivity.this,&quot;当前画笔尺寸为&quot;+seekBar.getProgress(),Toast.LENGTH_SHORT ).show();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onStartTrackingTouch(SeekBar seekBar) &#123;</div><div class="line">            tabletView.selectPaintSize(seekBar.getProgress());</div><div class="line">            //Toast.makeText(MainActivity.this,&quot;当前画笔尺寸为&quot;+seekBar.getProgress(),Toast.LENGTH_SHORT ).show();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onStopTrackingTouch(SeekBar seekBar) &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onClick(View v) &#123;</div><div class="line">        switch (v.getId()) &#123;</div><div class="line">            case R.id.btn_undo:</div><div class="line">                tabletView.undo();</div><div class="line">                break;</div><div class="line">            case R.id.btn_redo:</div><div class="line">                tabletView.redo();</div><div class="line">                break;</div><div class="line">            case R.id.btn_save:</div><div class="line">//                tabletView.saveToSDCard();</div><div class="line">                tuyaview.saveToSDCard();</div><div class="line">                break;</div><div class="line">            case R.id.btn_recover:</div><div class="line">                tabletView.recover();</div><div class="line">                break;</div><div class="line">            case R.id.btn_paintcolor:</div><div class="line">                sb_size.setVisibility(View.GONE);</div><div class="line">                showPaintColorDialog(v);</div><div class="line">                break;</div><div class="line">            case R.id.btn_paintsize:</div><div class="line">                sb_size.setVisibility(View.VISIBLE);</div><div class="line">                break;</div><div class="line">            case R.id.btn_paintstyle:</div><div class="line">                sb_size.setVisibility(View.GONE);</div><div class="line">                showMoreDialog(v);</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private int select_paint_color_index = 0;</div><div class="line">    private int select_paint_style_index = 0;</div><div class="line"></div><div class="line">    public void showPaintColorDialog(View parent) &#123;</div><div class="line">        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);</div><div class="line">        alertDialogBuilder.setTitle(&quot;选择画笔颜色：&quot;);</div><div class="line">        alertDialogBuilder.setSingleChoiceItems(R.array.paintcolor, select_paint_color_index, new DialogInterface.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(DialogInterface dialogInterface, int which) &#123;</div><div class="line">                select_paint_color_index = which;</div><div class="line">                tabletView.selectPaintColor(which);</div><div class="line">                dialogInterface.dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        alertDialogBuilder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(DialogInterface dialogInterface, int i) &#123;</div><div class="line">                dialogInterface.dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        alertDialogBuilder.create().show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void showMoreDialog(View parent) &#123;</div><div class="line">        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);</div><div class="line">        alertDialogBuilder.setTitle(&quot;选择画笔或橡皮擦：&quot;);</div><div class="line">        alertDialogBuilder.setSingleChoiceItems(R.array.paintstyle, select_paint_style_index, new DialogInterface.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(DialogInterface dialog, int which) &#123;</div><div class="line">                select_paint_style_index = which;</div><div class="line">                tabletView.selectPaintStyle(which);</div><div class="line">                dialog.dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        alertDialogBuilder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(DialogInterface dialog, int which) &#123;</div><div class="line">                dialog.dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        alertDialogBuilder.create().show();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/madreain/TabletView" target="_blank" rel="external">TabletView github demo地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/12/20170812/" rel="next" title="自定义view————Banner轮播">
+                <i class="fa fa-chevron-left"></i> 自定义view————Banner轮播
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTg4NC82NDQ5"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————涂鸦画板"><span class="nav-number">1.</span> <span class="nav-text">自定义view————涂鸦画板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#触摸事件处理"><span class="nav-number">1.0.1.</span> <span class="nav-text">触摸事件处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销、恢复、重做三个操作"><span class="nav-number">1.0.2.</span> <span class="nav-text">撤销、恢复、重做三个操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式相关修改"><span class="nav-number">1.0.3.</span> <span class="nav-text">样式相关修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加照片进行涂鸦"><span class="nav-number">1.0.4.</span> <span class="nav-text">添加照片进行涂鸦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码中应用"><span class="nav-number">1.0.5.</span> <span class="nav-text">代码中应用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
