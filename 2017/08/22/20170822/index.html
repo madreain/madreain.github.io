@@ -111,17 +111,22 @@
 
 
 
-<meta name="description" content="自定义view资料总结项目经过两个月的奋战，暂时先告一段落了，项目上线了，当时做项目的时候就在想，等这个项目结束了，我得系统的好好学一学自定义view，向android高级工程师迈一步，今天先把自定义view讲解的好的资料先总结一下，便于后期学习时的查看。 绘制机制先好好的理解一下绘制流程 公共技术点之 View 绘制流程 GcsSloop—自定义View系列自定义 基础篇 安卓自定义View基础">
+<meta name="description" content="自定义view总结一个高级Android工程师除了要会使用Google原生的view，必须会根据实际项目的酷炫效果自己去写一些自定义view来解决问题，自定义view已经写了不少了，今天来给大家带来一些自定义view总结 自定义view速查表Canvas常用操作速查表   操作分类 相关API 备注     绘制颜色 drawColor, drawRGB, drawARGB 使用单一颜色填充整个画">
 <meta name="keywords" content="自定义view">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义view资料总结">
-<meta property="og:url" content="http://yoursite.com/2017/07/19/20170719/index.html">
+<meta property="og:title" content="自定义view总结">
+<meta property="og:url" content="http://yoursite.com/2017/08/22/20170822/index.html">
 <meta property="og:site_name" content="madreain的博客">
-<meta property="og:description" content="自定义view资料总结项目经过两个月的奋战，暂时先告一段落了，项目上线了，当时做项目的时候就在想，等这个项目结束了，我得系统的好好学一学自定义view，向android高级工程师迈一步，今天先把自定义view讲解的好的资料先总结一下，便于后期学习时的查看。 绘制机制先好好的理解一下绘制流程 公共技术点之 View 绘制流程 GcsSloop—自定义View系列自定义 基础篇 安卓自定义View基础">
-<meta property="og:updated_time" content="2017-08-02T01:59:03.000Z">
+<meta property="og:description" content="自定义view总结一个高级Android工程师除了要会使用Google原生的view，必须会根据实际项目的酷炫效果自己去写一些自定义view来解决问题，自定义view已经写了不少了，今天来给大家带来一些自定义view总结 自定义view速查表Canvas常用操作速查表   操作分类 相关API 备注     绘制颜色 drawColor, drawRGB, drawARGB 使用单一颜色填充整个画">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/00/B%C3%A9zier_1_big.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3d/B%C3%A9zier_2_big.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/db/B%C3%A9zier_3_big.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/a/a4/B%C3%A9zier_4_big.gif">
+<meta property="og:updated_time" content="2017-08-23T07:03:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义view资料总结">
-<meta name="twitter:description" content="自定义view资料总结项目经过两个月的奋战，暂时先告一段落了，项目上线了，当时做项目的时候就在想，等这个项目结束了，我得系统的好好学一学自定义view，向android高级工程师迈一步，今天先把自定义view讲解的好的资料先总结一下，便于后期学习时的查看。 绘制机制先好好的理解一下绘制流程 公共技术点之 View 绘制流程 GcsSloop—自定义View系列自定义 基础篇 安卓自定义View基础">
+<meta name="twitter:title" content="自定义view总结">
+<meta name="twitter:description" content="自定义view总结一个高级Android工程师除了要会使用Google原生的view，必须会根据实际项目的酷炫效果自己去写一些自定义view来解决问题，自定义view已经写了不少了，今天来给大家带来一些自定义view总结 自定义view速查表Canvas常用操作速查表   操作分类 相关API 备注     绘制颜色 drawColor, drawRGB, drawARGB 使用单一颜色填充整个画">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/00/B%C3%A9zier_1_big.gif">
 
 
 
@@ -149,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/19/20170719/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/22/20170822/"/>
 
 
 
 
 
-  <title>自定义view资料总结 | madreain的博客</title>
+  <title>自定义view总结 | madreain的博客</title>
   
 
 
@@ -347,7 +352,7 @@
 
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/19/20170719/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/20170822/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="madreain">
@@ -364,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自定义view资料总结</h1>
+          <h1 class="post-title" itemprop="name headline">自定义view总结</h1>
         
 
         <div class="post-meta">
@@ -376,8 +381,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T20:59:34+08:00">
-                2017-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T20:59:34+08:00">
+                2017-08-22
               </time>
             
 
@@ -416,7 +421,7 @@
 
           
           
-             <span id="/2017/07/19/20170719/" class="leancloud_visitors" data-flag-title="自定义view资料总结">
+             <span id="/2017/08/22/20170822/" class="leancloud_visitors" data-flag-title="自定义view总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -444,9 +449,318 @@
       
 
       
-        <h1 id="自定义view资料总结"><a href="#自定义view资料总结" class="headerlink" title="自定义view资料总结"></a>自定义view资料总结</h1><p>项目经过两个月的奋战，暂时先告一段落了，项目上线了，当时做项目的时候就在想，等这个项目结束了，我得系统的好好学一学自定义view，向android高级工程师迈一步，今天先把自定义view讲解的好的资料先总结一下，便于后期学习时的查看。</p>
-<h2 id="绘制机制"><a href="#绘制机制" class="headerlink" title="绘制机制"></a>绘制机制</h2><p>先好好的理解一下绘制流程 <a href="http://a.codekk.com/detail/Android/lightSky/%E5%85%AC%E5%85%B1%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%20View%20%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B" target="_blank" rel="external">公共技术点之 View 绘制流程</a></p>
-<h3 id="GcsSloop—自定义View系列自定义"><a href="#GcsSloop—自定义View系列自定义" class="headerlink" title="GcsSloop—自定义View系列自定义"></a><a href="https://github.com/GcsSloop/AndroidNote/tree/master/CustomView/README.md" target="_blank" rel="external">GcsSloop—自定义View系列自定义</a></h3><ul>
+        <h1 id="自定义view总结"><a href="#自定义view总结" class="headerlink" title="自定义view总结"></a>自定义view总结</h1><p>一个高级Android工程师除了要会使用Google原生的view，必须会根据实际项目的酷炫效果自己去写一些自定义view来解决问题，自定义view已经写了不少了，今天来给大家带来一些自定义view总结</p>
+<h2 id="自定义view速查表"><a href="#自定义view速查表" class="headerlink" title="自定义view速查表"></a>自定义view速查表</h2><h3 id="Canvas常用操作速查表"><a href="#Canvas常用操作速查表" class="headerlink" title="Canvas常用操作速查表"></a>Canvas常用操作速查表</h3><table>
+<thead>
+<tr>
+<th>操作分类</th>
+<th>相关API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>绘制颜色</td>
+<td>drawColor, drawRGB, drawARGB</td>
+<td>使用单一颜色填充整个画布</td>
+</tr>
+<tr>
+<td>绘制基本形状</td>
+<td>drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc</td>
+<td>依次为 点、线、矩形、圆角矩形、椭圆、圆、圆弧</td>
+</tr>
+<tr>
+<td>绘制图片</td>
+<td>drawBitmap, drawPicture</td>
+<td>绘制位图和图片)</td>
+</tr>
+<tr>
+<td>绘制文本</td>
+<td>drawText,    drawPosText, drawTextOnPath</td>
+<td>依次为 绘制文字、绘制文字时指定每个文字位置、根据路径绘制文字</td>
+</tr>
+<tr>
+<td>绘制路径</td>
+<td>drawPath</td>
+<td>绘制路径，绘制贝塞尔曲线时也需要用到该函数</td>
+</tr>
+<tr>
+<td>顶点操作</td>
+<td>drawVertices, drawBitmapMesh</td>
+<td>通过对顶点操作可以使图像形变，drawVertices直接对画布作用、 drawBitmapMesh只对绘制的Bitmap作用</td>
+</tr>
+<tr>
+<td>画布剪裁</td>
+<td>clipPath,    clipRect</td>
+<td>设置画布的显示区域</td>
+</tr>
+<tr>
+<td>画布快照</td>
+<td>save, restore, saveLayerXxx, restoreToCount, getSaveCount</td>
+<td>依次为 保存当前状态、 回滚到上一次保存的状态、 保存图层状态、 会滚到指定状态、 获取保存次数</td>
+</tr>
+<tr>
+<td>画布变换</td>
+<td>translate, scale, rotate, skew</td>
+<td>依次为 位移、缩放、 旋转、错切</td>
+</tr>
+<tr>
+<td>Matrix(矩阵)</td>
+<td>getMatrix, setMatrix, concat</td>
+<td>实际画布的位移，缩放等操作的都是图像矩阵Matrix，只不过Matrix比较难以理解和使用，故封装了一些常用的方法。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>操作类型</th>
+<th>相关API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基础方法</td>
+<td>getDensity, getWidth, getHeight，getDrawFilter，isHardwareAccelerated(API 11)，getMaximumBitmapWidth，getMaximumBitmapHeight，getDensity，quickReject，isOpaque，setBitmap，setDrawFilter</td>
+<td>使用单一颜色填充画布</td>
+</tr>
+<tr>
+<td>绘制颜色</td>
+<td>drawColor, drawRGB, drawARGB，drawPaint</td>
+<td>使用单一颜色填充画布</td>
+</tr>
+<tr>
+<td>绘制基本形状</td>
+<td>drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc</td>
+<td>依次为 点、线、矩形、圆角矩形、椭圆、圆、圆弧</td>
+</tr>
+<tr>
+<td>绘制图片</td>
+<td>drawBitmap, drawPicture</td>
+<td>绘制位图和图片</td>
+</tr>
+<tr>
+<td>绘制文本</td>
+<td>drawText,    drawPosText, drawTextOnPath</td>
+<td>依次为 绘制文字、绘制文字时指定每个文字位置、根据路径绘制文字</td>
+</tr>
+<tr>
+<td>绘制路径</td>
+<td>drawPath</td>
+<td>绘制路径，绘制贝塞尔曲线时也需要用到该函数</td>
+</tr>
+<tr>
+<td>顶点操作</td>
+<td>drawVertices, drawBitmapMesh</td>
+<td>通过对顶点操作可以使图像形变，drawVertices直接对画布作用、 drawBitmapMesh只对绘制的Bitmap作用</td>
+</tr>
+<tr>
+<td>画布剪裁</td>
+<td>clipPath,    clipRect， clipRegion，getClipBounds</td>
+<td>画布剪裁相关方法</td>
+</tr>
+<tr>
+<td>画布快照</td>
+<td>save, restore, saveLayer, saveLayerXxx, restoreToCount, getSaveCount</td>
+<td>依次为 保存当前状态、 回滚到上一次保存的状态、 保存图层状态、 回滚到指定状态、 获取保存次数</td>
+</tr>
+<tr>
+<td>画布变换</td>
+<td>translate, scale, rotate, skew</td>
+<td>依次为 位移、缩放、 旋转、错切</td>
+</tr>
+<tr>
+<td>Matrix(矩阵)</td>
+<td>getMatrix, setMatrix, concat</td>
+<td>实际画布的位移，缩放等操作的都是图像矩阵Matrix，只不过Matrix比较难以理解和使用，故封装了一些常用的方法。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Path常用操作速查表"><a href="#Path常用操作速查表" class="headerlink" title="Path常用操作速查表"></a>Path常用操作速查表</h3><p>API21以上，很不爽，得吐槽</p>
+<table>
+<thead>
+<tr>
+<th>作用</th>
+<th>相关API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>移动起点</td>
+<td>moveTo</td>
+<td>移动下一次操作的起点位置</td>
+</tr>
+<tr>
+<td>设置终点</td>
+<td>setLastPoint</td>
+<td>重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同</td>
+</tr>
+<tr>
+<td>连接直线</td>
+<td>lineTo</td>
+<td>添加上一个点到当前点之间的直线到Path</td>
+</tr>
+<tr>
+<td>闭合路径</td>
+<td>close</td>
+<td>连接第一个点连接到最后一个点，形成一个闭合区域</td>
+</tr>
+<tr>
+<td>添加内容</td>
+<td>addRect, addRoundRect,  addOval, addCircle,     addPath, addArc, arcTo</td>
+<td>添加(矩形， 圆角矩形， 椭圆， 圆， 路径， 圆弧) 到当前Path (注意addArc和arcTo的区别)</td>
+</tr>
+<tr>
+<td>是否为空</td>
+<td>isEmpty</td>
+<td>判断Path是否为空</td>
+</tr>
+<tr>
+<td>是否为矩形</td>
+<td>isRect</td>
+<td>判断path是否是一个矩形</td>
+</tr>
+<tr>
+<td>替换路径</td>
+<td>set</td>
+<td>用新的路径替换到当前路径所有内容</td>
+</tr>
+<tr>
+<td>偏移路径</td>
+<td>offset</td>
+<td>对当前路径之前的操作进行偏移(不会影响之后的操作)</td>
+</tr>
+<tr>
+<td>贝塞尔曲线</td>
+<td>quadTo, cubicTo</td>
+<td>分别为二次和三次贝塞尔曲线的方法</td>
+</tr>
+<tr>
+<td>rXxx方法</td>
+<td>rMoveTo, rLineTo, rQuadTo, rCubicTo</td>
+<td><strong>不带r的方法是基于原点的坐标系(偏移量)， rXxx方法是基于当前点坐标系(偏移量)</strong></td>
+</tr>
+<tr>
+<td>填充模式</td>
+<td>setFillType, getFillType, isInverseFillType, toggleInverseFillType</td>
+<td>设置,获取,判断和切换填充模式</td>
+</tr>
+<tr>
+<td>提示方法</td>
+<td>incReserve</td>
+<td>提示Path还有多少个点等待加入<strong>(这个方法貌似会让Path优化存储结构)</strong></td>
+</tr>
+<tr>
+<td>布尔操作(API19)</td>
+<td>op</td>
+<td>对两个Path进行布尔运算(即取交集、并集等操作)</td>
+</tr>
+<tr>
+<td>计算边界</td>
+<td>computeBounds</td>
+<td>计算Path的边界</td>
+</tr>
+<tr>
+<td>重置路径</td>
+<td>reset, rewind</td>
+<td>清除Path中的内容<br> <strong>reset不保留内部数据结构，但会保留FillType.</strong><br> <strong>rewind会保留内部的数据结构，但不保留FillType</strong></td>
+</tr>
+<tr>
+<td>矩阵操作</td>
+<td>transform</td>
+<td>矩阵变换</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Matrix常用操作速查表"><a href="#Matrix常用操作速查表" class="headerlink" title="Matrix常用操作速查表"></a>Matrix常用操作速查表</h3><table>
+<thead>
+<tr>
+<th>方法类别</th>
+<th>相关API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本方法</td>
+<td>equals hashCode toString toShortString</td>
+<td>比较、 获取哈希值、 转换为字符串</td>
+</tr>
+<tr>
+<td>数值操作</td>
+<td>set reset setValues getValues</td>
+<td>设置、 重置、 设置数值、 获取数值</td>
+</tr>
+<tr>
+<td>数值计算</td>
+<td>mapPoints mapRadius mapRect mapVectors</td>
+<td>计算变换后的数值</td>
+</tr>
+<tr>
+<td>设置(set)</td>
+<td>setConcat setRotate setScale setSkew setTranslate</td>
+<td>设置变换</td>
+</tr>
+<tr>
+<td>前乘(pre)</td>
+<td>preConcat preRotate preScale preSkew preTranslate</td>
+<td>前乘变换</td>
+</tr>
+<tr>
+<td>后乘(post)</td>
+<td>postConcat postRotate postScale postSkew postTranslate</td>
+<td>后乘变换</td>
+</tr>
+<tr>
+<td>特殊方法</td>
+<td>setPolyToPoly setRectToRect rectStaysRect setSinCos</td>
+<td>一些特殊操作</td>
+</tr>
+<tr>
+<td>矩阵相关</td>
+<td>invert isAffine(API21) isIdentity</td>
+<td>求逆矩阵、 是否为仿射矩阵、 是否为单位矩阵 …</td>
+</tr>
+</tbody>
+</table>
+<h3 id="贝塞尔曲线常用操作速查表"><a href="#贝塞尔曲线常用操作速查表" class="headerlink" title="贝塞尔曲线常用操作速查表"></a>贝塞尔曲线常用操作速查表</h3><blockquote>
+<p><strong>表格中演示动画均来自维基百科</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">贝塞尔曲线</th>
+<th>对应的方法</th>
+<th>演示动画</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"> 一阶曲线<br>(线性曲线)</td>
+<td>lineTo</td>
+<td><img src="https://upload.wikimedia.org/wikipedia/commons/0/00/B%C3%A9zier_1_big.gif" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"> 二阶曲线</td>
+<td>quadTo</td>
+<td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/B%C3%A9zier_2_big.gif" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"> 三阶曲线</td>
+<td>cubicTo</td>
+<td><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/B%C3%A9zier_3_big.gif" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"> 四阶曲线</td>
+<td>无</td>
+<td><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/B%C3%A9zier_4_big.gif" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h2 id="自定义view进阶参考资料"><a href="#自定义view进阶参考资料" class="headerlink" title="自定义view进阶参考资料"></a>自定义view进阶参考资料</h2><h3 id="绘制机制"><a href="#绘制机制" class="headerlink" title="绘制机制"></a>绘制机制</h3><p>先好好的理解一下绘制流程 <a href="http://a.codekk.com/detail/Android/lightSky/%E5%85%AC%E5%85%B1%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%20View%20%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B" target="_blank" rel="external">公共技术点之 View 绘制流程</a></p>
+<h4 id="GcsSloop—自定义View系列自定义"><a href="#GcsSloop—自定义View系列自定义" class="headerlink" title="GcsSloop—自定义View系列自定义"></a><a href="https://github.com/GcsSloop/AndroidNote/tree/master/CustomView/README.md" target="_blank" rel="external">GcsSloop—自定义View系列自定义</a></h4><ul>
 <li>基础篇<ul>
 <li><a href="https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Base/%5B01%5DCoordinateSystem.md" target="_blank" rel="external">安卓自定义View基础 - 坐标系</a></li>
 <li><a href="https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Base/%5B02%5DAngleAndRadian.md" target="_blank" rel="external">安卓自定义View基础 - 角度弧度</a></li>
@@ -477,7 +791,7 @@
 <ul>
 <li><a href="https://github.com/GcsSloop/ViewSupport" target="_blank" rel="external">ViewSupport - 自定义View工具包</a></li>
 </ul>
-<h3 id="爱哥的—自定义View其实很简单"><a href="#爱哥的—自定义View其实很简单" class="headerlink" title="爱哥的—自定义View其实很简单"></a><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">爱哥的—自定义View其实很简单</a></h3><ul>
+<h4 id="爱哥的—自定义View其实很简单"><a href="#爱哥的—自定义View其实很简单" class="headerlink" title="爱哥的—自定义View其实很简单"></a><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">爱哥的—自定义View其实很简单</a></h4><ul>
 <li><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">自定义控件其实很简单1/12</a></li>
 <li><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">自定义控件其实很简单1/6</a></li>
 <li><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">自定义控件其实很简单1/4</a></li>
@@ -488,13 +802,13 @@
 <li><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">自定义控件其实很简单2/3</a></li>
 <li><a href="http://blog.csdn.net/column/details/androidcustomview.html" target="_blank" rel="external">自定义控件其实很简单3/4</a></li>
 </ul>
-<h3 id="刘某人程序员—Android绘图机制"><a href="#刘某人程序员—Android绘图机制" class="headerlink" title="刘某人程序员—Android绘图机制"></a><a href="http://blog.csdn.net/qq_26787115/article/details/50457413" target="_blank" rel="external">刘某人程序员—Android绘图机制</a></h3><ul>
+<h4 id="刘某人程序员—Android绘图机制"><a href="#刘某人程序员—Android绘图机制" class="headerlink" title="刘某人程序员—Android绘图机制"></a><a href="http://blog.csdn.net/qq_26787115/article/details/50457413" target="_blank" rel="external">刘某人程序员—Android绘图机制</a></h4><ul>
 <li><a href="http://blog.csdn.net/qq_26787115/article/details/50457413" target="_blank" rel="external">Android绘图机制（一）——自定义View的基础属性和方法</a></li>
 <li><a href="http://blog.csdn.net/qq_26787115/article/details/50466655" target="_blank" rel="external">Android绘图机制（二）——自定义View绘制形, 圆形, 三角形, 扇形, 椭圆, 曲线,文字和图片的坐标讲解</a></li>
 <li><a href="http://blog.csdn.net/qq_26787115/article/details/50485698" target="_blank" rel="external">Android绘图机制（三）——自定义View的实现方式以及半弧圆新控件</a></li>
 <li><a href="http://blog.csdn.net/qq_26787115/article/details/50492743" target="_blank" rel="external">Android绘图机制（四）——使用HelloCharts开源框架搭建一系列炫酷图表，柱形图，折线图，饼状图和动画特效，抽丝剥茧带你认识图表之美</a></li>
 </ul>
-<h3 id="Carson-Ho"><a href="#Carson-Ho" class="headerlink" title="Carson_Ho"></a><a href="http://www.jianshu.com/p/e9d8420b1b9c" target="_blank" rel="external">Carson_Ho</a></h3><ul>
+<h4 id="Carson-Ho"><a href="#Carson-Ho" class="headerlink" title="Carson_Ho"></a><a href="http://www.jianshu.com/p/e9d8420b1b9c" target="_blank" rel="external">Carson_Ho</a></h4><ul>
 <li><a href="http://www.jianshu.com/p/762b490403c3" target="_blank" rel="external">Canvas类的最全面详解 - 自定义View应用系列</a></li>
 <li><a href="http://www.jianshu.com/p/2c19abde958c" target="_blank" rel="external">Path类的最全面详解 - 自定义View应用系列</a></li>
 <li><a href="http://www.jianshu.com/p/146e5cec4863" target="_blank" rel="external">自定义View基础 - 最易懂的自定义View原理系列（1）</a></li>
@@ -504,7 +818,7 @@
 <li><a href="http://www.jianshu.com/p/e9d8420b1b9c" target="_blank" rel="external">手把手教你写一个完整的自定义View</a></li>
 <li><a href="http://www.jianshu.com/nb/9976005" target="_blank" rel="external">最易懂的自定义View—自定义view讲解集合</a></li>
 </ul>
-<h2 id="事件传递机制"><a href="#事件传递机制" class="headerlink" title="事件传递机制"></a>事件传递机制</h2><p>还是先来理解事件传递机制<a href="http://a.codekk.com/detail/Android/Trinea/%E5%85%AC%E5%85%B1%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%20View%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92" target="_blank" rel="external">公共技术点之 View 事件传递</a></p>
+<h3 id="事件传递机制"><a href="#事件传递机制" class="headerlink" title="事件传递机制"></a>事件传递机制</h3><p>还是先来理解事件传递机制<a href="http://a.codekk.com/detail/Android/Trinea/%E5%85%AC%E5%85%B1%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%20View%20%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92" target="_blank" rel="external">公共技术点之 View 事件传递</a></p>
 <ul>
 <li><a href="http://www.jianshu.com/p/38015afcdb58" target="_blank" rel="external">Carson_Ho Android事件分发机制详解：史上最全面、最易懂</a></li>
 <li><a href="http://www.jianshu.com/p/e99b5e8bd67b" target="_blank" rel="external">Kelin  图解 Android 事件分发机制</a></li>
@@ -512,14 +826,14 @@
 <li><a href="https://github.com/Idtk/Blog/blob/master/Blog/11%E3%80%81TouchEvent.md" target="_blank" rel="external">Idtk  更简单的学习Android事件分发</a></li>
 <li><a href="http://www.cnblogs.com/punkisnotdead/p/5179115.html" target="_blank" rel="external">希尔瓦娜斯女神  Android View事件机制 21问21答</a></li>
 </ul>
-<h2 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h2><p>把动画基础了解好来，差不多就出师了<a href="http://a.codekk.com/detail/Android/lightSky/%E5%85%AC%E5%85%B1%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%20Android%20%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80" target="_blank" rel="external">公共技术点之 Android 动画基础</a></p>
+<h3 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h3><p>把动画基础了解好来，差不多就出师了<a href="http://a.codekk.com/detail/Android/lightSky/%E5%85%AC%E5%85%B1%E6%8A%80%E6%9C%AF%E7%82%B9%E4%B9%8B%20Android%20%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80" target="_blank" rel="external">公共技术点之 Android 动画基础</a></p>
 <ul>
 <li><a href="http://blog.csdn.net/linglongxin24/article/details/53084234" target="_blank" rel="external">DylanAndroid  Android属性动画上手实现各种动画效果，自定义动画，抛物线等</a></li>
 <li><a href="https://juejin.im/post/58fbfb93a22b9d00659c655f" target="_blank" rel="external">MrXI  Android全套动画使用技巧</a></li>
 <li><a href="http://www.jianshu.com/p/420629118c10" target="_blank" rel="external">IAM四十二  Android 动画总结</a></li>
 </ul>
-<h2 id="自定义view简短篇"><a href="#自定义view简短篇" class="headerlink" title="自定义view简短篇"></a>自定义view简短篇</h2><p> <a href="http://www.jianshu.com/p/d507e3514b65" target="_blank" rel="external">教你步步为营掌握自定义View</a><br> <a href="http://blog.csdn.net/huachao1001/article/details/51577291" target="_blank" rel="external">自定义View，有这一篇就够了</a></p>
-<h2 id="开源项目练习"><a href="#开源项目练习" class="headerlink" title="开源项目练习"></a>开源项目练习</h2><ol>
+<h3 id="自定义view简短篇"><a href="#自定义view简短篇" class="headerlink" title="自定义view简短篇"></a>自定义view简短篇</h3><p> <a href="http://www.jianshu.com/p/d507e3514b65" target="_blank" rel="external">教你步步为营掌握自定义View</a><br> <a href="http://blog.csdn.net/huachao1001/article/details/51577291" target="_blank" rel="external">自定义View，有这一篇就够了</a></p>
+<h3 id="开源项目练习"><a href="#开源项目练习" class="headerlink" title="开源项目练习"></a>开源项目练习</h3><ol>
 <li><p><a href="https://github.com/daimajia/NumberProgressBar" target="_blank" rel="external">NumberProgressBar</a>(代码家)<br>这个项目可以熟练掌握如何控制view在界面中的位子</p>
 </li>
 <li><p><a href="https://github.com/Idtk/SmallChart" target="_blank" rel="external">SmallChart</a><br>项目包括折线图、曲线图(可填充)、柱状图、扇形图、雷达图的绘制，让你熟练使用draw()相关类。 </p>
@@ -550,6 +864,7 @@
 <p>以上开源项目选择不同类型的撸一个，有空撸个遍，以后觉得是自定义view的大神</p>
 </li>
 </ol>
+<p>## </p>
 
       
     </div>
@@ -613,8 +928,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/18/20170718/" rel="next" title="自定义ActionBar">
-                <i class="fa fa-chevron-left"></i> 自定义ActionBar
+              <a href="/2017/08/18/20170818/" rel="next" title="Android开发必用工具及其进阶途径">
+                <i class="fa fa-chevron-left"></i> Android开发必用工具及其进阶途径
               </a>
             
           </div>
@@ -622,10 +937,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/20/20170720/" rel="prev" title="自定义view速查表">
-                自定义view速查表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -800,7 +1111,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view资料总结"><span class="nav-number">1.</span> <span class="nav-text">自定义view资料总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制机制"><span class="nav-number">1.1.</span> <span class="nav-text">绘制机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GcsSloop—自定义View系列自定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">GcsSloop—自定义View系列自定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爱哥的—自定义View其实很简单"><span class="nav-number">1.1.2.</span> <span class="nav-text">爱哥的—自定义View其实很简单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刘某人程序员—Android绘图机制"><span class="nav-number">1.1.3.</span> <span class="nav-text">刘某人程序员—Android绘图机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Carson-Ho"><span class="nav-number">1.1.4.</span> <span class="nav-text">Carson_Ho</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件传递机制"><span class="nav-number">1.2.</span> <span class="nav-text">事件传递机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性动画"><span class="nav-number">1.3.</span> <span class="nav-text">属性动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义view简短篇"><span class="nav-number">1.4.</span> <span class="nav-text">自定义view简短篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源项目练习"><span class="nav-number">1.5.</span> <span class="nav-text">开源项目练习</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view总结"><span class="nav-number">1.</span> <span class="nav-text">自定义view总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义view速查表"><span class="nav-number">1.1.</span> <span class="nav-text">自定义view速查表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas常用操作速查表"><span class="nav-number">1.1.1.</span> <span class="nav-text">Canvas常用操作速查表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Path常用操作速查表"><span class="nav-number">1.1.2.</span> <span class="nav-text">Path常用操作速查表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matrix常用操作速查表"><span class="nav-number">1.1.3.</span> <span class="nav-text">Matrix常用操作速查表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝塞尔曲线常用操作速查表"><span class="nav-number">1.1.4.</span> <span class="nav-text">贝塞尔曲线常用操作速查表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义view进阶参考资料"><span class="nav-number">1.2.</span> <span class="nav-text">自定义view进阶参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制机制"><span class="nav-number">1.2.1.</span> <span class="nav-text">绘制机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GcsSloop—自定义View系列自定义"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">GcsSloop—自定义View系列自定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爱哥的—自定义View其实很简单"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">爱哥的—自定义View其实很简单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#刘某人程序员—Android绘图机制"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">刘某人程序员—Android绘图机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Carson-Ho"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Carson_Ho</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件传递机制"><span class="nav-number">1.2.2.</span> <span class="nav-text">事件传递机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性动画"><span class="nav-number">1.2.3.</span> <span class="nav-text">属性动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义view简短篇"><span class="nav-number">1.2.4.</span> <span class="nav-text">自定义view简短篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源项目练习"><span class="nav-number">1.2.5.</span> <span class="nav-text">开源项目练习</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
