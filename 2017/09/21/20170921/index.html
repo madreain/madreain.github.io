@@ -1,0 +1,1028 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义view," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义view————进度条废话不多说先看效果图  原谅模拟器显示的不好看，为了录GIF图，只能用模拟器 思路分析一个背景，一个进度，一个进度值显示，进度条与文字显示的高度是1：2，其中用到了drawRoundRect用来画带圆角的矩形，空心与实心都是Paint的属性设置的，drawText用来画文字 注意点： 1.进度条进度满进度与未满进度，计算onewidth = mwidth / mMaxP">
+<meta name="keywords" content="自定义view">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view————进度条">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/20170921/index.html">
+<meta property="og:site_name" content="madreain的博客">
+<meta property="og:description" content="自定义view————进度条废话不多说先看效果图  原谅模拟器显示的不好看，为了录GIF图，只能用模拟器 思路分析一个背景，一个进度，一个进度值显示，进度条与文字显示的高度是1：2，其中用到了drawRoundRect用来画带圆角的矩形，空心与实心都是Paint的属性设置的，drawText用来画文字 注意点： 1.进度条进度满进度与未满进度，计算onewidth = mwidth / mMaxP">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/21/2037a87fadadeecafca7b4fab9736297">
+<meta property="og:updated_time" content="2017-09-21T13:49:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view————进度条">
+<meta name="twitter:description" content="自定义view————进度条废话不多说先看效果图  原谅模拟器显示的不好看，为了录GIF图，只能用模拟器 思路分析一个背景，一个进度，一个进度值显示，进度条与文字显示的高度是1：2，其中用到了drawRoundRect用来画带圆角的矩形，空心与实心都是Paint的属性设置的，drawText用来画文字 注意点： 1.进度条进度满进度与未满进度，计算onewidth = mwidth / mMaxP">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/9/21/2037a87fadadeecafca7b4fab9736297">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/21/20170921/"/>
+
+
+
+
+
+  <title>自定义view————进度条 | madreain的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e1da4d2b88e2195046e745e64b2d001b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">madreain的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            知识体系
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hot">
+          <a href="/hot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-free-code-camp"></i> <br />
+            
+            热门
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-other">
+          <a href="/other" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-battery-full"></i> <br />
+            
+            其他推荐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/21/20170921/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="madreain">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="madreain的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义view————进度条</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T20:59:34+08:00">
+                2017-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/21/20170921/" class="leancloud_visitors" data-flag-title="自定义view————进度条">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="自定义view————进度条"><a href="#自定义view————进度条" class="headerlink" title="自定义view————进度条"></a>自定义view————进度条</h1><p>废话不多说先看效果图</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/9/21/2037a87fadadeecafca7b4fab9736297" alt="效果图"></p>
+<p>原谅模拟器显示的不好看，为了录GIF图，只能用模拟器</p>
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>一个背景，一个进度，一个进度值显示，进度条与文字显示的高度是1：2，其中用到了drawRoundRect用来画带圆角的矩形，空心与实心都是Paint的属性设置的，drawText用来画文字</p>
+<p>注意点：</p>
+<p>1.进度条进度满进度与未满进度，计算onewidth = mwidth / mMaxProgress(单位进度占的宽度=总宽度／满进度);<br>2.文字显示，先计算文字的宽度，三个状态(起始位置 &lt;= 文字宽度 / 当前位置 +文字宽度&gt;=宽度/之间的)，分别进行计算</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>onDraw来画图了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onDraw(Canvas canvas) &#123;</div><div class="line">    super.onDraw(canvas);</div><div class="line">    float x = onewidth * mCurrentProgress;</div><div class="line">    //画背景</div><div class="line">    RectF rectF = new RectF(0, 0, mwidth, bheight);</div><div class="line">    canvas.drawRoundRect(rectF, num8, num8, backgroudPaint);</div><div class="line">    //画进度条</div><div class="line">    RectF rectFm;</div><div class="line">    if (mCurrentProgress == mMaxProgress) &#123;</div><div class="line">        rectFm = new RectF(num2, num2, mwidth - num2, bheight - num2);</div><div class="line">    &#125; else &#123;</div><div class="line">        rectFm = new RectF(num2, num2, x + num2, bheight - num2);</div><div class="line">    &#125;</div><div class="line">    canvas.drawRoundRect(rectFm, num8, num8, mPaint);</div><div class="line">    //画文字</div><div class="line">    //获取文字的宽度及其高度</div><div class="line">    Rect rect = new Rect();</div><div class="line">    String speed = mCurrentProgress + &quot;%&quot;;</div><div class="line">    txtPaint.getTextBounds(speed, 0, speed.length(), rect);</div><div class="line">    textheight = rect.height();</div><div class="line">    textwidth = rect.width();</div><div class="line">    if (mCurrentProgress == mMaxProgress) &#123;</div><div class="line">        canvas.drawText(speed, mwidth - textwidth, txtheight, txtPaint);</div><div class="line">    &#125; else &#123;</div><div class="line"></div><div class="line">        //起始位置 &lt;= 文字宽度</div><div class="line">        if (x &lt;= textwidth) &#123;</div><div class="line">            canvas.drawText(speed, textwidth / 2, txtheight, txtPaint);</div><div class="line">            //当前位置 +文字宽度&gt;=宽度</div><div class="line">        &#125; else if (x + textwidth &gt;= mwidth) &#123;</div><div class="line">            canvas.drawText(speed, mwidth - textwidth - 2 * num8, txtheight, txtPaint);</div><div class="line">        &#125; else &#123;</div><div class="line">            canvas.drawText(speed, x - textwidth / 2, txtheight, txtPaint);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="设置进度"><a href="#设置进度" class="headerlink" title="设置进度"></a>设置进度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public void setProgress(int progress) &#123;</div><div class="line">    if (progress &lt;= 100 &amp;&amp; progress &gt;= 0) &#123;</div><div class="line">        this.mCurrentProgress = progress;</div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实际项目中，可有很多的扩展，但是有时候实际项目不需要把很多不需要的方法，设置属性的方法等给写出来，根据项目的需求去写相关方法、属性设置</p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Licensed to the Apache Software Foundation (ASF) under one</div><div class="line"> * or more contributor license agreements.  See the NOTICE file</div><div class="line"> * distributed with this work for additional information</div><div class="line"> * regarding copyright ownership.  The ASF licenses this file</div><div class="line"> * to you under the Apache License, Version 2.0 (the</div><div class="line"> * &quot;License&quot;); you may not use this file except in compliance</div><div class="line"> * with the License.  You may obtain a copy of the License at</div><div class="line"> *</div><div class="line"> *   http://www.apache.org/licenses/LICENSE-2.0</div><div class="line"> *</div><div class="line"> * Unless required by applicable law or agreed to in writing,</div><div class="line"> * software distributed under the License is distributed on an</div><div class="line"> * &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</div><div class="line"> * KIND, either express or implied.  See the License for the</div><div class="line"> * specific language governing permissions and limitations</div><div class="line"> * under the License.</div><div class="line"> */</div><div class="line">package com.numberview;</div><div class="line"></div><div class="line">import android.content.Context;</div><div class="line">import android.graphics.Canvas;</div><div class="line">import android.graphics.Color;</div><div class="line">import android.graphics.Paint;</div><div class="line">import android.graphics.Rect;</div><div class="line">import android.graphics.RectF;</div><div class="line">import android.support.annotation.Nullable;</div><div class="line">import android.util.AttributeSet;</div><div class="line">import android.view.View;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by wujun on 2017/9/20.</div><div class="line"> *</div><div class="line"> * @author madreain</div><div class="line"> * @desc</div><div class="line"> */</div><div class="line"></div><div class="line">public class NumberView1 extends View &#123;</div><div class="line"></div><div class="line">    Paint backgroudPaint;</div><div class="line">    Paint mPaint;</div><div class="line">    Paint txtPaint;</div><div class="line"></div><div class="line">    //宽高</div><div class="line">    int mwidth, mheight;</div><div class="line">    int bheight, txtheight;</div><div class="line"></div><div class="line">    private int mMaxProgress = 100;</div><div class="line">    private int mCurrentProgress = 0;</div><div class="line">    private float onewidth;</div><div class="line"></div><div class="line">    //文字显示的宽高</div><div class="line">    int textheight;</div><div class="line">    int textwidth;</div><div class="line"></div><div class="line">    float num8;</div><div class="line">    float num2;</div><div class="line"></div><div class="line">    //    30 10  20</div><div class="line"></div><div class="line">    public NumberView1(Context context) &#123;</div><div class="line">        super(context);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public NumberView1(Context context, @Nullable AttributeSet attrs) &#123;</div><div class="line">        super(context, attrs);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public NumberView1(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void init() &#123;</div><div class="line">        backgroudPaint = new Paint();</div><div class="line">        backgroudPaint.setAntiAlias(true);</div><div class="line">        backgroudPaint.setStyle(Paint.Style.STROKE);</div><div class="line">        backgroudPaint.setStrokeCap(Paint.Cap.ROUND);</div><div class="line">        backgroudPaint.setColor(Color.rgb(51, 197, 167));</div><div class="line"></div><div class="line">        txtPaint = new Paint();</div><div class="line">        txtPaint.setAntiAlias(true);</div><div class="line">        txtPaint.setStyle(Paint.Style.FILL);</div><div class="line">        txtPaint.setColor(Color.rgb(51, 197, 167));</div><div class="line">        txtPaint.setTextSize(sp2px(12));</div><div class="line">        txtPaint.setStrokeWidth(2);</div><div class="line"></div><div class="line">        mPaint = new Paint();</div><div class="line">        mPaint.setAntiAlias(true);</div><div class="line">        mPaint.setStyle(Paint.Style.FILL);</div><div class="line">        mPaint.setStrokeCap(Paint.Cap.ROUND);</div><div class="line">        mPaint.setColor(Color.rgb(51, 197, 167));</div><div class="line"></div><div class="line">        num8 = dp2px(8);</div><div class="line">        num2 = dp2px(2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onSizeChanged(int w, int h, int oldw, int oldh) &#123;</div><div class="line">        super.onSizeChanged(w, h, oldw, oldh);</div><div class="line">        mwidth = w;</div><div class="line">        mheight = h;</div><div class="line">        bheight = mheight / 3;</div><div class="line">        txtheight = bheight * 2;</div><div class="line">        onewidth = mwidth / mMaxProgress;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDraw(Canvas canvas) &#123;</div><div class="line">        super.onDraw(canvas);</div><div class="line">        float x = onewidth * mCurrentProgress;</div><div class="line">        //画背景</div><div class="line">        RectF rectF = new RectF(0, 0, mwidth, bheight);</div><div class="line">        canvas.drawRoundRect(rectF, num8, num8, backgroudPaint);</div><div class="line">        //画进度条</div><div class="line">        RectF rectFm;</div><div class="line">        if (mCurrentProgress == mMaxProgress) &#123;</div><div class="line">            rectFm = new RectF(num2, num2, mwidth - num2, bheight - num2);</div><div class="line">        &#125; else &#123;</div><div class="line">            rectFm = new RectF(num2, num2, x + num2, bheight - num2);</div><div class="line">        &#125;</div><div class="line">        canvas.drawRoundRect(rectFm, num8, num8, mPaint);</div><div class="line">        //画文字</div><div class="line">        //获取文字的宽度及其高度</div><div class="line">        Rect rect = new Rect();</div><div class="line">        String speed = mCurrentProgress + &quot;%&quot;;</div><div class="line">        txtPaint.getTextBounds(speed, 0, speed.length(), rect);</div><div class="line">        textheight = rect.height();</div><div class="line">        textwidth = rect.width();</div><div class="line">        if (mCurrentProgress == mMaxProgress) &#123;</div><div class="line">            canvas.drawText(speed, mwidth - textwidth, txtheight, txtPaint);</div><div class="line">        &#125; else &#123;</div><div class="line"></div><div class="line">            //起始位置 &lt;= 文字宽度</div><div class="line">            if (x &lt;= textwidth) &#123;</div><div class="line">                canvas.drawText(speed, textwidth / 2, txtheight, txtPaint);</div><div class="line">                //当前位置 +文字宽度&gt;=宽度</div><div class="line">            &#125; else if (x + textwidth &gt;= mwidth) &#123;</div><div class="line">                canvas.drawText(speed, mwidth - textwidth - 2 * num8, txtheight, txtPaint);</div><div class="line">            &#125; else &#123;</div><div class="line">                canvas.drawText(speed, x - textwidth / 2, txtheight, txtPaint);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public float dp2px(float dp) &#123;</div><div class="line">        final float scale = getResources().getDisplayMetrics().density;</div><div class="line">        return dp * scale + 0.5f;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public float sp2px(float sp) &#123;</div><div class="line">        final float scale = getResources().getDisplayMetrics().scaledDensity;</div><div class="line">        return sp * scale;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setProgress(int progress) &#123;</div><div class="line">        if (progress &lt;= 100 &amp;&amp; progress &gt;= 0) &#123;</div><div class="line">            this.mCurrentProgress = progress;</div><div class="line">            invalidate();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自定义view多写多练</p>
+<p><a href="https://github.com/madreain/NumberView" target="_blank" rel="external">NumberView github demo地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wxpay.jpg" alt="madreain WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="madreain Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义view/" rel="tag"># 自定义view</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/15/20170915/" rel="next" title="自定义view————流程位置">
+                <i class="fa fa-chevron-left"></i> 自定义view————流程位置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTg4NC82NDQ5"></div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://bmob-cdn-10899.b0.upaiyun.com/2017/07/02/d0e193eb40cc131e80b19d9f3ace6190.jpeg"
+               alt="madreain" />
+          <p class="site-author-name" itemprop="name">madreain</p>
+           
+              <p class="site-description motion-element" itemprop="description">量变到质变，在于一点一滴的积累与实践</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/madreain" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://my.csdn.net/madreain" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-cc"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/57ff05970e3dd90057e3e208" target="_blank" title="掘金专栏">
+                  
+                    <i class="fa fa-fw fa-fa-bank"></i>
+                  
+                  掘金专栏
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/madreain" title="madreain" target="_blank">madreain</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view————进度条"><span class="nav-number">1.</span> <span class="nav-text">自定义view————进度条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.0.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置进度"><span class="nav-number">1.0.3.</span> <span class="nav-text">设置进度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">1.0.4.</span> <span class="nav-text">完整代码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">madreain</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5vNCVTAN2rTW6d831BlnhYJR-gzGzoHsz", "RMX7DDs6ugRPn0i9czDlQbiH");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <a href="https://github.com/madreain"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+
+</body>
+</html>
